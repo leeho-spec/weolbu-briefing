@@ -433,13 +433,14 @@
 
 <div class="source-bar">
   <span>수집 채널</span>
-  <span class="source-tag">소수몽키 ×3.0</span>
-  <span class="source-tag">삼프로TV ×2.5</span>
-  <span class="source-tag">전인구경제연구소 ×2.5</span>
-  <span class="source-tag">박곰희TV ×2.0</span>
-  <span class="source-tag">부읽남 ×2.0</span>
-  <span class="source-tag">재테크읽어주는파일럿 ×2.0</span>
-  <span class="source-tag">부티풀 ×2.0</span>
+  <span class="source-tag">소수몽키 ×1.5</span>
+  <span class="source-tag">삼프로TV ×1.5</span>
+  <span class="source-tag">전인구경제연구소 ×1.5</span>
+  <span class="source-tag">박곰희TV ×1.5</span>
+  <span class="source-tag">부읽남 ×1.5</span>
+  <span class="source-tag">재테크읽어주는파일럿 ×1.5</span>
+  <span class="source-tag">부티풀 ×1.5</span>
+  <span class="source-tag">와이스트릿 ×1.5</span>
   <span class="source-tag">머니인사이드 ×1.5</span>
   <span class="source-tag">지식인사이드 ×1.5</span>
   <span class="source-tag">월급쟁이부자들TV ×1.0</span>
@@ -461,16 +462,16 @@
 (function() {
   // 단일 트랙 안에 items × 2 를 생성 → -50% translate로 끊김 없는 루프
   const stocks = [
-    { name:'KOSPI', cur:5283.69, base:5283.69, dec:2, step:8.84 },
-    { name:'KOSDAQ', cur:1113.35, base:1113.35, dec:2, step:1.16 },
+    { name:'KOSPI', cur:5296.55, base:5296.55, dec:2, step:8.2 },
+    { name:'KOSDAQ', cur:1115.55, base:1115.55, dec:2, step:1.05 },
     { name:'NASDAQ', cur:21408.1, base:21408.1, dec:1, step:26.1 },
     { name:'S&P500', cur:6477.2, base:6477.2, dec:1, step:5.7 },
     { name:'DOW', cur:45960.1, base:45960.1, dec:1, step:23.5 },
-    { name:'USD/KRW', cur:1507.89, base:1507.89, dec:2, step:0.35 },
+    { name:'USD/KRW', cur:1507.68, base:1507.68, dec:2, step:0.34 },
     { name:'JPY/KRW', cur:9.45, base:9.45, dec:2, step:0.0 },
-    { name:'CNY/KRW', cur:218.18, base:218.18, dec:2, step:0.01 },
-    { name:'NIKKEI', cur:52931.1, base:52931.1, dec:1, step:33.6 },
-    { name:'SHANGHAI', cur:3889.1, base:3889.1, dec:1, step:0.5 }
+    { name:'CNY/KRW', cur:218.21, base:218.21, dec:2, step:0.01 },
+    { name:'NIKKEI', cur:53006.6, base:53006.6, dec:1, step:29.9 },
+    { name:'SHANGHAI', cur:3863.2, base:3863.2, dec:1, step:1.3 }
   ];
 
   const track = document.getElementById('tickerTrack');
@@ -796,57 +797,44 @@ function switchHotTab(tab, btn) {
       <button class="hot-tab-btn" onclick="switchHotTab('6month',this)">6달</button>
       <button class="hot-tab-btn" onclick="switchHotTab('1year',this)">1년</button>
     </div>
+    <div style="font-size:11px;color:#aaa;margin:6px 0 14px;line-height:1.6;">
+      조회수 × 채널 가중치 × 최신성(업로드 시기)을 복합 스코어로 산출한 순위예요.
+    </div>
 
     <!-- ── 오늘 패널 ── -->
     <div id="hot-today" class="hot-tab-panel active">
 <!-- INJECT_HOT_TODAY_START -->
       <div class="hot-grid">
         <div style="display:flex;flex-direction:column;">
-          <a class="yt-card" href="https://www.youtube.com/watch?v=s32ZFKv5t1Y" target="_blank">
-            <img class="yt-thumb" src="https://img.youtube.com/vi/s32ZFKv5t1Y/hqdefault.jpg" alt="">
-            <div class="yt-info">
-              <div class="yt-rank"><span class="tossface">🥇</span> 1위 · 81만7천뷰</div>
-              <div class="yt-title">수렁으로 빠진 미국, 이렇게 될 것입니다  | 알파고 시나씨 중동 전문기자 [긴급인터뷰]</div>
-              <div class="yt-channel">삼프로TV · 2026-03-20</div>
-            </div>
-          </a>
-          <div class="yt-why">
-            <div class="yt-why-label">WHY #1</div>
-            → 삼프로TV 채널 가중치 × 2.5 적용 — 업로드 2026-03-20<br>
-            → 조회수 817,448뷰 · 동일 키워드 중 가장 높은 반응<br>
-            → 제목 키워드가 지금 시장 불안과 정확히 맞아 1위 선정
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;">
           <a class="yt-card" href="https://www.youtube.com/watch?v=fSBOnLU8Phw" target="_blank">
             <img class="yt-thumb" src="https://img.youtube.com/vi/fSBOnLU8Phw/hqdefault.jpg" alt="">
             <div class="yt-info">
-              <div class="yt-rank"><span class="tossface">🥈</span> 2위 · 18만5천뷰</div>
+              <div class="yt-rank"><span class="tossface">🥇</span> 1위 · 18만5천뷰</div>
               <div class="yt-title">이란이 미국에 금리인상 미사일을 쐈습니다.</div>
               <div class="yt-channel">전인구경제연구소 · 2026-03-21</div>
             </div>
           </a>
           <div class="yt-why">
-            <div class="yt-why-label">WHY #2</div>
-            → 전인구경제연구소 채널 · 조회수 185,012뷰 (업로드 2026-03-21)<br>
-            → 제목 내 구체적 숫자·종목이 클릭 의향을 높였어요<br>
-            → 채널 가중치 × 2.5 + 최신성 보정으로 2위
+            <div class="yt-why-label">WHY #1</div>
+            → 조회수 185,015뷰 × 채널 가중치 ×1.5 × 최신성 80% 적용<br>
+            → 업로드 2026-03-21 (6일 전) — 동일 기간 수집 영상 중 복합 스코어 1위<br>
+            → 지금 시장 불안과 제목 키워드가 정확히 맞아 클릭·조회 집중
           </div>
         </div>
         <div style="display:flex;flex-direction:column;">
-          <a class="yt-card" href="https://www.youtube.com/watch?v=NseuX7PjrI8" target="_blank">
-            <img class="yt-thumb" src="https://img.youtube.com/vi/NseuX7PjrI8/hqdefault.jpg" alt="">
+          <a class="yt-card" href="https://www.youtube.com/watch?v=jKO8DjGiHCk" target="_blank">
+            <img class="yt-thumb" src="https://img.youtube.com/vi/jKO8DjGiHCk/hqdefault.jpg" alt="">
             <div class="yt-info">
-              <div class="yt-rank"><span class="tossface">🥉</span> 3위 · 16만2천뷰</div>
-              <div class="yt-title">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까</div>
-              <div class="yt-channel">소수몽키 · 2026-03-16</div>
+              <div class="yt-rank"><span class="tossface">🥈</span> 2위 · 5천뷰</div>
+              <div class="yt-title">금리, 이보다 쉬울 수 없다! 초등학생부터 할머니까지 누구나 이해하는 금리 [주린이 EP.6]</div>
+              <div class="yt-channel">와이스트릿 · 2026-03-24</div>
             </div>
           </a>
           <div class="yt-why">
-            <div class="yt-why-label">WHY #3</div>
-            → 소수몽키 · 가중치 × 3.0 · 162,394뷰<br>
-            → 경쟁 영상 대비 검색 노출에서 유리한 키워드 선점<br>
-            → 업로드 2026-03-16 — 최신성 보정 적용으로 3위
+            <div class="yt-why-label">WHY #2</div>
+            → 조회수 5,662뷰 × 채널 가중치 ×1.5 × 최신성 90% 적용<br>
+            → 업로드 2026-03-24 — 구체적 수치·종목 제목이 클릭 의향을 높였어요<br>
+            → 복합 스코어 16,136점으로 2위 선정
           </div>
         </div>
       </div>
@@ -1156,30 +1144,12 @@ function switchHotTab(tab, btn) {
             <div class="kw-trend-row">
               <span class="kw-main">💱 환율 · 달러</span>
             </div>
-            <div class="kw-sub">전인구경제연구소, 소수몽키</div>
+            <div class="kw-sub">—</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap">
-                <a class="kw-link-base yt" href="https://www.youtube.com/watch?v=fSBOnLU8Phw" target="_blank">
-                  <span class="kw-link-icon yt">YT</span>
-                  <span class="kw-link-text">이란이 미국에 금리인상 미사일을 쐈습니다. — 전인구경제연구소</span>
-                  <span class="kw-link-more">+3 ›</span>
-                <div class="kw-expand">
-                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=NseuX7PjrI8" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까 — 소수몽키 (16만2천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=16cUZJBm87M" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">메모리 1/6만 필요한 구글 터보퀀트 충격과 미국, 이란 지상전 임박 — 전인구경제연구소 (11만1천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=vCr2XRcOo7Y" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">환율 1500원 돌파는 전조 신호? 전쟁 충격, 실물 경제 위기까지 번질까 — 소수몽키 (8만8천뷰)</span>
-                  </a>
-                </div>
-                </a>
-              </div>
+
             </div>
           </td>
-          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">18만5천뷰</td>
+          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">—</td>
         </tr>
         <!-- 2위 -->
         <tr>
@@ -1188,30 +1158,12 @@ function switchHotTab(tab, btn) {
             <div class="kw-trend-row">
               <span class="kw-main">🤖 AI · 반도체</span>
             </div>
-            <div class="kw-sub">삼프로TV, 머니인사이드</div>
+            <div class="kw-sub">—</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap">
-                <a class="kw-link-base yt" href="https://www.youtube.com/watch?v=OzRhLLHfj2o" target="_blank">
-                  <span class="kw-link-icon yt">YT</span>
-                  <span class="kw-link-text">[26.03.26. 오후 방송 전체보기] 노무라 "AI 사이클로 코스피 8,000"…반도체로 새역사 — 삼프로TV</span>
-                  <span class="kw-link-more">+3 ›</span>
-                <div class="kw-expand">
-                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=5f5Tz0z_tuE" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">"수익률 수만 배 차이 납니다" 10년 묻어둘 '이 주식' 사세요 (배재규 대표 2부) — 머니인사이드 (3만2천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=MoxSWrxmGKg" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">견고한 반도체 시장 펀더멘털...실적 대비 저평가된 반도체 기업은? | 김장열 유니스토리자 — 삼프로TV (1만8천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=KIgYzQ-d_ok" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">전설의 반도체 애널리스트가 코스피 7000, 삼성전자 25만원을 보는 이유(ft.소현철 교 — 전인구경제연구소 (2만1천뷰)</span>
-                  </a>
-                </div>
-                </a>
-              </div>
+
             </div>
           </td>
-          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">12만3천뷰</td>
+          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">—</td>
         </tr>
         <!-- 3위 -->
         <tr>
@@ -1220,27 +1172,12 @@ function switchHotTab(tab, btn) {
             <div class="kw-trend-row">
               <span class="kw-main">🏠 부동산 규제완화</span>
             </div>
-            <div class="kw-sub">부읽남, 부티풀</div>
+            <div class="kw-sub">—</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap">
-                <a class="kw-link-base yt" href="https://www.youtube.com/watch?v=93u5UnKM-gE" target="_blank">
-                  <span class="kw-link-icon yt">YT</span>
-                  <span class="kw-link-text">"아파트 슈퍼사이클 시작됐다" 부동산 시장 분위기 이렇습니다 [망고쌤 1부] — 부읽남</span>
-                  <span class="kw-link-more">+2 ›</span>
-                <div class="kw-expand">
-                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=9AyFkusSPCw" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">2달 뒤 부동산 판도 뒤집힙니다 "5월부터 집값 이렇게 됩니다" [김건우 대표 풀버전] — 부읽남 (9만5천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=1yt_mc7RGQE" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">"아무도 못 버틴다. 보유세 1% 실시되면 벌어지는 일" 이미 타겟 나왔다. 비거주 1주택 — 부티풀 (1만8천뷰)</span>
-                  </a>
-                </div>
-                </a>
-              </div>
+
             </div>
           </td>
-          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">11만7천뷰</td>
+          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">—</td>
         </tr>
         <!-- 4위 -->
         <tr>
@@ -1249,24 +1186,12 @@ function switchHotTab(tab, btn) {
             <div class="kw-trend-row">
               <span class="kw-main">📉 미국 경기침체</span>
             </div>
-            <div class="kw-sub">삼프로TV, 전인구경제연구소</div>
+            <div class="kw-sub">—</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap">
-                <a class="kw-link-base yt" href="https://www.youtube.com/watch?v=s32ZFKv5t1Y" target="_blank">
-                  <span class="kw-link-icon yt">YT</span>
-                  <span class="kw-link-text">수렁으로 빠진 미국, 이렇게 될 것입니다  | 알파고 시나씨 중동 전문기자 [긴급인터뷰] — 삼프로TV</span>
-                  <span class="kw-link-more">+1 ›</span>
-                <div class="kw-expand">
-                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=fSBOnLU8Phw" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">이란이 미국에 금리인상 미사일을 쐈습니다. — 전인구경제연구소 (18만5천뷰)</span>
-                  </a>
-                </div>
-                </a>
-              </div>
+
             </div>
           </td>
-          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">81만7천뷰</td>
+          <td style="font-size:11px; color:#888; text-align:right; padding-right:8px;">—</td>
         </tr>
         <!-- 5위 -->
         <tr>
@@ -1275,23 +1200,17 @@ function switchHotTab(tab, btn) {
             <div class="kw-trend-row">
               <span class="kw-main">🏦 금리 인하 기대</span>
             </div>
-            <div class="kw-sub">전인구경제연구소, 부티풀</div>
+            <div class="kw-sub">전인구경제연구소, 와이스트릿</div>
             <div class="kw-default-links">
               <div class="kw-link-wrap">
                 <a class="kw-link-base yt" href="https://www.youtube.com/watch?v=fSBOnLU8Phw" target="_blank">
                   <span class="kw-link-icon yt">YT</span>
                   <span class="kw-link-text">이란이 미국에 금리인상 미사일을 쐈습니다. — 전인구경제연구소</span>
-                  <span class="kw-link-more">+3 ›</span>
+                  <span class="kw-link-more">+1 ›</span>
                 <div class="kw-expand">
-                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=xSOfSvP1fW4" target="_blank">
+                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=jKO8DjGiHCk" target="_blank">
                     <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">한국은행도 결국 동의한 IMF급 위기 결국 시작됐다 "728조 나랏돈 푸는 정부. 전국민  — 부티풀 (1만7천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=p7-ztHlMG7E" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">"폭락 오든 말든 매달 50만원씩 이 ETF 죽어라 사라" 남은 돈 다 써도 은퇴 후 평생 — 부티풀 (1만8천뷰)</span>
-                  </a>                  <a class="kw-exp-item" href="https://www.youtube.com/watch?v=ysP0-P_3EII" target="_blank">
-                    <span class="kw-link-icon yt">YT</span>
-                    <span class="kw-exp-text">변동성과 불확실성 가득한 금융 시장, 자산 배분은 선택 아닌 필수! 채권과 주식 어떻게 투 — 삼프로TV (3천뷰)</span>
+                    <span class="kw-exp-text">금리, 이보다 쉬울 수 없다! 초등학생부터 할머니까지 누구나 이해하는 금리 [주린이 EP. — 와이스트릿 (5천뷰)</span>
                   </a>
                 </div>
                 </a>
