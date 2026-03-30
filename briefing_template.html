@@ -567,6 +567,18 @@
   .hot-row[data-cat] { transition: opacity 0.15s; }
   .hot-row.hidden { display: none; }
 
+  /* ── 급상승 스트립 ── */
+  .surge-strip { margin: 8px 0 4px; border-top: 1px solid var(--border-md); padding-top: 10px; }
+  .surge-header { font-size: 11px; font-weight: 700; color: var(--text-sec); letter-spacing: 0.3px; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+  .surge-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; text-decoration: none; border-radius: 6px; transition: background 0.12s; }
+  .surge-item:hover { background: var(--bg-hover); }
+  .surge-delta { font-size: 11px; font-weight: 800; color: #e53e3e; min-width: 28px; text-align: center; flex-shrink: 0; }
+  .surge-thumb { width: 72px; height: 41px; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #f0f0f0; }
+  .surge-body { flex: 1; min-width: 0; }
+  .surge-title { font-size: 12px; font-weight: 600; color: var(--text-pri); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 2px; }
+  .surge-meta { font-size: 10.5px; color: var(--text-muted); display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .surge-dur { background: var(--bg-inner); border-radius: 3px; padding: 1px 5px; font-size: 10px; color: var(--text-sec); }
+
   /* ── 더보기 아코디언 ── */
   .more-toggle { display: flex; align-items: center; gap: 8px; background: none; border: none; border-top: 1px solid #f0f0f0; width: 100%; padding: 12px 0 4px; cursor: pointer; font-size: 12px; font-weight: 600; color: #999; font-family: inherit; margin-top: 4px; }
   .more-toggle:hover { color: #555; }
