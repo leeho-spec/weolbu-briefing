@@ -13,7 +13,34 @@
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f0f0; color: #1a1a1a; font-size: 14px; line-height: 1.6; }
+
+  /* ── 다크/라이트 색상 변수 ── */
+  :root {
+    --bg-page:    #f0f0f0;
+    --bg-card:    #ffffff;
+    --bg-hover:   #fafafa;
+    --bg-inner:   #fafafa;
+    --text-pri:   #1a1a1a;
+    --text-sec:   #555;
+    --text-muted: #aaa;
+    --border:     #f0f0f0;
+    --border-md:  #e8e8e8;
+    --shadow:     0 1px 3px rgba(0,0,0,0.06);
+  }
+  body.dark {
+    --bg-page:    #111111;
+    --bg-card:    #1c1c1c;
+    --bg-hover:   #252525;
+    --bg-inner:   #222222;
+    --text-pri:   #e8e8e8;
+    --text-sec:   #aaa;
+    --text-muted: #666;
+    --border:     #2a2a2a;
+    --border-md:  #333;
+    --shadow:     0 1px 4px rgba(0,0,0,0.4);
+  }
+
+  body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg-page); color: var(--text-pri); font-size: 14px; line-height: 1.6; transition: background 0.2s, color 0.2s; }
 
   /* Tossface — <link> in <head> 로 로드, class="tossface" 적용 시 폰트 사용 */
   .tossface { font-family: 'Tossface'; }
@@ -36,19 +63,25 @@
 
   /* ── LAYOUT ── */
   .container { max-width: 960px; margin: 0 auto; padding: 24px 20px 60px; display: flex; flex-direction: column; gap: 20px; }
+  /* ── 날짜 아카이브 네비게이션 ── */
+  .date-nav { display: flex; align-items: center; justify-content: space-between; background: var(--bg-card); border-radius: 8px; padding: 9px 16px; box-shadow: var(--shadow); font-size: 11.5px; }
+  .date-nav-btn { display: flex; align-items: center; gap: 5px; color: #CC0000; font-weight: 700; text-decoration: none; padding: 3px 8px; border-radius: 5px; transition: background 0.12s; }
+  .date-nav-btn:hover { background: #fff0f0; }
+  .date-nav-btn.disabled { color: var(--text-muted); cursor: default; pointer-events: none; }
+  .date-nav-center { font-size: 12px; font-weight: 600; color: var(--text-sec); letter-spacing: 0.3px; }
 
   /* ── 상단 2열 레이아웃 (TODAY'S BRIEF + HEATMAP) ── */
   .top-row { display: flex; gap: 16px; align-items: flex-start; }
   .top-row .summary-card { flex: 1.55; min-width: 0; overflow: hidden; }
   .top-row .heatmap-card { flex: 1; min-width: 0; align-self: stretch; }
-  .summary-card { background: #fff; border-radius: 8px; padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .summary-card { background: var(--bg-card); border-radius: 8px; padding: 20px 22px; box-shadow: var(--shadow); }
 
   /* ── SECTION HEADER ── */
   .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .section-header h2 { font-size: 15px; font-weight: 700; color: #1a1a1a; }
+  .section-header h2 { font-size: 15px; font-weight: 700; color: var(--text-pri); }
   .badge { background: #CC0000; color: #fff; font-size: 9.5px; font-weight: 700; border-radius: 3px; padding: 2px 7px; letter-spacing: 0.3px; }
   .section-divider { width: 24px; height: 3px; background: #CC0000; margin-bottom: 16px; }
-  .card { background: #fff; border-radius: 8px; padding: 22px 26px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .card { background: var(--bg-card); border-radius: 8px; padding: 22px 26px; box-shadow: var(--shadow); }
 
   /* ── ⓘ 섹션 정보 아이콘 ── */
   .info-icon {
@@ -98,7 +131,7 @@
   }
 
   /* 각 브리프 아이템 */
-  .brief-item-wrap { position: relative; border-bottom: 1px solid #f0f0f0; }
+  .brief-item-wrap { position: relative; border-bottom: 1px solid var(--border); }
   .brief-item-wrap:last-child { border-bottom: none; }
 
   .brief-item {
@@ -117,7 +150,7 @@
   }
   .brief-body { flex: 1; overflow: hidden; }
   .brief-title {
-    font-size: 13.5px; font-weight: 700; color: #1a1a1a;
+    font-size: 13.5px; font-weight: 700; color: var(--text-pri);
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     line-height: 1.3; margin-bottom: 2px;
   }
@@ -136,7 +169,7 @@
   .brief-links {
     display: none;
     position: absolute; left: 0; top: 100%;
-    background: #fff; border: 1px solid #eee;
+    background: var(--bg-card); border: 1px solid var(--border-md);
     border-radius: 0 0 8px 8px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.10);
     z-index: 200; width: 100%; padding: 6px 8px;
@@ -147,7 +180,7 @@
   .bl-item {
     display: flex; align-items: center; gap: 7px;
     text-decoration: none; padding: 5px 8px; border-radius: 5px;
-    font-size: 11px; color: #333; transition: background 0.12s;
+    font-size: 11px; color: var(--text-sec); transition: background 0.12s;
     white-space: nowrap; overflow: hidden;
   }
   .bl-item:hover { background: #f5f5f5; }
@@ -208,7 +241,7 @@
   .tm-tt-val { font-size: 11px; font-weight: 700; color: #fff; margin-top: 6px; }
 
   /* ── HOT 콘텐츠 탭 ── */
-  .hot-tabs { display: flex; gap: 0; margin-bottom: 18px; border-bottom: 2px solid #f0f0f0; }
+  .hot-tabs { display: flex; gap: 0; margin-bottom: 18px; border-bottom: 2px solid var(--border); }
   .hot-tab-btn {
     background: none; border: none; border-bottom: 2px solid transparent;
     margin-bottom: -2px; padding: 7px 18px 10px;
@@ -223,12 +256,12 @@
 
   /* ── HOT 콘텐츠 그리드 ── */
   .hot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 22px; }
-  .yt-card { border-radius: 8px; overflow: hidden; border: 1px solid #eee; background: #fff; transition: box-shadow 0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .yt-card { border-radius: 8px; overflow: hidden; border: 1px solid var(--border-md); background: var(--bg-card); transition: box-shadow 0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
   .yt-card:hover { box-shadow: 0 4px 16px rgba(204,0,0,0.13); }
   .yt-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: #eee; }
   .yt-info { padding: 9px 11px 4px; flex: 1; }
   .yt-rank { font-size: 9.5px; font-weight: 700; color: #CC0000; letter-spacing: 0.5px; margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
-  .yt-title { font-size: 12px; font-weight: 600; color: #1a1a1a; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .yt-title { font-size: 12px; font-weight: 600; color: var(--text-pri); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .yt-channel { font-size: 10.5px; color: #999; margin-top: 4px; }
   /* 왜 상위권인가 분석 */
   .yt-why {
@@ -241,15 +274,15 @@
   .yt-why-label { font-size: 9.5px; font-weight: 700; color: #999; margin-bottom: 5px; letter-spacing: 0.3px; }
 
   .news-list { display: flex; flex-direction: column; gap: 8px; }
-  .news-item { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; background: #fafafa; border-radius: 6px; border: 1px solid #eee; text-decoration: none; color: inherit; transition: background 0.15s; }
+  .news-item { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; background: var(--bg-inner); border-radius: 6px; border: 1px solid var(--border-md); text-decoration: none; color: inherit; transition: background 0.15s; }
   .news-item:hover { background: #fff0f0; }
   .news-num { font-size: 18px; font-weight: 900; color: #e8e8e8; line-height: 1; min-width: 22px; }
   .news-source-tag { font-size: 9.5px; font-weight: 700; color: #CC0000; margin-bottom: 2px; }
-  .news-headline { font-size: 13px; font-weight: 600; color: #1a1a1a; line-height: 1.45; }
+  .news-headline { font-size: 13px; font-weight: 600; color: var(--text-pri); line-height: 1.45; }
 
   /* ── TOP 5 TABLE ── */
   .top5-table { width: 100%; border-collapse: collapse; }
-  .top5-table th { font-size: 10.5px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; padding: 7px 12px; border-bottom: 2px solid #f0f0f0; text-align: left; }
+  .top5-table th { font-size: 10.5px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; padding: 7px 12px; border-bottom: 2px solid var(--border); text-align: left; }
   .top5-table td { padding: 11px 12px; border-bottom: 1px solid #f5f5f5; vertical-align: top; }
   .top5-table tr:last-child td { border-bottom: none; }
 
@@ -259,7 +292,7 @@
   .rank-num.top3 { color: #e0a0a0; }
 
   .kw-trend-row { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; flex-wrap: wrap; }
-  .kw-main { font-size: 14.5px; font-weight: 700; color: #1a1a1a; }
+  .kw-main { font-size: 14.5px; font-weight: 700; color: var(--text-pri); }
   .kw-trend { display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
   .kw-trend.up   { background: #fff0e8; color: #c04000; }
   .kw-trend.down { background: #e8f0ff; color: #0044bb; }
@@ -283,7 +316,7 @@
   .kw-link-base {
     display: flex; align-items: center; gap: 7px;
     text-decoration: none; padding: 5px 9px; border-radius: 5px;
-    font-size: 11.5px; color: #333; border: 1px solid #f0f0f0;
+    font-size: 11.5px; color: var(--text-sec); border: 1px solid var(--border);
     transition: border-color 0.15s, background 0.15s;
     white-space: nowrap; overflow: hidden;
   }
@@ -300,7 +333,7 @@
   .kw-expand {
     display: none;
     position: absolute; left: 0; top: 100%;
-    background: #fff; border: 1px solid #eee;
+    background: var(--bg-card); border: 1px solid var(--border-md);
     border-radius: 0 0 7px 7px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.10);
     z-index: 200; width: 100%; padding: 5px 7px;
@@ -310,7 +343,7 @@
   .kw-exp-item {
     display: flex; align-items: center; gap: 7px;
     text-decoration: none; padding: 4px 7px; border-radius: 4px;
-    font-size: 11px; color: #333; transition: background 0.12s;
+    font-size: 11px; color: var(--text-sec); transition: background 0.12s;
     white-space: nowrap; overflow: hidden;
   }
   .kw-exp-item:hover { background: #f8f8f8; }
@@ -319,21 +352,21 @@
   .score-bar-wrap { display: none; }
 
   /* ── 키워드 테이블 오늘의뉴스 열 ── */
-  .kw-news-col { vertical-align: top; width: 230px; max-width: 230px; border-left: 1px solid #f0f0f0; padding: 14px 16px !important; background: #fafafa; overflow: hidden; }
+  .kw-news-col { vertical-align: top; width: 230px; max-width: 230px; border-left: 1px solid var(--border); padding: 14px 16px !important; background: var(--bg-inner); overflow: hidden; }
   .kw-news-label { font-size: 9.5px; font-weight: 800; color: #bbb; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; }
-  .kw-news-row { display: block; overflow: hidden; padding: 7px 0; border-bottom: 1px solid #f0f0f0; text-decoration: none; color: inherit; }
+  .kw-news-row { display: block; overflow: hidden; padding: 7px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
   .kw-news-row:last-child { border-bottom: none; }
   .kw-news-row:hover .kw-news-title { color: #CC0000; }
   .kw-news-src { display: none; }
-  .kw-news-title { font-size: 11px; color: #333; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; max-width: 100%; }
+  .kw-news-title { font-size: 11px; color: var(--text-sec); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; max-width: 100%; }
   .kw-news-day-label { font-size: 9px; font-weight: 700; color: #aaa; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 0 2px; border-bottom: 1px solid #eee; margin-bottom: 2px; }
   .kw-news-src-badge { display: inline-block; font-size: 9px; font-weight: 700; color: #CC0000; background: #fff0f0; border-radius: 3px; padding: 1px 4px; margin-right: 4px; line-height: 1.4; vertical-align: middle; flex-shrink: 0; }
 
   /* ── SOURCE CARDS ── */
   .source-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-  .source-card { background: #fff; border-radius: 8px; padding: 13px 11px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; }
+  .source-card { background: var(--bg-card); border-radius: 8px; padding: 13px 11px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); text-align: center; }
   .source-card-name { font-size: 10.5px; font-weight: 700; color: #666; margin-bottom: 7px; }
-  .source-card-kw { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .source-card-kw { font-size: 12px; font-weight: 700; color: var(--text-pri); margin-bottom: 3px; }
   .source-card-score { font-family: 'Paperlogy', sans-serif; font-size: 20px; font-weight: 700; color: #CC0000; }
   .source-card-unit { font-size: 9.5px; color: #bbb; margin-top: 2px; }
   .source-weight { font-size: 9.5px; color: #ddd; margin-top: 3px; }
@@ -357,7 +390,7 @@
     display: none;
     position: absolute;
     top: calc(100% + 6px); left: 0;
-    background: #fff;
+    background: var(--bg-card);
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 10px;
@@ -389,22 +422,22 @@
   .plan-kw-section { margin-bottom: 26px; }
   .plan-kw-section:last-child { margin-bottom: 0; }
   .plan-kw-header { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; flex-wrap: wrap; }
-  .plan-kw-title { font-size: 14.5px; font-weight: 800; color: #1a1a1a; }
+  .plan-kw-title { font-size: 14.5px; font-weight: 800; color: var(--text-pri); }
   .plan-kw-score { font-size: 11.5px; font-weight: 700; color: #CC0000; background: #fff0f0; border-radius: 4px; padding: 2px 8px; }
   .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .plan-box { background: #fafafa; border: 1px solid #eee; border-radius: 7px; overflow: hidden; }
+  .plan-box { background: var(--bg-inner); border: 1px solid var(--border-md); border-radius: 7px; overflow: hidden; }
   .plan-label { background: #f2f2f2; padding: 7px 13px; font-size: 10.5px; font-weight: 700; color: #888; letter-spacing: 0.3px; text-transform: uppercase; border-bottom: 1px solid #e8e8e8; }
   .plan-label span { color: #CC0000; margin-right: 5px; }
-  .plan-content { padding: 11px 13px; font-size: 12.5px; color: #333; line-height: 1.6; }
+  .plan-content { padding: 11px 13px; font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
   .plan-content ul { list-style: none; padding: 0; margin: 0; }
-  .plan-content ul li { padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+  .plan-content ul li { padding: 3px 0; border-bottom: 1px solid var(--border); }
   .plan-content ul li:last-child { border-bottom: none; }
   .plan-content ul li::before { content: "›"; color: #CC0000; font-weight: 700; margin-right: 6px; }
   .plan-separator { height: 1px; background: #f0f0f0; margin: 18px 0; }
   .kw-tags { display: flex; flex-wrap: wrap; gap: 5px; }
   .kw-tag { background: #fff0f0; color: #CC0000; border: 1px solid #ffc0c0; border-radius: 4px; padding: 3px 9px; font-size: 11.5px; font-weight: 600; }
 
-  .thumb-principle { background: #fff; border: 1.5px solid #e8e8e8; border-radius: 7px; overflow: hidden; }
+  .thumb-principle { background: var(--bg-card); border: 1.5px solid #e8e8e8; border-radius: 7px; overflow: hidden; }
   .thumb-principle-header { background: #1a1a1a; color: #fff; padding: 7px 13px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; }
   .thumb-principle-body { padding: 11px 13px; }
   .thumb-text-box { background: #CC0000; color: #fff; border-radius: 5px; padding: 9px 13px; margin-bottom: 10px; font-size: 14px; font-weight: 900; text-align: center; line-height: 1.35; }
@@ -413,7 +446,7 @@
   .thumb-core-values { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
   .core-val { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 20px; border: 1.5px solid; }
   .core-val.active   { background: #CC0000; color: #fff; border-color: #CC0000; }
-  .core-val.inactive { background: #fff; color: #bbb; border-color: #e8e8e8; }
+  .core-val.inactive { background: var(--bg-card); color: #bbb; border-color: #e8e8e8; }
   .thumb-font-guide { margin-top: 9px; padding: 7px 10px; background: #f8f8f8; border-radius: 5px; font-size: 10.5px; color: #666; line-height: 1.75; }
 
   /* ── TICKER BANNER ── */
@@ -499,16 +532,21 @@
   .period-placeholder strong { display: block; font-size: 15px; color: #ccc; margin-bottom: 6px; }
 
   /* ── 카테고리 필터 ── */
-  .cat-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #f0f0f0; }
+  .cat-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
   .cat-btn { background: #f0f0f0; border: none; border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: #888; cursor: pointer; font-family: inherit; transition: all 0.12s; white-space: nowrap; }
-  .cat-btn:hover { background: #e4e4e4; color: #333; }
+  .cat-btn:hover { background: #e4e4e4; color: var(--text-sec); }
   .cat-btn.active { background: #1a1a1a; color: #fff; }
 
   /* ── 컴팩트 롱폼 리스트 ── */
   .hot-list { display: flex; flex-direction: column; gap: 0; }
-  .hot-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid #f5f5f5; text-decoration: none; color: inherit; transition: background 0.1s; border-radius: 6px; }
+  .hot-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; transition: background 0.1s; border-radius: 6px; position: relative; }
   .hot-row:last-child { border-bottom: none; }
-  .hot-row:hover { background: #fafafa; padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
+  .hot-row:hover { background: var(--bg-hover); padding-left: 8px; padding-right: 8px; margin: 0 -8px; }
+  /* TOP3 호버 썸네일 프리뷰 */
+  .thumb-preview { position: absolute; left: 50%; top: calc(100% + 6px); transform: translateX(-50%); width: 260px; background: #111; border-radius: 10px; box-shadow: 0 8px 28px rgba(0,0,0,0.22); overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.18s, transform 0.18s; transform-origin: top center; z-index: 200; }
+  .hot-row-top3:hover .thumb-preview { opacity: 1; pointer-events: none; }
+  .thumb-preview img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  .thumb-preview-title { font-size: 11px; font-weight: 600; color: #eee; padding: 8px 10px; line-height: 1.4; }
   .hot-rank-num { font-size: 22px; width: 36px; flex-shrink: 0; text-align: center; line-height: 1; display: flex; align-items: center; justify-content: center; }
   .hot-rank-num.r1 { font-size: 24px; }
   .hot-rank-num.r2 { font-size: 22px; }
@@ -516,8 +554,8 @@
   .hot-rank-num.rn { font-size: 12px; font-family: 'Paperlogy', sans-serif; font-weight: 700; color: #cbd5e1; }
   .hot-thumb-sm { width: 88px; height: 50px; object-fit: cover; border-radius: 5px; flex-shrink: 0; background: #f0f0f0; }
   .hot-body { flex: 1; min-width: 0; }
-  .hot-title { font-size: 13px; font-weight: 600; color: #1a1a1a; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .hot-meta { font-size: 11px; color: #aaa; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .hot-title { font-size: 13px; font-weight: 600; color: var(--text-pri); line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .hot-meta { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .hot-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
   .cat-badge { font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.2px; white-space: nowrap; }
   .cat-stock     { background: #eff6ff; color: #2563eb; }
@@ -553,13 +591,13 @@
 
   /* ── 숏폼 카드 (가로 5열 세로 비율) ── */
   .shorts-list { display: flex; flex-direction: row; gap: 9px; margin-bottom: 4px; }
-  .shorts-card { flex: 1; min-width: 0; display: flex; flex-direction: column; text-decoration: none; color: inherit; border: 1px solid #eee; border-radius: 10px; overflow: hidden; transition: box-shadow 0.15s; background: #fff; }
+  .shorts-card { flex: 1; min-width: 0; display: flex; flex-direction: column; text-decoration: none; color: inherit; border: 1px solid var(--border-md); border-radius: 10px; overflow: hidden; transition: box-shadow 0.15s; background: var(--bg-card); }
   .shorts-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.10); }
   .shorts-thumb-wrap { position: relative; width: 100%; aspect-ratio: 9/16; overflow: hidden; background: #f0f0f0; flex-shrink: 0; }
   .shorts-thumb-v { width: 100%; height: 100%; object-fit: cover; display: block; }
   .shorts-rank-badge { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.55); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
   .shorts-body { padding: 7px 8px 9px; flex: 1; }
-  .shorts-title { font-size: 11px; font-weight: 600; color: #1a1a1a; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
+  .shorts-title { font-size: 11px; font-weight: 600; color: var(--text-pri); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
   .shorts-ch { font-size: 10px; color: #aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .shorts-why { font-size: 10px; color: #bbb; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
 </style>
@@ -571,9 +609,12 @@
     <div class="masthead-title">재테크 트렌드 브리핑</div>
     <div class="masthead-sub">YouTube · 뉴스 · 키워드 분석 리포트</div>
   </div>
-  <div class="masthead-right">
-    <!-- INJECT_DATE_START --><div class="masthead-date">2026년 03월 30일 월요일</div><!-- INJECT_DATE_END -->
-    <div style="font-size:11px;opacity:0.55;margin-top:3px;">🕘 업데이트 09:00 · 콘텐츠팀 이호</div>
+  <div class="masthead-right" style="display:flex;align-items:center;gap:16px;">
+    <button id="darkToggle" onclick="toggleDark()" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;cursor:pointer;letter-spacing:0.3px;transition:background 0.15s;" title="다크/라이트 전환">🌙 DARK</button>
+    <div style="text-align:right;">
+      <!-- INJECT_DATE_START --><div class="masthead-date">2026년 03월 30일 월요일</div><!-- INJECT_DATE_END -->
+      <div style="font-size:11px;opacity:0.55;margin-top:3px;">🕘 업데이트 09:00 · 콘텐츠팀 이호</div>
+    </div>
   </div>
 </div>
 
@@ -588,6 +629,20 @@
 </div>
 
 <script>
+// ── 다크/라이트 토글 ──
+function toggleDark() {
+  var isDark = document.body.classList.toggle('dark');
+  var btn = document.getElementById('darkToggle');
+  if (btn) btn.textContent = isDark ? '☀️ LIGHT' : '🌙 DARK';
+  try { localStorage.setItem('wb-theme', isDark ? 'dark' : 'light'); } catch(e) {}
+}
+(function() {
+  try {
+    var t = localStorage.getItem('wb-theme');
+    if (t === 'dark') { document.body.classList.add('dark'); var btn = document.getElementById('darkToggle'); if (btn) btn.textContent = '☀️ LIGHT'; }
+  } catch(e) {}
+})();
+
 (function() {
   // 단일 트랙 안에 items × 2 를 생성 → -50% translate로 끊김 없는 루프
   const stocks = [
@@ -596,9 +651,9 @@
     { name:'NASDAQ', cur:20948.4, base:20948.4, dec:1, step:23.0 },
     { name:'S&P500', cur:6368.9, base:6368.9, dec:1, step:5.4 },
     { name:'DOW', cur:45166.6, base:45166.6, dec:1, step:39.7 },
-    { name:'USD/KRW', cur:1515.88, base:1515.88, dec:2, step:0.38 },
+    { name:'USD/KRW', cur:1515.81, base:1515.81, dec:2, step:0.37 },
     { name:'JPY/KRW', cur:9.5, base:9.5, dec:2, step:0.0 },
-    { name:'CNY/KRW', cur:219.43, base:219.43, dec:2, step:0.01 },
+    { name:'CNY/KRW', cur:219.38, base:219.38, dec:2, step:0.01 },
     { name:'NIKKEI', cur:51885.9, base:51885.9, dec:1, step:74.4 },
     { name:'SHANGHAI', cur:3923.3, base:3923.3, dec:1, step:0.5 }
   ];
@@ -764,6 +819,8 @@ function switchPeriod(period, btn) {
 
 <div class="container">
 
+  <!-- INJECT_DATE_NAV_START --><div class="date-nav"><a class="date-nav-btn" href="https://leeho-spec.github.io/weolbu-briefing/briefings/daily_briefing_2026-03-29.html">← 2026-03-29</a><span class="date-nav-center">📅 2026. 03. 30</span><a class="date-nav-btn" href="https://leeho-spec.github.io/weolbu-briefing/briefings/daily_briefing_2026-03-31.html">2026-03-31 →</a></div><!-- INJECT_DATE_NAV_END -->
+
   <!-- TOP ROW: TODAY'S BRIEF + HEATMAP -->
   <div class="top-row">
 
@@ -791,7 +848,7 @@ function switchPeriod(period, btn) {
           </div>
           <span class="brief-hint">링크 ›</span>
         </div>
-        <div class="brief-links"><a class="bl-item" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">[26.03.30 오전 방송 전체보기] 뉴욕증시 연일 하락 지속메모리 반도체주 '반등' / 문닫고  — 삼프로TV</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=iTXndS97t28" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">반도체 정말 무섭게 오를겁니다, 삼성전자 아닌 '이 주식' 사세요 (박세익 대표 풀버전) — 김작가TV</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들 — 소수몽키</span></a><a class="bl-item" href="https://www.mk.co.kr/news/it/12002646" target="_blank"><span class="bl-lbl news">뉴스</span><span class="bl-text">투자 여력없고 시스템 제각각…병원 의료AI 도입 '그림의 떡' — 매일경제</span></a></div>
+        <div class="brief-links"><a class="bl-item" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">[26.03.30 오전 방송 전체보기] 뉴욕증시 연일 하락 지속메모리 반도체주 '반등' / 문닫고  — 삼프로TV</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=iTXndS97t28" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">반도체 정말 무섭게 오를겁니다, 삼성전자 아닌 '이 주식' 사세요 (박세익 대표 풀버전) — 김작가TV</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들 — 소수몽키</span></a><a class="bl-item" href="https://www.mk.co.kr/news/it/12002647" target="_blank"><span class="bl-lbl news">뉴스</span><span class="bl-text">"AI 신기술 개발해도 현실화 산넘어산 … 다 해외로 떠날판" — 매일경제</span></a></div>
       </div>
       <div class="brief-item-wrap">
         <div class="brief-item">
@@ -833,7 +890,7 @@ function switchPeriod(period, btn) {
           </div>
           <div class="brief-body">
             <div class="brief-title">"다들 대단히 착각하고 있어요" 붕괴된 부동산 시장, 큰일났습니다 [빠숑 김학렬 소장 2부]</div>
-            <div class="brief-desc">부읽남 — 11만9천뷰</div>
+            <div class="brief-desc">부읽남 — 12만0천뷰</div>
           </div>
           <span class="brief-hint">링크 ›</span>
         </div>
@@ -1022,7 +1079,7 @@ function switchPeriod(period, btn) {
 <!-- INJECT_HOT_CARDS_WEEK_START -->
   <div class="hot-section-label"><span class="tossface">📹</span> 롱폼 TOP 10</div>
   <div class="hot-list">
-  <a class="hot-row" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank" data-cat="stock" data-rank="1">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank" data-cat="stock" data-rank="1">
     <span class="hot-rank-num r1"><span class="tossface">🥇</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/bYMlwIIPatI/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
@@ -1033,8 +1090,12 @@ function switchPeriod(period, btn) {
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-stock">주식·증시</span>
     </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/bYMlwIIPatI/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/bYMlwIIPatI/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">[26.03.30 오전 방송 전체보기] 뉴욕증시 연일 하락 지속메모리 반도체주 '반등' / 문닫고 </div>
+    </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=iTXndS97t28" target="_blank" data-cat="stock" data-rank="2">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=iTXndS97t28" target="_blank" data-cat="stock" data-rank="2">
     <span class="hot-rank-num r2"><span class="tossface">🥈</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/iTXndS97t28/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
@@ -1045,8 +1106,12 @@ function switchPeriod(period, btn) {
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-stock">주식·증시</span>
     </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/iTXndS97t28/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/iTXndS97t28/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">반도체 정말 무섭게 오를겁니다, 삼성전자 아닌 '이 주식' 사세요 (박세익 대표 풀버전)</div>
+    </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank" data-cat="stock" data-rank="3">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank" data-cat="stock" data-rank="3">
     <span class="hot-rank-num r3"><span class="tossface">🥉</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Mj9BKoYoTmo/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
@@ -1056,6 +1121,10 @@ function switchPeriod(period, btn) {
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-stock">주식·증시</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/Mj9BKoYoTmo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Mj9BKoYoTmo/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들</div>
     </div>
   </a>
   </div>
@@ -1069,7 +1138,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/RA_d_ZaesB4/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">"다들 대단히 착각하고 있어요" 붕괴된 부동산 시장, 큰일났습니다 [빠숑 김학렬 소장 2부]</div>
-      <div class="hot-meta"><span>부읽남</span><span>·</span><span>1일 전</span><span>·</span><span>11만9천뷰</span></div>
+      <div class="hot-meta"><span>부읽남</span><span>·</span><span>1일 전</span><span>·</span><span>12만0천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1081,7 +1150,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/xBxoGgaRMm8/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">1달 뒤 부동산 판도 뒤집힙니다, "4월부터 집값 이렇게 됩니다" [빠숑 김학렬 소장 1부]</div>
-      <div class="hot-meta"><span>부읽남</span><span>·</span><span>2일 전</span><span>·</span><span>11만5천뷰</span></div>
+      <div class="hot-meta"><span>부읽남</span><span>·</span><span>2일 전</span><span>·</span><span>11만6천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1117,7 +1186,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/xahNpKCZYpw/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">지상군 투입 '오락가락' 딜레마 빠진 트럼프 | 박현도 서강대 유로메나연구소 교수[글로벌 인터뷰]</div>
-      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>1일 전</span><span>·</span><span>9만9천뷰</span></div>
+      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>1일 전</span><span>·</span><span>10만0천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1136,31 +1205,20 @@ function switchPeriod(period, btn) {
       <span class="cat-badge cat-realestate">부동산</span>
     </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=vCr2XRcOo7Y" target="_blank" data-cat="macro" data-rank="10">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=AaCNsjot--4" target="_blank" data-cat="stock" data-rank="10">
     <span class="hot-rank-num rn">10위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/vCr2XRcOo7Y/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/AaCNsjot--4/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">환율 1500원 돌파는 전조 신호? 전쟁 충격, 실물 경제 위기까지 번질까</div>
-      <div class="hot-meta"><span>소수몽키</span><span>·</span><span>7일 전</span><span>·</span><span>9만2천뷰</span></div>
+      <div class="hot-title">[26.03.30. 오후 방송 전체보기] 끝나지 않은 전쟁·터보퀀트 공포 지속…반도체는 오늘도 웁니다 [클로</div>
+      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>오늘</span><span>·</span><span>8만8천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-macro">거시경제</span>
+      <span class="cat-badge cat-stock">주식·증시</span>
     </div>
   </a>
   </div>
   <div class="cat-extra-list">
-  <a class="hot-row" href="https://www.youtube.com/watch?v=AaCNsjot--4" target="_blank" data-cat="stock" data-rank="99" data-cat-extra="true">
-    <span class="hot-rank-num rn">—</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/AaCNsjot--4/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">[26.03.30. 오후 방송 전체보기] 끝나지 않은 전쟁·터보퀀트 공포 지속…반도체는 오늘도 웁니다 [클로</div>
-      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>오늘</span><span>·</span><span>7만8천뷰</span></div>
-    </div>
-    <div class="hot-right">
-      <span class="cat-badge cat-stock">주식·증시</span>
-    </div>
-  </a>
   <a class="hot-row" href="https://www.youtube.com/watch?v=Ox5GX4j2cb8" target="_blank" data-cat="stock" data-rank="99" data-cat-extra="true">
     <span class="hot-rank-num rn">—</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Ox5GX4j2cb8/hqdefault.jpg" alt="" loading="lazy">
@@ -1178,6 +1236,17 @@ function switchPeriod(period, btn) {
     <div class="hot-body">
       <div class="hot-title">미국 AI소부장 성장하는 실적, 하락하는 주가, 매수 기회일까?</div>
       <div class="hot-meta"><span>전인구경제연구소</span><span>·</span><span>7일 전</span><span>·</span><span>3만6천뷰</span></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-stock">주식·증시</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=X8KrLA_9YL4" target="_blank" data-cat="stock" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/X8KrLA_9YL4/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">KF-21 내가 먹겠다! 한화 vs LIG넥스원 KAI민영화 전쟁 / 김민석 특파원(클립본)</div>
+      <div class="hot-meta"><span>와이스트릿</span><span>·</span><span>2일 전</span><span>·</span><span>2만3천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-stock">주식·증시</span>
@@ -1216,6 +1285,17 @@ function switchPeriod(period, btn) {
       <span class="cat-badge cat-realestate">부동산</span>
     </div>
   </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=vCr2XRcOo7Y" target="_blank" data-cat="macro" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/vCr2XRcOo7Y/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">환율 1500원 돌파는 전조 신호? 전쟁 충격, 실물 경제 위기까지 번질까</div>
+      <div class="hot-meta"><span>소수몽키</span><span>·</span><span>7일 전</span><span>·</span><span>9만2천뷰</span></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+  </a>
   <a class="hot-row" href="https://www.youtube.com/watch?v=4iXWNYzu5cY" target="_blank" data-cat="macro" data-rank="99" data-cat-extra="true">
     <span class="hot-rank-num rn">—</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/4iXWNYzu5cY/hqdefault.jpg" alt="" loading="lazy">
@@ -1232,18 +1312,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/aXwQ_XgLs44/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">금과 중국의 몰락이 시작됐다, 트럼프의 소름돋는 큰 그림 공개 (김창익 대표)</div>
-      <div class="hot-meta"><span>김작가TV</span><span>·</span><span>2일 전</span><span>·</span><span>2만6천뷰</span></div>
-    </div>
-    <div class="hot-right">
-      <span class="cat-badge cat-macro">거시경제</span>
-    </div>
-  </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=YQCTb-ekYqw" target="_blank" data-cat="macro" data-rank="99" data-cat-extra="true">
-    <span class="hot-rank-num rn">—</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/YQCTb-ekYqw/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">미국, 반트럼프 역대 최대 시위 | 문닫고 합치고 석유화학 구조조정 D-1...외자계 합작사는 지지부진 | </div>
-      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>1일 전</span><span>·</span><span>2만4천뷰</span></div>
+      <div class="hot-meta"><span>김작가TV</span><span>·</span><span>2일 전</span><span>·</span><span>2만7천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-macro">거시경제</span>
@@ -1296,7 +1365,7 @@ function switchPeriod(period, btn) {
           <div class="shorts-body">
             <div class="shorts-title">은퇴한 5060분들 딴짓말고 이것부터 하세요 [정선용 작가]</div>
             <div class="shorts-ch">부읽남 · 2026-03-26</div>
-            <div class="shorts-why">14만3천뷰 · 36초 · 4일 전</div>
+            <div class="shorts-why">14만4천뷰 · 36초 · 4일 전</div>
           </div>
         </a>
         <a class="shorts-card" href="https://www.youtube.com/shorts/-BR8-eKjeRo" target="_blank">
@@ -1352,7 +1421,7 @@ function switchPeriod(period, btn) {
 <!-- INJECT_HOT_CARDS_MONTH_START -->
   <div class="hot-section-label"><span class="tossface">📹</span> 롱폼 TOP 10</div>
   <div class="hot-list">
-  <a class="hot-row" href="https://www.youtube.com/watch?v=_dgynhaBVJY" target="_blank" data-cat="macro" data-rank="1">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=_dgynhaBVJY" target="_blank" data-cat="macro" data-rank="1">
     <span class="hot-rank-num r1"><span class="tossface">🥇</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/_dgynhaBVJY/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
@@ -1363,8 +1432,12 @@ function switchPeriod(period, btn) {
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-macro">거시경제</span>
     </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/_dgynhaBVJY/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/_dgynhaBVJY/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">트럼프, 테헤란 심장부 타격.. 호르무즈 봉쇄될까? (박종훈의 지식한방)</div>
+    </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank" data-cat="stock" data-rank="2">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank" data-cat="stock" data-rank="2">
     <span class="hot-rank-num r2"><span class="tossface">🥈</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/bYMlwIIPatI/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
@@ -1375,8 +1448,12 @@ function switchPeriod(period, btn) {
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-stock">주식·증시</span>
     </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/bYMlwIIPatI/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/bYMlwIIPatI/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">[26.03.30 오전 방송 전체보기] 뉴욕증시 연일 하락 지속메모리 반도체주 '반등' / 문닫고 </div>
+    </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=5g-HXf81NmM" target="_blank" data-cat="fintech" data-rank="3">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=5g-HXf81NmM" target="_blank" data-cat="fintech" data-rank="3">
     <span class="hot-rank-num r3"><span class="tossface">🥉</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/5g-HXf81NmM/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
@@ -1386,6 +1463,10 @@ function switchPeriod(period, btn) {
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-fintech">재테크</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/5g-HXf81NmM/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/5g-HXf81NmM/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">"제대로 확인하세요!" 연 16.9% 청년미래적금, 이렇게 바뀌었습니다. (확정된 모든 내용 총정리</div>
     </div>
   </a>
   </div>
@@ -1459,7 +1540,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/RA_d_ZaesB4/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">"다들 대단히 착각하고 있어요" 붕괴된 부동산 시장, 큰일났습니다 [빠숑 김학렬 소장 2부]</div>
-      <div class="hot-meta"><span>부읽남</span><span>·</span><span>1일 전</span><span>·</span><span>11만9천뷰</span></div>
+      <div class="hot-meta"><span>부읽남</span><span>·</span><span>1일 전</span><span>·</span><span>12만0천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1471,7 +1552,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/xBxoGgaRMm8/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">1달 뒤 부동산 판도 뒤집힙니다, "4월부터 집값 이렇게 됩니다" [빠숑 김학렬 소장 1부]</div>
-      <div class="hot-meta"><span>부읽남</span><span>·</span><span>2일 전</span><span>·</span><span>11만5천뷰</span></div>
+      <div class="hot-meta"><span>부읽남</span><span>·</span><span>2일 전</span><span>·</span><span>11만6천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1496,7 +1577,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/AaCNsjot--4/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">[26.03.30. 오후 방송 전체보기] 끝나지 않은 전쟁·터보퀀트 공포 지속…반도체는 오늘도 웁니다 [클로</div>
-      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>오늘</span><span>·</span><span>7만8천뷰</span></div>
+      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>오늘</span><span>·</span><span>8만8천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-stock">주식·증시</span>
@@ -1551,7 +1632,7 @@ function switchPeriod(period, btn) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/xahNpKCZYpw/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">지상군 투입 '오락가락' 딜레마 빠진 트럼프 | 박현도 서강대 유로메나연구소 교수[글로벌 인터뷰]</div>
-      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>1일 전</span><span>·</span><span>9만9천뷰</span></div>
+      <div class="hot-meta"><span>삼프로TV</span><span>·</span><span>1일 전</span><span>·</span><span>10만0천뷰</span></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-macro">거시경제</span>
@@ -1626,7 +1707,7 @@ function switchPeriod(period, btn) {
           <div class="shorts-body">
             <div class="shorts-title">은퇴한 5060분들 딴짓말고 이것부터 하세요 [정선용 작가]</div>
             <div class="shorts-ch">부읽남 · 2026-03-26</div>
-            <div class="shorts-why">14만3천뷰 · 36초 · 4일 전</div>
+            <div class="shorts-why">14만4천뷰 · 36초 · 4일 전</div>
           </div>
         </a>
         <a class="shorts-card" href="https://www.youtube.com/shorts/xoGx3XZ3fw8" target="_blank">
@@ -1732,7 +1813,7 @@ function switchPeriod(period, btn) {
           </td>
           <td class="kw-news-col" rowspan="6">
             <div class="kw-news-label">최신뉴스</div>
-            <div class="kw-news-day-label">오늘</div><a class="kw-news-row" href="https://www.hankyung.com/article/2026033063821" target="_blank"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">1200명 해외 바이어 마곡으로…"월드옥타, '경제 플랫폼'으로 도약"</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026033064521" target="_blank"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">원·달러 환율 또 치솟아, 1500원대 고착하나</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026033064321" target="_blank"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">지표금리, KOFR로 바꾼다…CD금리는 퇴출</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/politics/12002657" target="_blank"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">"장바구니 물가 잡겠다"서울민심 달래는 與</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/it/12002646" target="_blank"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">투자 여력없고 시스템 제각각…병원 의료AI 도입 '그림의 떡'</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/it/12002647" target="_blank"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">"AI 신기술 개발해도 현실화 산넘어산 … 다 해외로 떠날판"</span></a><div class="kw-news-day-label">어제</div><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQYUNkSTVfUUlBNVpYWHhVU3hBMEExczF0NG8wUm40dWQwdnl1eGl3LUJBWXVXeGdCYXNHMWRtZFh4SzdDc09xdU1zY1ExNWc5NkFfVGVzVUVTV2pxS3p0TEJQRWZSRlgxenY0bGJZdS14YkRmZHI1aG5XVXljeExsYTMxTlhkd9IBmgFBVV95cUxOcWZZdzIxMUdubHpJdnpxQ2ZHU2lyWHBsUHppMVNuaVlvS2JPQzNEcGdCVkNSM1dXbGRkeGZIZ0FxWTBIdlJ4ajVZdWczcGM5NFZBMWJpTzNZd1hYWnhvUGRMSTBUVUwtSjNGbHFjelVUZGFrNnRQQzhzdWxFTGx2YTlhQ2tEUTA2MlhwaTVwdUJHbGJzNHo1cDBR?oc=5" target="_blank"><span class="kw-news-src-badge">조비</span><span class="kw-news-title">구윤철 경제부총리 “유가 120~130달러면 ‘위기 3단계’…민간 차량 5부제 의무화 검토</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOcGRjQUhvd3h0NkFaTWNpQ1RlQXFBcXo3ME9SejIwYnVkSTlVNEkyMXhJdHJuMmVJLTRVd3JRaThsWE5CeHRLTVV1LXRjNTdjNGdQZ0JxcFpqZTBfN1JhVEpvdlZSMXBTYnRiazBZa29GSjRPa0lHOVdqSWhsbTltN2NOeGpwb2JU0gGcAUFVX3lxTE4wVEIwcDRvSmNkODZBRVRPM3R0dy16UkZhMGM3WlMwVWkzSkZRMlpoU2lCSTRiMjkyaDQ1ZFU3WmFXS250Qkk5TVNPWWlSSXNoX3dJLWhJOWJydmhTa3N4QmNkQjVxenJXQTVpc1JMbklNb1otdUR1ZVNZVlBBaWJlQ2hzV2ZHN1Z2anRiUURCY0Y1bTZZbTlsRVJqSQ?oc=5" target="_blank"><span class="kw-news-src-badge">조비</span><span class="kw-news-title">[주간경제지표] 2026년 3월 27일자 - 조선비즈 - Chosunbiz</span></a>
+            <div class="kw-news-day-label">오늘</div><a class="kw-news-row" href="https://www.hankyung.com/article/2026033063821" target="_blank"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">1200명 해외 바이어 마곡으로…"월드옥타, '경제 플랫폼'으로 도약"</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026033064521" target="_blank"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">원·달러 환율 또 치솟아, 1500원대 고착하나</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026033064321" target="_blank"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">지표금리, KOFR로 바꾼다…CD금리는 퇴출</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/politics/12002657" target="_blank"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">"장바구니 물가 잡겠다"서울민심 달래는 與</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/it/12002647" target="_blank"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">"AI 신기술 개발해도 현실화 산넘어산 … 다 해외로 떠날판"</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/it/12002646" target="_blank"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">투자 여력없고 시스템 제각각…병원 의료AI 도입 '그림의 떡'</span></a><div class="kw-news-day-label">어제</div><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQYUNkSTVfUUlBNVpYWHhVU3hBMEExczF0NG8wUm40dWQwdnl1eGl3LUJBWXVXeGdCYXNHMWRtZFh4SzdDc09xdU1zY1ExNWc5NkFfVGVzVUVTV2pxS3p0TEJQRWZSRlgxenY0bGJZdS14YkRmZHI1aG5XVXljeExsYTMxTlhkd9IBmgFBVV95cUxOcWZZdzIxMUdubHpJdnpxQ2ZHU2lyWHBsUHppMVNuaVlvS2JPQzNEcGdCVkNSM1dXbGRkeGZIZ0FxWTBIdlJ4ajVZdWczcGM5NFZBMWJpTzNZd1hYWnhvUGRMSTBUVUwtSjNGbHFjelVUZGFrNnRQQzhzdWxFTGx2YTlhQ2tEUTA2MlhwaTVwdUJHbGJzNHo1cDBR?oc=5" target="_blank"><span class="kw-news-src-badge">조비</span><span class="kw-news-title">구윤철 경제부총리 “유가 120~130달러면 ‘위기 3단계’…민간 차량 5부제 의무화 검토</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOcGRjQUhvd3h0NkFaTWNpQ1RlQXFBcXo3ME9SejIwYnVkSTlVNEkyMXhJdHJuMmVJLTRVd3JRaThsWE5CeHRLTVV1LXRjNTdjNGdQZ0JxcFpqZTBfN1JhVEpvdlZSMXBTYnRiazBZa29GSjRPa0lHOVdqSWhsbTltN2NOeGpwb2JU0gGcAUFVX3lxTE4wVEIwcDRvSmNkODZBRVRPM3R0dy16UkZhMGM3WlMwVWkzSkZRMlpoU2lCSTRiMjkyaDQ1ZFU3WmFXS250Qkk5TVNPWWlSSXNoX3dJLWhJOWJydmhTa3N4QmNkQjVxenJXQTVpc1JMbklNb1otdUR1ZVNZVlBBaWJlQ2hzV2ZHN1Z2anRiUURCY0Y1bTZZbTlsRVJqSQ?oc=5" target="_blank"><span class="kw-news-src-badge">조비</span><span class="kw-news-title">[주간경제지표] 2026년 3월 27일자 - 조선비즈 - Chosunbiz</span></a>
           </td>
         </tr>
         <!-- 2위 -->
@@ -1746,7 +1827,7 @@ function switchPeriod(period, btn) {
             <div class="kw-sub">삼프로TV · 김작가TV · 소수몽키</div>
             <div class="kw-default-links">
               <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=bYMlwIIPatI" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">[26.03.30 오전 방송 전체보기] 뉴욕증시 연일 하락 지속메모리 반도체주 '반등' / 문닫고  — 삼프로TV</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=iTXndS97t28" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">반도체 정말 무섭게 오를겁니다, 삼성전자 아닌 '이 주식' 사세요 (박세익 대표 풀버전) — 김작가TV</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=UKIp0eBJBiY" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">충격적인 AI 디스토피아 보고서 등장, 경제 대공황 우려 현실될까 — 소수몽키</span></a></div></a></div>
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.mk.co.kr/news/it/12002646" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">투자 여력없고 시스템 제각각…병원 의료AI 도입 '그림의 떡' — 매일경제</span></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.mk.co.kr/news/it/12002647" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">"AI 신기술 개발해도 현실화 산넘어산 … 다 해외로 떠날판" — 매일경제</span></a></div>
             </div>
           </td>
         </tr>
@@ -1788,9 +1869,9 @@ function switchPeriod(period, btn) {
               <span class="kw-main"><span class="tossface">🏦</span> 금리 인하 기대</span>
               <span class="kw-trend down">↓ -21% 하락</span>
             </div>
-            <div class="kw-sub">뿅글이 · 삼프로TV · 부티풀</div>
+            <div class="kw-sub">뿅글이 · 부티풀</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=5g-HXf81NmM" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"제대로 확인하세요!" 연 16.9% 청년미래적금, 이렇게 바뀌었습니다. (확정된 모든 내용 총정리 — 뿅글이</span><span class="kw-link-more">+2 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=QOxIoYy00CI" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">[26.03.30.시황] 트럼프의 TACO도 먹히지 않는 시장...금리 급등, 스태그플레이 — 삼프로TV</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=3pmMDPmFt9A" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"보유세 5배 인상 예고 떴다?" 이재명 대통령 SNS가 밝힌 시나리오. 앞으로 3년 집  — 부티풀</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=5g-HXf81NmM" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"제대로 확인하세요!" 연 16.9% 청년미래적금, 이렇게 바뀌었습니다. (확정된 모든 내용 총정리 — 뿅글이</span><span class="kw-link-more">+1 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=3pmMDPmFt9A" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"보유세 5배 인상 예고 떴다?" 이재명 대통령 SNS가 밝힌 시나리오. 앞으로 3년 집  — 부티풀</span></a></div></a></div>
               <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.hankyung.com/article/2026033064321" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">지표금리, KOFR로 바꾼다…CD금리는 퇴출 — 한국경제</span></a></div>
             </div>
           </td>
@@ -1863,20 +1944,20 @@ function switchPeriod(period, btn) {
             <div class="news-summary">여야가 6·3 지방선거의 승패를 좌우할 격전지인 서울시장 선거 분위기 띄우기에 들어갔다. 더불어민주당은 30일 국회의원회관에 서울 지역구 의원과 지역위원장, 서울시장 예비후보 등을..</div>
           </div>
         </a>
-        <a class="news-item" href="https://www.mk.co.kr/news/it/12002646" target="_blank">
-          <div class="news-num">05</div>
-          <div>
-            <div class="news-source-tag">매일경제</div>
-            <div class="news-headline">투자 여력없고 시스템 제각각…병원 의료AI 도입 '그림의 떡'</div>
-            <div class="news-summary">의료 인공지능(AI) 기술이 개발되더라도 병원들은 도입을 주저하고 있다. 진료 현장에서는 의료 AI 도입의 비용 문제와 통일되지 않은 전산시스템으로 인해 병원 내 의료 AX(AI ..</div>
-          </div>
-        </a>
         <a class="news-item" href="https://www.mk.co.kr/news/it/12002647" target="_blank">
-          <div class="news-num">06</div>
+          <div class="news-num">05</div>
           <div>
             <div class="news-source-tag">매일경제</div>
             <div class="news-headline">"AI 신기술 개발해도 현실화 산넘어산 … 다 해외로 떠날판"</div>
             <div class="news-summary">2024년부터 망막검사 보조 인공지능(AI)을 개발하던 의공학자 김 모씨는 최근 미국행을 결심했다. 미국과 한국에서 유사한 AI 서비스를 개발한 창업자가 두 나라에서 받은 대우가 ..</div>
+          </div>
+        </a>
+        <a class="news-item" href="https://www.mk.co.kr/news/it/12002646" target="_blank">
+          <div class="news-num">06</div>
+          <div>
+            <div class="news-source-tag">매일경제</div>
+            <div class="news-headline">투자 여력없고 시스템 제각각…병원 의료AI 도입 '그림의 떡'</div>
+            <div class="news-summary">의료 인공지능(AI) 기술이 개발되더라도 병원들은 도입을 주저하고 있다. 진료 현장에서는 의료 AI 도입의 비용 문제와 통일되지 않은 전산시스템으로 인해 병원 내 의료 AX(AI ..</div>
           </div>
         </a>
         <a class="news-item" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5iVWtma1ItWm1aTThlc3JiN0RrZ3Jtd0R4ckRGTlpKTGRJc0NPZ1NlM1dsb2FjaGdleERJc0xQTEZYZDd1YVFKbU1VUUQ0Y1dIa3NQNE1EbEhmVkoycE1NOTBWZjBTUQ?oc=5" target="_blank">
