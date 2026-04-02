@@ -773,9 +773,10 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
             days_old = 0
         dur_label = f'{v["dur_sec"]}초' if v.get('dur_sec') and v['dur_sec'] < 90 else ''
         why_short = ' · '.join(filter(None, [views_str, dur_label, f'{days_old}일 전']))
+        s_vid = v['vid']
         shorts_cards += f'''        <a class="shorts-card" href="{v["url"]}" target="_blank">
           <div class="shorts-thumb-wrap">
-            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/{v["vid"]}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/{v[\"vid\"]}/hqdefault.jpg'" alt="">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/{s_vid}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/{s_vid}/hqdefault.jpg'" alt="">
             <div class="shorts-rank-badge">{rank_badges[i]}</div>
           </div>
           <div class="shorts-body">
