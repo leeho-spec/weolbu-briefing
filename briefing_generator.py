@@ -240,6 +240,19 @@ def fmt_duration(dur_sec):
     return f'{s}초'
 
 
+def build_meta_html(ch_name, views, days_str, dur_sec=0):
+    """hot-row 메타 2줄 구조: 채널명 / 뷰(날짜) ⏱시간"""
+    views_str = fmt_views(views) + '뷰' if views and views > 0 else ''
+    dur_str   = fmt_duration(dur_sec)
+    dur_tag   = f'<span class="hot-dur">⏱ {dur_str}</span>' if dur_str else ''
+    date_tag  = f'<span class="hot-date">({days_str})</span>' if days_str else ''
+    views_tag = f'<span class="hot-views-num">{views_str}</span>' if views_str else ''
+    return (
+        f'<div class="hot-ch-name">{ch_name}</div>'
+        f'<div class="hot-stats">{views_tag}{date_tag}{dur_tag}</div>'
+    )
+
+
 def get_video_stats(video_ids):
     """videos.list로 조회수·채널명·duration 일괄 조회 — 50개당 1유닛"""
     if not video_ids:
@@ -631,16 +644,13 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
             days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
         except Exception:
             days_str = v['date']
-        meta_parts = [v['ch_name'], days_str, views_str]
-        if dur_str:
-            meta_parts.append(f'⏱ {dur_str}')
-        meta_spans = '<span>·</span>'.join(f'<span>{p}</span>' for p in meta_parts)
+        meta_html = build_meta_html(v['ch_name'], v['views'], days_str, v.get('dur_sec', 0))
         top3_html += f'''  <a class="hot-row hot-row-top3" href="{v['url']}" target="_blank" data-cat="{cat}" data-rank="{i+1}">
     <span class="hot-rank-num {rank_cls[i]}">{rank_sym[i]}</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{v['vid']}/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">{v['title'][:60]}</div>
-      <div class="hot-meta">{meta_spans}</div>
+      <div class="hot-meta">{meta_html}</div>
     </div>
     <div class="hot-right">
       {delta_html}
@@ -666,16 +676,13 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
             days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
         except Exception:
             days_str = v['date']
-        meta_parts = [v['ch_name'], days_str, views_str]
-        if dur_str:
-            meta_parts.append(f'⏱ {dur_str}')
-        meta_spans = '<span>·</span>'.join(f'<span>{p}</span>' for p in meta_parts)
+        meta_html = build_meta_html(v['ch_name'], v['views'], days_str, v.get('dur_sec', 0))
         more_rows += f'''  <a class="hot-row" href="{v['url']}" target="_blank" data-cat="{cat}" data-rank="{j}">
     <span class="hot-rank-num rn">{j}위</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{v['vid']}/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">{v['title'][:60]}</div>
-      <div class="hot-meta">{meta_spans}</div>
+      <div class="hot-meta">{meta_html}</div>
     </div>
     <div class="hot-right">
       {delta_html}
@@ -737,12 +744,13 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
                 days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
             except Exception:
                 days_str = v['date']
+            meta_html = build_meta_html(v['ch_name'], v['views'], days_str, v.get('dur_sec', 0))
             cat_extra_rows += f'''  <a class="hot-row" href="{v['url']}" target="_blank" data-cat="{cat_key}" data-rank="99" data-cat-extra="true">
     <span class="hot-rank-num rn">—</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{v['vid']}/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">{v['title'][:60]}</div>
-      <div class="hot-meta"><span>{v['ch_name']}</span><span>·</span><span>{days_str}</span><span>·</span><span>{views_str}</span></div>
+      <div class="hot-meta">{meta_html}</div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-{cat_key}">{cat_label}</span>
@@ -937,17 +945,14 @@ def build_longterm_panel_html(video_cache, max_days, today_str):
             days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
         except Exception:
             days_str = v.get('pub_date', '')
-        meta_parts = [v['ch_name'], days_str, views_str]
-        if dur_str:
-            meta_parts.append(f'⏱ {dur_str}')
-        meta_spans = '<span>·</span>'.join(f'<span>{p}</span>' for p in meta_parts)
+        meta_html = build_meta_html(v['ch_name'], v.get('best_views', 0), days_str, v.get('dur_sec', 0))
         url = v.get('url', f'https://www.youtube.com/watch?v={vid_id}')
         top3_html += f'''  <a class="hot-row hot-row-top3" href="{url}" target="_blank" data-cat="{cat}" data-rank="{i+1}">
     <span class="hot-rank-num {rank_cls[i]}">{rank_sym[i]}</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{vid_id}/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">{v['title'][:60]}</div>
-      <div class="hot-meta">{meta_spans}</div>
+      <div class="hot-meta">{meta_html}</div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-{cat}">{cat_label}</span>
@@ -967,17 +972,14 @@ def build_longterm_panel_html(video_cache, max_days, today_str):
             days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
         except Exception:
             days_str = v.get('pub_date', '')
-        meta_parts = [v['ch_name'], days_str, views_str]
-        if dur_str:
-            meta_parts.append(f'⏱ {dur_str}')
-        meta_spans = '<span>·</span>'.join(f'<span>{p}</span>' for p in meta_parts)
+        meta_html = build_meta_html(v['ch_name'], v.get('best_views', 0), days_str, v.get('dur_sec', 0))
         url = v.get('url', f'https://www.youtube.com/watch?v={vid_id}')
         more_rows += f'''  <a class="hot-row" href="{url}" target="_blank" data-cat="{cat}" data-rank="{j}">
     <span class="hot-rank-num rn">{j}위</span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{vid_id}/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">{v['title'][:60]}</div>
-      <div class="hot-meta">{meta_spans}</div>
+      <div class="hot-meta">{meta_html}</div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-{cat}">{cat_label}</span>
