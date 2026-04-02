@@ -201,7 +201,17 @@
     gap: 6px;
     flex: 1;
   }
-  .tm-cell { border-radius: 7px; padding: 12px 13px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: filter 0.15s; overflow: visible; position: relative; min-height: 72px; }
+  @keyframes tmPop {
+    0%   { opacity: 0; transform: scale(0.72); }
+    70%  { transform: scale(1.04); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes briefSlide {
+    0%   { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .tm-cell { border-radius: 7px; padding: 12px 13px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: filter 0.15s; overflow: visible; position: relative; min-height: 72px;
+    opacity: 0; animation: tmPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
   .tm-cell:hover { filter: brightness(1.14); }
   .tm-up3  { background: #b71c1c; }
   .tm-up2  { background: #c62828; }
@@ -643,45 +653,10 @@
   .shorts-ch { font-size: 10px; color: #aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .shorts-why { font-size: 10px; color: #bbb; margin-top: 4px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; line-height: 1.4; }
   .shorts-views-badge { font-size: 10px; font-weight: 600; color: #fff; background: #555; border-radius: 3px; padding: 1px 6px; flex-shrink: 0; }
-
-  /* ── 로딩 오버레이 ── */
-  #loader-overlay {
-    position: fixed; inset: 0; z-index: 9999;
-    background: #fff; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 18px;
-    transition: opacity 0.4s ease;
-  }
-  #loader-overlay.fade-out { opacity: 0; pointer-events: none; }
-  .loader-gear {
-    font-size: 48px; line-height: 1;
-    animation: spin 1.2s linear infinite;
-    display: inline-block;
-  }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .loader-text {
-    font-size: 13px; font-weight: 600; color: #999;
-    letter-spacing: 0.3px; font-family: 'Paperlogy', sans-serif;
-  }
-  .loader-dots::after {
-    content: '';
-    animation: dots 1.5s steps(4, end) infinite;
-  }
-  @keyframes dots {
-    0%   { content: ''; }
-    25%  { content: ' .'; }
-    50%  { content: ' . .'; }
-    75%  { content: ' . . .'; }
-    100% { content: ''; }
-  }
 </style>
 </head>
 <body>
 
-<!-- 로딩 오버레이 -->
-<div id="loader-overlay">
-  <span class="loader-gear">⚙️</span>
-  <div class="loader-text">데이터 수집중<span class="loader-dots"></span></div>
-</div>
 
 <!-- 과거 아카이브 배너 (JS로 표시 여부 결정) -->
 <div id="archive-banner" style="display:none;">
@@ -894,6 +869,24 @@ function switchPeriod(period, btn) {
   btn.classList.add('active');
 }
 
+// ── 히트맵 타일 스태거 딜레이 ──
+(function() {
+  var cells = document.querySelectorAll('.tm-cell');
+  cells.forEach(function(cell, i) {
+    cell.style.animationDelay = (0.08 + i * 0.07) + 's';
+  });
+})();
+
+// ── TODAY'S BRIEF 항목 순차 페이드인 ──
+(function() {
+  var items = document.querySelectorAll('.brief-item-wrap');
+  items.forEach(function(item, i) {
+    item.style.opacity = '0';
+    item.style.animation = 'briefSlide 0.4s ease forwards';
+    item.style.animationDelay = (0.4 + i * 0.18) + 's';
+  });
+})();
+
 // ── 실시간 뉴스 언론사 필터 ──
 function filterNews(src, btn) {
   var list = document.querySelector('.news-list');
@@ -919,20 +912,6 @@ function filterNews(src, btn) {
   btn.classList.add('active');
 }
 
-// ── 로딩 오버레이 dismiss ──
-(function() {
-  function dismissLoader() {
-    var el = document.getElementById('loader-overlay');
-    if (!el) return;
-    el.classList.add('fade-out');
-    setTimeout(function() { el.style.display = 'none'; }, 420);
-  }
-  if (document.readyState === 'complete') {
-    setTimeout(dismissLoader, 600);
-  } else {
-    window.addEventListener('load', function() { setTimeout(dismissLoader, 600); });
-  }
-})();
 
 // ── 아카이브 배너: latest.html이 아니면 과거 날짜 감지 ──
 (function() {
