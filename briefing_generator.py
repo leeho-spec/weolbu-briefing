@@ -116,7 +116,7 @@ NEWS_SOURCES = [
     {'name': '매일경제',  'tag': '매경', 'rss': 'https://www.mk.co.kr/rss/30000001/'},
     # Google News RSS 경유 (직접 RSS 차단된 소스)
     {'name': '머니투데이', 'tag': '머투', 'rss': 'https://news.google.com/rss/search?q=site%3Anews.mt.co.kr+%EA%B2%BD%EC%A0%9C&hl=ko&gl=KR&ceid=KR%3Ako', 'gnews': True},
-    {'name': '조선비즈',   'tag': '조비', 'rss': 'https://news.google.com/rss/search?q=site%3Abiz.chosun.com+%EA%B2%BD%EC%A0%9C&hl=ko&gl=KR&ceid=KR%3Ako', 'gnews': True},
+    {'name': '조선비즈',   'tag': '조선', 'rss': 'https://news.google.com/rss/search?q=site%3Abiz.chosun.com+%EA%B2%BD%EC%A0%9C&hl=ko&gl=KR&ceid=KR%3Ako', 'gnews': True},
     {'name': '이데일리',   'tag': '이데', 'rss': 'https://news.google.com/rss/search?q=site%3Awww.edaily.co.kr+%EA%B2%BD%EC%A0%9C&hl=ko&gl=KR&ceid=KR%3Ako', 'gnews': True},
 ]
 NEWS_FILTER_KEYWORDS = [
@@ -245,7 +245,7 @@ def build_meta_html(ch_name, views, days_str, dur_sec=0):
     views_str = fmt_views(views) + '뷰' if views and views > 0 else ''
     dur_str   = fmt_duration(dur_sec)
     dur_tag   = f'<span class="hot-dur">⏱ {dur_str}</span>' if dur_str else ''
-    date_tag  = f'<span class="hot-date">({days_str})</span>' if days_str else ''
+    date_tag  = f'<span class="hot-date">{days_str}</span>' if days_str else ''
     views_tag = f'<span class="hot-views-num">{views_str}</span>' if views_str else ''
     return (
         f'<div class="hot-ch-name">{ch_name}</div>'
@@ -436,25 +436,30 @@ def fetch_market_data():
 # ─── 뉴스 수집 ──────────────────────────────────────
 
 def _parse_rss_date(pub_date_str):
-    """RSS pubDate → 날짜 문자열 YYYY-MM-DD. 실패 시 오늘 날짜."""
-    today = datetime.now().strftime('%Y-%m-%d')
+    """RSS pubDate → (날짜 문자열 YYYY-MM-DD, datetime or None)"""
+    now = datetime.now()
+    today = now.strftime('%Y-%m-%d')
     if not pub_date_str:
-        return today
-    # RFC 2822 예: "Mon, 30 Mar 2026 09:00:00 +0000" or "Mon, 30 Mar 2026 09:00:00 GMT"
+        return today, None
     for fmt in ('%a, %d %b %Y %H:%M:%S %z', '%a, %d %b %Y %H:%M:%S GMT',
                 '%a, %d %b %Y %H:%M:%S +0000', '%Y-%m-%dT%H:%M:%S%z'):
         try:
-            return datetime.strptime(pub_date_str.strip(), fmt).strftime('%Y-%m-%d')
+            dt = datetime.strptime(pub_date_str.strip(), fmt)
+            # timezone-naive로 변환
+            if dt.tzinfo is not None:
+                import calendar
+                dt = datetime.utcfromtimestamp(calendar.timegm(dt.utctimetuple()))
+            return dt.strftime('%Y-%m-%d'), dt
         except Exception:
             pass
-    # fallback: extract YYYY-MM-DD-like pattern
     m = re.search(r'(\d{1,2})\s+(\w{3})\s+(\d{4})', pub_date_str)
     if m:
         try:
-            return datetime.strptime(f'{m.group(1)} {m.group(2)} {m.group(3)}', '%d %b %Y').strftime('%Y-%m-%d')
+            dt = datetime.strptime(f'{m.group(1)} {m.group(2)} {m.group(3)}', '%d %b %Y')
+            return dt.strftime('%Y-%m-%d'), dt
         except Exception:
             pass
-    return today
+    return today, None
 
 def fetch_news(max_per_source=3):
     import xml.etree.ElementTree as ET
@@ -485,7 +490,11 @@ def fetch_news(max_per_source=3):
                 desc  = re.sub(r'<[^>]+>', '', desc)[:120].strip()
                 pub_raw = (item.findtext('pubDate') or item.findtext(
                     '{http://purl.org/dc/elements/1.1/}date') or '').strip()
-                pub_date = _parse_rss_date(pub_raw)
+                pub_date, pub_dt = _parse_rss_date(pub_raw)
+                now = datetime.now()
+                hours_old = (now - pub_dt).total_seconds() / 3600 if pub_dt else 99
+                yesterday_str = (now.date() - __import__('datetime').timedelta(days=1)).strftime('%Y-%m-%d')
+                is_breaking = pub_date == today_str and hours_old <= 4
                 # Google News 소스는 쿼리 자체가 경제 키워드 포함 → 필터 생략
                 passes = is_gnews or any(kw in title for kw in NEWS_FILTER_KEYWORDS)
                 if passes:
@@ -494,6 +503,9 @@ def fetch_news(max_per_source=3):
                         'title': title, 'link': link, 'desc': desc,
                         'pub_date': pub_date,
                         'is_today': pub_date == today_str,
+                        'is_yesterday': pub_date == yesterday_str,
+                        'is_breaking': is_breaking,
+                        'hours_old': round(hours_old, 1),
                     })
                     count += 1
         except Exception as e:
@@ -772,7 +784,10 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
         except Exception:
             days_old = 0
         dur_label = f'{v["dur_sec"]}초' if v.get('dur_sec') and v['dur_sec'] < 90 else ''
-        why_short = ' · '.join(filter(None, [views_str, dur_label, f'{days_old}일 전']))
+        extra = ' · '.join(filter(None, [dur_label, f'{days_old}일 전']))
+        views_badge = f'<span class="shorts-views-badge">{views_str}</span>' if v['views'] > 0 else ''
+        extra_span  = f'<span>{extra}</span>' if extra else ''
+        why_html    = views_badge + extra_span
         s_vid = v['vid']
         shorts_cards += f'''        <a class="shorts-card" href="{v["url"]}" target="_blank">
           <div class="shorts-thumb-wrap">
@@ -782,7 +797,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
           <div class="shorts-body">
             <div class="shorts-title">{v["title"][:60]}</div>
             <div class="shorts-ch">{v["ch_name"]} · {v["date"]}</div>
-            <div class="shorts-why">{why_short}</div>
+            <div class="shorts-why">{why_html}</div>
           </div>
         </a>\n'''
 
@@ -1044,20 +1059,20 @@ def build_summary_card_html(kw_results, all_vids_full, news_items):
         else:
             desc = '데이터 수집 중...'
 
-        # 링크 블록 (YT 상위 3개 + 뉴스 1개)
+        # 링크 블록 — 뉴스 우선, 이후 YT 상위 3개
         links_html = ''
-        for v in videos[:3]:
-            links_html += (
-                f'<a class="bl-item" href="{v["url"]}" target="_blank">'
-                f'<span class="bl-lbl yt">YT</span>'
-                f'<span class="bl-text">{v["title"][:55]} — {v["ch_name"]}</span></a>'
-            )
         news_url, news_label, _ = get_news_for_keyword(kw_cfg['query'], news_items or [])
         links_html += (
             f'<a class="bl-item" href="{news_url}" target="_blank">'
             f'<span class="bl-lbl news">뉴스</span>'
             f'<span class="bl-text">{news_label[:60]}</span></a>'
         )
+        for v in videos[:3]:
+            links_html += (
+                f'<a class="bl-item" href="{v["url"]}" target="_blank">'
+                f'<span class="bl-lbl yt">YT</span>'
+                f'<span class="bl-text">{v["title"][:55]} — {v["ch_name"]}</span></a>'
+            )
 
         brief_items_html += f'''      <div class="brief-item-wrap">
         <div class="brief-item">
@@ -1123,20 +1138,48 @@ def build_summary_card_html(kw_results, all_vids_full, news_items):
 
 # ─── 오늘 뉴스 패널 빌더 ──────────────────────────────
 def build_hot_news_html(news_items):
-    """오늘 뉴스 탭 — RSS 수집 뉴스 목록"""
-    news_cards = ''
-    for idx, n in enumerate(news_items[:10], 1):
+    """최신뉴스 탭 — 속보 / 오늘 / 어제 섹션 분리"""
+    breaking = [n for n in news_items if n.get('is_breaking')]
+    today    = [n for n in news_items if n.get('is_today') and not n.get('is_breaking')]
+    yester   = [n for n in news_items if n.get('is_yesterday')]
+    # 위 세 그룹에 없으면 오늘로 fallback
+    other    = [n for n in news_items if not n.get('is_today') and not n.get('is_yesterday') and not n.get('is_breaking')]
+    today   += other
+
+    def render_item(n, idx):
         desc = n.get('desc', '')
         desc_html = f'<div class="news-summary">{desc}</div>' if desc else ''
-        news_cards += f'''        <a class="news-item" href="{n["link"]}" target="_blank">
-          <div class="news-num">{idx:02d}</div>
-          <div>
-            <div class="news-source-tag">{n["source"]}</div>
-            <div class="news-headline">{n["title"][:80]}</div>
-            {desc_html}
-          </div>
-        </a>\n'''
-    return f'      <div class="news-list">\n{news_cards}      </div>'
+        return (
+            f'        <a class="news-item" href="{n["link"]}" target="_blank">\n'
+            f'          <div class="news-num">{idx:02d}</div>\n'
+            f'          <div>\n'
+            f'            <div class="news-source-tag">{n["source"]}</div>\n'
+            f'            <div class="news-headline">{n["title"][:80]}</div>\n'
+            f'            {desc_html}\n'
+            f'          </div>\n'
+            f'        </a>\n'
+        )
+
+    def render_section(label, icon, items, start_idx=1):
+        if not items:
+            return '', start_idx
+        header = f'        <div class="news-section-header">{icon} {label}</div>\n'
+        cards  = ''.join(render_item(n, start_idx + i) for i, n in enumerate(items))
+        return header + cards, start_idx + len(items)
+
+    html = ''
+    idx = 1
+    if breaking:
+        sec, idx = render_section('속보', '🔴', breaking, idx)
+        html += sec
+    if today:
+        sec, idx = render_section('오늘', '📰', today, idx)
+        html += sec
+    if yester:
+        sec, idx = render_section('어제', '📋', yester, idx)
+        html += sec
+
+    return f'      <div class="news-list">\n{html}      </div>'
 
 
 # ─── 종합 키워드 TOP5 빌더 (스크린샷 디자인 완전 복원) ──
