@@ -767,7 +767,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
         why_short = ' · '.join(filter(None, [views_str, dur_label, f'{days_old}일 전']))
         shorts_cards += f'''        <a class="shorts-card" href="{v["url"]}" target="_blank">
           <div class="shorts-thumb-wrap">
-            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/{v["vid"]}/hqdefault.jpg" alt="">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/{v["vid"]}/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/{v[\"vid\"]}/hqdefault.jpg'" alt="">
             <div class="shorts-rank-badge">{rank_badges[i]}</div>
           </div>
           <div class="shorts-body">
