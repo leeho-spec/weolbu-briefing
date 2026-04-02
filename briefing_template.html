@@ -285,6 +285,24 @@
   .news-source-tag { font-size: 9.5px; font-weight: 700; color: #CC0000; margin-bottom: 2px; }
   .news-headline { font-size: 13px; font-weight: 600; color: var(--text-pri); line-height: 1.45; }
 
+  /* ── 뉴스 소스 필터 탭 ── */
+  .news-src-filter { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .news-src-btn { background: #f4f4f4; border: none; border-radius: 16px; padding: 4px 12px; font-size: 11.5px; font-weight: 600; color: #888; cursor: pointer; font-family: inherit; transition: all 0.15s; white-space: nowrap; }
+  .news-src-btn:hover { background: #eee; color: #555; }
+  .news-src-btn.active { background: #1a1a1a; color: #fff; }
+  .news-item.hidden { display: none; }
+  .news-section-hidden { display: none; }
+
+  /* ── 섹션 구분선 ── */
+  .section-break { height: 6px; background: var(--bg-page); margin: 0 -16px; border-top: 1px solid var(--border-md); border-bottom: 1px solid var(--border-md); }
+
+  /* ── 아카이브 배너 ── */
+  #archive-banner { display: none; position: sticky; top: 0; z-index: 200; background: #6b7280; color: #fff; font-size: 12px; font-weight: 600; padding: 9px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  #archive-banner a { color: #fff; text-decoration: underline; white-space: nowrap; }
+
+  /* ── 종합키워드 뉴스 컬럼 헤더 ── */
+  .kw-news-th { width: 220px; background: #fafafa; border-left: 1px solid #f0f0f0; }
+
   /* ── TOP 5 TABLE ── */
   .top5-table { width: 100%; border-collapse: collapse; }
   .top5-table th { font-size: 10.5px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 0.5px; padding: 7px 12px; border-bottom: 2px solid var(--border); text-align: left; }
@@ -613,14 +631,14 @@
   .shorts-label { justify-content: space-between; }
   .hot-period-label { font-size: 10.5px; font-weight: 600; color: #aaa; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; }
 
-  /* ── 숏폼 카드 (가로 5열 세로 비율) ── */
-  .shorts-list { display: flex; flex-direction: row; gap: 9px; margin-bottom: 4px; }
-  .shorts-card { flex: 1; min-width: 0; display: flex; flex-direction: column; text-decoration: none; color: inherit; border: 1px solid var(--border-md); border-radius: 10px; overflow: hidden; transition: box-shadow 0.15s; background: var(--bg-card); }
-  .shorts-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.10); }
-  .shorts-thumb-wrap { position: relative; width: 100%; aspect-ratio: 9/16; overflow: hidden; background: #f0f0f0; flex-shrink: 0; }
+  /* ── 숏폼 카드 (가로 5열 고정, 컴팩트) ── */
+  .shorts-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 4px; }
+  .shorts-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border: 1px solid var(--border-md); border-radius: 8px; overflow: hidden; transition: box-shadow 0.15s; background: var(--bg-card); }
+  .shorts-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,0.10); }
+  .shorts-thumb-wrap { position: relative; width: 100%; aspect-ratio: 9/14; overflow: hidden; background: #f0f0f0; flex-shrink: 0; }
   .shorts-thumb-v { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .shorts-rank-badge { position: absolute; top: 6px; left: 6px; background: rgba(0,0,0,0.55); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
-  .shorts-body { padding: 7px 8px 9px; flex: 1; }
+  .shorts-rank-badge { position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.55); color: #fff; font-size: 8.5px; font-weight: 700; padding: 2px 5px; border-radius: 3px; }
+  .shorts-body { padding: 6px 7px 7px; flex: 1; }
   .shorts-title { font-size: 11px; font-weight: 600; color: var(--text-pri); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
   .shorts-ch { font-size: 10px; color: #aaa; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .shorts-why { font-size: 10px; color: #bbb; margin-top: 4px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; line-height: 1.4; }
@@ -628,6 +646,12 @@
 </style>
 </head>
 <body>
+
+<!-- 과거 아카이브 배너 (JS로 표시 여부 결정) -->
+<div id="archive-banner" style="display:none;">
+  <span>📅 <span id="archive-date-label"></span> 브리핑 — 과거 데이터입니다</span>
+  <a href="https://leeho-spec.github.io/weolbu-briefing/latest.html">오늘 브리핑 보기 →</a>
+</div>
 
 <div class="masthead">
   <div>
@@ -829,11 +853,54 @@ function switchPeriod(period, btn) {
   document.querySelectorAll('.period-panel').forEach(function(p) { p.classList.remove('active'); });
   var panel = document.getElementById('panel-' + period);
   if (panel) panel.classList.add('active');
-  // 버튼 활성화
   var tabs = btn.closest('.period-tabs');
   if (tabs) tabs.querySelectorAll('.period-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
 }
+
+// ── 실시간 뉴스 언론사 필터 ──
+function filterNews(src, btn) {
+  var list = document.querySelector('.news-list');
+  if (!list) return;
+  // 아이템 필터 (data-source 기반)
+  list.querySelectorAll('.news-item').forEach(function(item) {
+    if (src === 'all' || item.dataset.source === src) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+  // 섹션 헤더: 해당 src 이외 숨김
+  list.querySelectorAll('.news-section-header').forEach(function(hdr) {
+    if (src === 'all') {
+      hdr.classList.remove('news-section-hidden');
+    } else {
+      hdr.classList.toggle('news-section-hidden', hdr.dataset.source !== src);
+    }
+  });
+  // 버튼 활성화
+  document.querySelectorAll('.news-src-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+// ── 아카이브 배너: latest.html이 아니면 과거 날짜 감지 ──
+(function() {
+  var path = window.location.pathname;
+  var m = path.match(/daily_briefing_(\d{4}-\d{2}-\d{2})\.html/);
+  if (m) {
+    var d = m[1];
+    var today = new Date().toISOString().slice(0,10);
+    if (d !== today) {
+      var banner = document.getElementById('archive-banner');
+      var label = document.getElementById('archive-date-label');
+      if (banner && label) {
+        var parts = d.split('-');
+        label.textContent = parts[0] + '년 ' + parseInt(parts[1]) + '월 ' + parseInt(parts[2]) + '일';
+        banner.style.display = 'flex';
+      }
+    }
+  }
+})();
 </script>
 
 <div class="container">
@@ -1027,6 +1094,9 @@ function switchPeriod(period, btn) {
 
   </div>
 
+  <!-- 섹션 구분 -->
+  <div class="section-break"></div>
+
   <!-- TOP 5 KEYWORD RANKING -->
   <div class="card" id="kw-anchor">
     <div class="section-header">
@@ -1049,7 +1119,7 @@ function switchPeriod(period, btn) {
         <tr>
           <th style="width:44px;">순위</th>
           <th>키워드 · 트렌드</th>
-          <th style="width:230px; background:#fafafa; border-left:1px solid #f0f0f0;">최신뉴스</th>
+          <th class="kw-news-th">종합뉴스</th>
         </tr>
       </thead>
       <tbody>
@@ -1335,6 +1405,15 @@ function switchPeriod(period, btn) {
       <span class="badge">NEWS</span>
     </div>
     <div class="section-divider"></div>
+    <!-- 언론사 필터 탭 -->
+    <div class="news-src-filter" id="newsSrcFilter">
+      <button class="news-src-btn active" onclick="filterNews('all',this)">전체</button>
+      <button class="news-src-btn" onclick="filterNews('한국경제',this)">한경</button>
+      <button class="news-src-btn" onclick="filterNews('매일경제',this)">매경</button>
+      <button class="news-src-btn" onclick="filterNews('조선비즈',this)">조선</button>
+      <button class="news-src-btn" onclick="filterNews('이데일리',this)">이데</button>
+      <button class="news-src-btn" onclick="filterNews('머니투데이',this)">머투</button>
+    </div>
 <!-- INJECT_HOT_TODAY_START -->
     <div class="news-list"></div>
 <!-- INJECT_HOT_TODAY_END -->

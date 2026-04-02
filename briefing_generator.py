@@ -650,7 +650,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
     ]
     top3_html = ''
     for i, v in enumerate(longform):
-        views_str  = fmt_views(v['views']) + '뷰' if v['views'] > 0 else ''
+        views_str  = fmt_views(v['views']) if v['views'] > 0 else ''
         dur_str    = fmt_duration(v.get('dur_sec', 0))
         delta_html = get_rank_delta_html(v['vid'], i + 1, prev_ranking)
         cat        = v.get('cat', 'general')
@@ -682,7 +682,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
     more_items = [v for v in filtered if not v.get('is_short')][3:10]
     more_rows  = ''
     for j, v in enumerate(more_items, 4):
-        views_str  = fmt_views(v['views']) + '뷰' if v['views'] > 0 else ''
+        views_str  = fmt_views(v['views']) if v['views'] > 0 else ''
         dur_str    = fmt_duration(v.get('dur_sec', 0))
         delta_html = get_rank_delta_html(v['vid'], j, prev_ranking)
         cat        = v.get('cat', 'general')
@@ -724,7 +724,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
             for v, delta in surge_vids[:3]:
                 dur_str   = fmt_duration(v.get('dur_sec', 0))
                 dur_tag   = f'<span class="surge-dur">⏱ {dur_str}</span>' if dur_str else ''
-                views_str = fmt_views(v['views']) + '뷰' if v['views'] > 0 else ''
+                views_str = fmt_views(v['views']) if v['views'] > 0 else ''
                 surge_items += f'''    <a class="surge-item" href="{v['url']}" target="_blank">
       <span class="surge-delta">▲{delta}</span>
       <img class="surge-thumb" src="https://img.youtube.com/vi/{v['vid']}/hqdefault.jpg" alt="">
@@ -753,7 +753,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
     for cat_key in ['stock', 'realestate', 'macro', 'fintech']:
         cat_vids = [v for v in all_longform_full if v.get('cat') == cat_key and v['vid'] not in top10_vids]
         for k, v in enumerate(cat_vids[:3]):
-            views_str  = fmt_views(v['views']) + '뷰' if v['views'] > 0 else ''
+            views_str  = fmt_views(v['views']) if v['views'] > 0 else ''
             cat_label  = CAT_LABEL.get(cat_key, '일반')
             try:
                 days_old = (today - datetime.fromisoformat(v['date']).date()).days
@@ -782,7 +782,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
     rank_badges = ['1위', '2위', '3위', '4위', '5위']
     shorts_cards = ''
     for i, v in enumerate(shorts_src):
-        views_str = fmt_views(v['views']) + '뷰' if v['views'] > 0 else '—'
+        views_str = fmt_views(v['views']) if v['views'] > 0 else '—'
         try:
             days_old = (datetime.now().date() - datetime.fromisoformat(v['date']).date()).days
         except Exception:
@@ -824,7 +824,7 @@ def build_hot_cards_by_period(top_videos, shorts_videos, max_days=None, prev_ran
 def build_stats_bar_html(kw_results, top_video, shorts_count, news_count):
     """상단 요약 스탯 4칸: 1위 키워드 / 최다 조회 / Shorts 수집 / 뉴스"""
     kw_label = kw_results[0][0]['label'] if kw_results else '—'
-    top_views = fmt_views(top_video['views']) + '뷰' if top_video and top_video.get('views', 0) > 0 else '—'
+    top_views = fmt_views(top_video['views']) if top_video and top_video.get('views', 0) > 0 else '—'
     top_ch    = top_video['ch_name'] if top_video else '—'
     return f'''  <div class="stats-strip">
     <div class="stat-item">
@@ -956,7 +956,7 @@ def build_longterm_panel_html(video_cache, max_days, today_str):
     for i, v in enumerate(longform3):
         vid_id    = [k for k, val in video_cache.items() if val is v]
         vid_id    = vid_id[0] if vid_id else ''
-        views_str = fmt_views(v.get('best_views', 0)) + '뷰' if v.get('best_views', 0) > 0 else ''
+        views_str = fmt_views(v.get('best_views', 0)) if v.get('best_views', 0) > 0 else ''
         dur_str   = fmt_duration(v.get('dur_sec', 0))
         cat       = v.get('cat', 'general')
         cat_label = CAT_LABEL.get(cat, '일반')
@@ -983,7 +983,7 @@ def build_longterm_panel_html(video_cache, max_days, today_str):
     for j, v in enumerate(more_items, 4):
         vid_id    = [k for k, val in video_cache.items() if val is v]
         vid_id    = vid_id[0] if vid_id else ''
-        views_str = fmt_views(v.get('best_views', 0)) + '뷰' if v.get('best_views', 0) > 0 else ''
+        views_str = fmt_views(v.get('best_views', 0)) if v.get('best_views', 0) > 0 else ''
         dur_str   = fmt_duration(v.get('dur_sec', 0))
         cat       = v.get('cat', 'general')
         cat_label = CAT_LABEL.get(cat, '일반')
@@ -1053,7 +1053,7 @@ def build_summary_card_html(kw_results, all_vids_full, news_items):
         top_vid = videos[0] if videos else None
         ch_names = ' · '.join(dict.fromkeys(v['ch_name'] for v in videos[:4])) if videos else '—'
         vid_count = len(videos)
-        views_str = fmt_views(top_vid['views']) + '뷰' if top_vid and top_vid.get('views', 0) > 0 else ''
+        views_str = fmt_views(top_vid['views']) if top_vid and top_vid.get('views', 0) > 0 else ''
 
         # 브리프 설명 자동 생성
         if vid_count >= 3:
@@ -1105,7 +1105,7 @@ def build_summary_card_html(kw_results, all_vids_full, news_items):
         emoji = CAT_EMOJI.get(cat, '📊')
         label = CAT_KR.get(cat, '일반')
         title = top['title'][:52]
-        views_str = fmt_views(top['views']) + '뷰' if top.get('views', 0) > 0 else ''
+        views_str = fmt_views(top['views']) if top.get('views', 0) > 0 else ''
         desc = f'{top["ch_name"]} — {views_str}' if views_str else top['ch_name']
         is_last = (i == len(shown_cats) - 1)
         cat_items_html += f'''      <div class="brief-item-wrap"{' style="border-bottom:none;"' if is_last else ''}>
@@ -1154,8 +1154,9 @@ def build_hot_news_html(news_items):
         breaking_badge = '<span class="news-breaking-badge">속보</span>' if n.get('is_breaking') else ''
         # 어제 기사는 흐리게
         item_cls = 'news-item news-item-old' if n.get('is_yesterday') else 'news-item'
+        src_name = n['source']
         return (
-            f'        <a class="{item_cls}" href="{n["link"]}" target="_blank">\n'
+            f'        <a class="{item_cls}" href="{n["link"]}" target="_blank" data-source="{src_name}">\n'
             f'          <div class="news-num">{idx:02d}</div>\n'
             f'          <div style="min-width:0;">\n'
             f'            <div class="news-headline">{breaking_badge}{n["title"][:80]}</div>\n'
@@ -1164,7 +1165,6 @@ def build_hot_news_html(news_items):
             f'        </a>\n'
         )
 
-    # 언론사별 그룹화
     from collections import defaultdict
     by_source = defaultdict(list)
     for n in news_items:
@@ -1172,13 +1172,12 @@ def build_hot_news_html(news_items):
 
     html = ''
     idx = 1
-    # 정해진 순서대로, 나머지는 뒤에
     ordered_sources = [s for s in NEWS_SOURCE_ORDER if s in by_source]
     remaining = [s for s in by_source if s not in NEWS_SOURCE_ORDER]
     for source in ordered_sources + remaining:
         items = by_source[source]
         tag = next((s['tag'] for s in NEWS_SOURCES if s['name'] == source), source[:2])
-        header = f'        <div class="news-section-header"><span class="news-src-pill">{tag}</span> {source}</div>\n'
+        header = f'        <div class="news-section-header" data-source="{source}"><span class="news-src-pill">{tag}</span> {source}</div>\n'
         cards  = ''.join(render_item(n, idx + i) for i, n in enumerate(items))
         html  += header + cards
         idx   += len(items)
