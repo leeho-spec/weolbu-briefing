@@ -269,7 +269,10 @@ def get_video_stats(video_ids):
                 vid      = item['id']
                 dur_iso  = item.get('contentDetails', {}).get('duration', '')
                 dur_sec  = parse_duration_sec(dur_iso)
-                is_short = 15 <= dur_sec < 90   # 숏폼: 15초 이상 ~ 1분30초 미만
+                title_lower = item['snippet']['title'].lower()
+                # YouTube Shorts: 최대 3분(180초). 제목에 #shorts 있으면 180초까지 숏폼으로 인정
+                has_shorts_tag = '#shorts' in title_lower or '#short' in title_lower
+                is_short = 15 <= dur_sec < (180 if has_shorts_tag else 90)
                 is_live  = item['snippet'].get('liveBroadcastContent', 'none') in ('live', 'upcoming')
                 url      = (f'https://www.youtube.com/shorts/{vid}'
                             if is_short
