@@ -273,12 +273,15 @@
   }
   .yt-why-label { font-size: 9.5px; font-weight: 700; color: #999; margin-bottom: 5px; letter-spacing: 0.3px; }
 
-  .news-list { display: flex; flex-direction: column; gap: 6px; }
-  .news-section-header { font-size: 10.5px; font-weight: 800; color: var(--text-sec); letter-spacing: 0.5px; padding: 10px 4px 4px; border-top: 1px solid var(--border-md); margin-top: 4px; }
+  .news-list { display: flex; flex-direction: column; gap: 5px; }
+  .news-section-header { display: flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 800; color: var(--text-sec); letter-spacing: 0.3px; padding: 10px 2px 4px; border-top: 1px solid var(--border-md); margin-top: 2px; }
   .news-section-header:first-child { border-top: none; margin-top: 0; padding-top: 2px; }
-  .news-item { display: flex; align-items: flex-start; gap: 11px; padding: 11px 13px; background: var(--bg-inner); border-radius: 6px; border: 1px solid var(--border-md); text-decoration: none; color: inherit; transition: background 0.15s; }
+  .news-src-pill { font-size: 9px; font-weight: 800; color: #fff; background: #CC0000; border-radius: 3px; padding: 1px 5px; letter-spacing: 0.2px; }
+  .news-breaking-badge { font-size: 9px; font-weight: 800; color: #fff; background: #e53e3e; border-radius: 3px; padding: 1px 5px; margin-right: 5px; vertical-align: middle; }
+  .news-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: var(--bg-inner); border-radius: 6px; border: 1px solid var(--border-md); text-decoration: none; color: inherit; transition: background 0.15s; }
   .news-item:hover { background: #fff0f0; }
-  .news-num { font-size: 18px; font-weight: 900; color: #e8e8e8; line-height: 1; min-width: 22px; }
+  .news-item-old { opacity: 0.6; }
+  .news-num { font-size: 17px; font-weight: 900; color: #e8e8e8; line-height: 1; min-width: 20px; flex-shrink: 0; }
   .news-source-tag { font-size: 9.5px; font-weight: 700; color: #CC0000; margin-bottom: 2px; }
   .news-headline { font-size: 13px; font-weight: 600; color: var(--text-pri); line-height: 1.45; }
 
@@ -353,15 +356,16 @@
 
   .score-bar-wrap { display: none; }
 
-  /* ── 키워드 테이블 오늘의뉴스 열 ── */
-  .kw-news-col { vertical-align: top; width: 230px; max-width: 230px; border-left: 1px solid var(--border); padding: 14px 16px !important; background: var(--bg-inner); overflow: hidden; }
-  .kw-news-label { font-size: 9.5px; font-weight: 800; color: #bbb; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 10px; }
-  .kw-news-row { display: block; overflow: hidden; padding: 7px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
+  /* ── 키워드 테이블 종합뉴스 열 ── */
+  .kw-news-col { vertical-align: top; width: 220px; max-width: 220px; border-left: 1px solid var(--border); padding: 14px 14px !important; background: var(--bg-inner); overflow: hidden; }
+  .kw-news-label { font-size: 9.5px; font-weight: 800; color: #bbb; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 8px; }
+  .kw-news-scroll { overflow: hidden; max-height: 360px; }
+  .kw-news-row { display: block; overflow: hidden; padding: 6px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: inherit; }
   .kw-news-row:last-child { border-bottom: none; }
   .kw-news-row:hover .kw-news-title { color: #CC0000; }
   .kw-news-src { display: none; }
   .kw-news-title { font-size: 11px; color: var(--text-sec); line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; max-width: 100%; }
-  .kw-news-day-label { font-size: 9px; font-weight: 700; color: #aaa; letter-spacing: 0.5px; text-transform: uppercase; padding: 6px 0 2px; border-bottom: 1px solid #eee; margin-bottom: 2px; }
+  .kw-news-day-label { font-size: 9px; font-weight: 800; color: #999; letter-spacing: 0.4px; padding: 8px 0 3px; border-bottom: 1px solid #eee; margin-bottom: 2px; }
   .kw-news-src-badge { display: inline-block; font-size: 9px; font-weight: 700; color: #CC0000; background: #fff0f0; border-radius: 3px; padding: 1px 4px; margin-right: 4px; line-height: 1.4; vertical-align: middle; flex-shrink: 0; }
 
   /* ── SOURCE CARDS ── */
@@ -1316,10 +1320,10 @@ function switchPeriod(period, btn) {
       </tbody>
     </table>
 
-  <!-- 오늘의 핫뉴스 -->
+  <!-- 실시간 뉴스 -->
   <div class="card">
     <div class="section-header">
-      <h2><span class="tossface">📰</span> 오늘의 핫뉴스</h2>
+      <h2><span class="tossface">📰</span> 실시간 뉴스</h2>
       <i class="info-icon">i
         <div class="info-tooltip">
           <div class="info-tooltip-title">📰 뉴스 수집 방식</div>

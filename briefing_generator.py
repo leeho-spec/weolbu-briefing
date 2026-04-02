@@ -241,15 +241,15 @@ def fmt_duration(dur_sec):
 
 
 def build_meta_html(ch_name, views, days_str, dur_sec=0):
-    """hot-row 메타 2줄 구조: 채널명 / 뷰(날짜) ⏱시간"""
-    views_str = fmt_views(views) + '뷰' if views and views > 0 else ''
+    """hot-row 메타 2줄 구조: 채널명 / 뷰수 ⏱시간 날짜"""
+    views_str = fmt_views(views) if views and views > 0 else ''
     dur_str   = fmt_duration(dur_sec)
+    views_tag = f'<span class="hot-views-num">{views_str}</span>' if views_str else ''
     dur_tag   = f'<span class="hot-dur">⏱ {dur_str}</span>' if dur_str else ''
     date_tag  = f'<span class="hot-date">{days_str}</span>' if days_str else ''
-    views_tag = f'<span class="hot-views-num">{views_str}</span>' if views_str else ''
     return (
         f'<div class="hot-ch-name">{ch_name}</div>'
-        f'<div class="hot-stats">{views_tag}{date_tag}{dur_tag}</div>'
+        f'<div class="hot-stats">{views_tag}{dur_tag}{date_tag}</div>'
     )
 
 
@@ -516,11 +516,15 @@ def fetch_news(max_per_source=3):
 # ─── HTML 조각 빌더 ─────────────────────────────────
 
 def fmt_views(n):
-    if n >= 10000:
-        return f'{n//10000}만{(n % 10000)//1000}천'
-    if n >= 1000:
-        return f'{n//1000}천'
-    return str(n)
+    """조회수 → '8.9만회' / '1.2억회' / '9,300회' 형식"""
+    if n >= 100_000_000:
+        return f'{n/100_000_000:.1f}억회'
+    if n >= 10_000:
+        val = n / 10_000
+        return f'{val:.1f}만회' if val < 100 else f'{int(round(val))}만회'
+    if n >= 1_000:
+        return f'{n:,}회'
+    return f'{n}회'
 
 
 def make_why(v, rank):
@@ -1136,48 +1140,48 @@ def build_summary_card_html(kw_results, all_vids_full, news_items):
     return brief_items_html + cat_section
 
 
-# ─── 오늘 뉴스 패널 빌더 ──────────────────────────────
+# ─── 실시간 뉴스 패널 빌더 ──────────────────────────────
+# 언론사별 섹션 순서
+NEWS_SOURCE_ORDER = ['한국경제', '매일경제', '조선비즈', '이데일리', '머니투데이']
+
 def build_hot_news_html(news_items):
-    """최신뉴스 탭 — 속보 / 오늘 / 어제 섹션 분리"""
-    breaking = [n for n in news_items if n.get('is_breaking')]
-    today    = [n for n in news_items if n.get('is_today') and not n.get('is_breaking')]
-    yester   = [n for n in news_items if n.get('is_yesterday')]
-    # 위 세 그룹에 없으면 오늘로 fallback
-    other    = [n for n in news_items if not n.get('is_today') and not n.get('is_yesterday') and not n.get('is_breaking')]
-    today   += other
+    """실시간 뉴스 탭 — 언론사별 섹션 (매경·한경·조선·이데…)"""
 
     def render_item(n, idx):
         desc = n.get('desc', '')
         desc_html = f'<div class="news-summary">{desc}</div>' if desc else ''
+        # 속보 표시 (4시간 이내)
+        breaking_badge = '<span class="news-breaking-badge">속보</span>' if n.get('is_breaking') else ''
+        # 어제 기사는 흐리게
+        item_cls = 'news-item news-item-old' if n.get('is_yesterday') else 'news-item'
         return (
-            f'        <a class="news-item" href="{n["link"]}" target="_blank">\n'
+            f'        <a class="{item_cls}" href="{n["link"]}" target="_blank">\n'
             f'          <div class="news-num">{idx:02d}</div>\n'
-            f'          <div>\n'
-            f'            <div class="news-source-tag">{n["source"]}</div>\n'
-            f'            <div class="news-headline">{n["title"][:80]}</div>\n'
+            f'          <div style="min-width:0;">\n'
+            f'            <div class="news-headline">{breaking_badge}{n["title"][:80]}</div>\n'
             f'            {desc_html}\n'
             f'          </div>\n'
             f'        </a>\n'
         )
 
-    def render_section(label, icon, items, start_idx=1):
-        if not items:
-            return '', start_idx
-        header = f'        <div class="news-section-header">{icon} {label}</div>\n'
-        cards  = ''.join(render_item(n, start_idx + i) for i, n in enumerate(items))
-        return header + cards, start_idx + len(items)
+    # 언론사별 그룹화
+    from collections import defaultdict
+    by_source = defaultdict(list)
+    for n in news_items:
+        by_source[n['source']].append(n)
 
     html = ''
     idx = 1
-    if breaking:
-        sec, idx = render_section('속보', '🔴', breaking, idx)
-        html += sec
-    if today:
-        sec, idx = render_section('오늘', '📰', today, idx)
-        html += sec
-    if yester:
-        sec, idx = render_section('어제', '📋', yester, idx)
-        html += sec
+    # 정해진 순서대로, 나머지는 뒤에
+    ordered_sources = [s for s in NEWS_SOURCE_ORDER if s in by_source]
+    remaining = [s for s in by_source if s not in NEWS_SOURCE_ORDER]
+    for source in ordered_sources + remaining:
+        items = by_source[source]
+        tag = next((s['tag'] for s in NEWS_SOURCES if s['name'] == source), source[:2])
+        header = f'        <div class="news-section-header"><span class="news-src-pill">{tag}</span> {source}</div>\n'
+        cards  = ''.join(render_item(n, idx + i) for i, n in enumerate(items))
+        html  += header + cards
+        idx   += len(items)
 
     return f'      <div class="news-list">\n{html}      </div>'
 
@@ -1260,42 +1264,45 @@ def build_kw_rows_html(kw_results, news_items=None):
                      f'<span class="kw-link-text">{news_label}</span>'
                      f'</a></div>')
 
-        # 1위 행에만 오늘의 뉴스 패널 (rowspan=len(kw_results))
+        # 1위 행에만 종합뉴스 패널 (rowspan=len(kw_results)) — 속보/오늘/어제
         today_news_td = ''
         if rank == 1:
             _today = datetime.now().strftime('%Y-%m-%d')
             _yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
             all_news = news_items or []
-            today_news    = [n for n in all_news if n.get('pub_date', _today) == _today]
-            yesterday_news = [n for n in all_news if n.get('pub_date', '') == _yesterday]
-            other_news    = [n for n in all_news if n not in today_news and n not in yesterday_news]
+            breaking_news  = [n for n in all_news if n.get('is_breaking')]
+            today_news     = [n for n in all_news if n.get('is_today') and not n.get('is_breaking')]
+            yesterday_news = [n for n in all_news if n.get('is_yesterday')]
+            # 위 세 그룹 없으면 fallback
+            if not breaking_news and not today_news and not yesterday_news:
+                today_news = all_news
 
-            def _news_rows(items, limit=6):
+            def _news_rows(items, limit=5):
                 html = ''
                 for n in items[:limit]:
                     src_badge = f'<span class="kw-news-src-badge">{n["tag"]}</span>' if n.get('tag') else ''
                     html += (
                         f'<a class="kw-news-row" href="{n["link"]}" target="_blank">'
                         f'{src_badge}'
-                        f'<span class="kw-news-title">{n["title"][:50]}</span>'
+                        f'<span class="kw-news-title">{n["title"][:48]}</span>'
                         f'</a>'
                     )
                 return html
 
             sections_html = ''
+            if breaking_news:
+                sections_html += '<div class="kw-news-day-label">🔴 속보</div>' + _news_rows(breaking_news, 3)
             if today_news:
-                sections_html += '<div class="kw-news-day-label">오늘</div>' + _news_rows(today_news, 6)
+                sections_html += '<div class="kw-news-day-label">오늘</div>' + _news_rows(today_news, 5)
             if yesterday_news:
-                sections_html += '<div class="kw-news-day-label">어제</div>' + _news_rows(yesterday_news, 4)
-            if not today_news and not yesterday_news:
-                sections_html = _news_rows(other_news, 8)
+                sections_html += '<div class="kw-news-day-label">어제</div>' + _news_rows(yesterday_news, 3)
             if not sections_html:
                 sections_html = '<div style="color:#ccc;font-size:12px;padding:12px 0;">뉴스 수집 중...</div>'
 
             today_news_td = f'''
           <td class="kw-news-col" rowspan="{len(kw_results)}">
-            <div class="kw-news-label">최신뉴스</div>
-            {sections_html}
+            <div class="kw-news-label">종합뉴스</div>
+            <div class="kw-news-scroll">{sections_html}</div>
           </td>'''
 
         rows += f'''
