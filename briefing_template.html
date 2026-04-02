@@ -991,8 +991,8 @@ function switchPeriod(period, btn) {
     <div class="period-tabs">
       <button class="period-btn active" onclick="switchPeriod('week',this)">이번주</button>
       <button class="period-btn" onclick="switchPeriod('month',this)">1달</button>
-      <button class="period-btn" disabled>3달</button>
-      <button class="period-btn" disabled>6달</button>
+      <button class="period-btn" onclick="switchPeriod('6month',this)">6개월</button>
+      <button class="period-btn" onclick="switchPeriod('12month',this)">12개월</button>
     </div>
 
     <!-- 이번주 패널 -->
@@ -1007,14 +1007,16 @@ function switchPeriod(period, btn) {
 <!-- INJECT_HOT_CARDS_MONTH_END -->
     </div>
 
-    <!-- 3달 패널 (예정) -->
-    <div class="period-panel" id="panel-3month">
-      <div class="period-placeholder">📦 히스토리 수집 예정<br>3달치 데이터가 쌓이면 자동으로 활성화됩니다.</div>
+    <!-- 6개월 패널 -->
+    <div class="period-panel" id="panel-6month">
+<!-- INJECT_HOT_CARDS_6MONTH_START -->
+<!-- INJECT_HOT_CARDS_6MONTH_END -->
     </div>
 
-    <!-- 6달 패널 (예정) -->
-    <div class="period-panel" id="panel-6month">
-      <div class="period-placeholder">📦 히스토리 수집 예정<br>6달치 데이터가 쌓이면 자동으로 활성화됩니다.</div>
+    <!-- 12개월 패널 -->
+    <div class="period-panel" id="panel-12month">
+<!-- INJECT_HOT_CARDS_12MONTH_START -->
+<!-- INJECT_HOT_CARDS_12MONTH_END -->
     </div>
 
   </div>

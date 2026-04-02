@@ -841,10 +841,9 @@ def load_ranking_history():
         return {}
 
 def save_ranking_history(history, today_str, video_ids):
-    """오늘 순위 저장 (최근 7일만 보관)"""
+    """오늘 순위 저장 (최근 400일 보관 — 6개월/12개월 패널용)"""
     history[today_str] = video_ids
-    # 7일 초과 항목 제거
-    cutoff = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
+    cutoff = (datetime.now() - timedelta(days=400)).strftime('%Y-%m-%d')
     history = {k: v for k, v in history.items() if k >= cutoff}
     try:
         with open(RANKING_HISTORY_PATH, 'w', encoding='utf-8') as f:
@@ -852,6 +851,154 @@ def save_ranking_history(history, today_str, video_ids):
     except Exception as e:
         print(f'[경고] 순위 히스토리 저장 실패: {e}')
     return history
+
+
+def load_video_cache():
+    """누적 영상 메타데이터 캐시 로드"""
+    try:
+        with open(VIDEO_CACHE_PATH, encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def save_video_cache(cache, all_vids_full, today_str):
+    """오늘 수집된 영상 정보를 캐시에 누적 저장"""
+    for v in all_vids_full:
+        vid = v['vid']
+        if vid not in cache:
+            cache[vid] = {
+                'title':      v['title'],
+                'url':        v['url'],
+                'ch_name':    v.get('ch_name', ''),
+                'cat':        v.get('cat', 'general'),
+                'dur_sec':    v.get('dur_sec', 0),
+                'pub_date':   v.get('date', today_str),
+                'first_seen': today_str,
+                'last_seen':  today_str,
+                'best_views': v.get('views', 0),
+                'best_score': v.get('score', 0),
+            }
+        else:
+            # 기존 항목 업데이트: 최고 기록 갱신
+            cache[vid]['last_seen']  = today_str
+            if v.get('views', 0) > cache[vid].get('best_views', 0):
+                cache[vid]['best_views'] = v['views']
+            if v.get('score', 0) > cache[vid].get('best_score', 0):
+                cache[vid]['best_score'] = v['score']
+            # 카테고리·채널명 최신화
+            cache[vid]['cat']     = v.get('cat', cache[vid]['cat'])
+            cache[vid]['ch_name'] = v.get('ch_name', cache[vid]['ch_name'])
+    try:
+        with open(VIDEO_CACHE_PATH, 'w', encoding='utf-8') as f:
+            json.dump(cache, f, ensure_ascii=False, indent=2)
+        print(f'✅ 영상 캐시 저장: {len(cache)}개 누적')
+    except Exception as e:
+        print(f'[경고] 영상 캐시 저장 실패: {e}')
+    return cache
+
+
+def build_longterm_panel_html(video_cache, max_days, today_str):
+    """video_details_cache 기반 장기 패널 HTML (6개월/12개월)"""
+    cutoff = (datetime.strptime(today_str, '%Y-%m-%d') - timedelta(days=max_days)).strftime('%Y-%m-%d')
+    today_dt = datetime.strptime(today_str, '%Y-%m-%d').date()
+
+    # 기간 내 first_seen 영상만, 롱폼(dur≥120)만, best_score 정렬
+    candidates = [
+        v for v in video_cache.values()
+        if v.get('first_seen', '9999') >= cutoff
+        and v.get('dur_sec', 0) >= 120
+    ]
+    if not candidates:
+        months = max_days // 30
+        return f'  <div class="period-placeholder">📦 데이터 누적 중<br>브리핑이 매일 실행되면 {months}개월 후 자동 활성화됩니다.</div>'
+
+    candidates.sort(key=lambda x: x.get('best_score', 0), reverse=True)
+    top = candidates[:10]
+    longform3 = top[:3]
+    more_items = top[3:]
+
+    rank_cls = ['r1', 'r2', 'r3']
+    rank_sym = [
+        '<span class="tossface">🥇</span>',
+        '<span class="tossface">🥈</span>',
+        '<span class="tossface">🥉</span>',
+    ]
+    top3_html = ''
+    for i, v in enumerate(longform3):
+        vid_id    = [k for k, val in video_cache.items() if val is v]
+        vid_id    = vid_id[0] if vid_id else ''
+        views_str = fmt_views(v.get('best_views', 0)) + '뷰' if v.get('best_views', 0) > 0 else ''
+        dur_str   = fmt_duration(v.get('dur_sec', 0))
+        cat       = v.get('cat', 'general')
+        cat_label = CAT_LABEL.get(cat, '일반')
+        try:
+            days_old = (today_dt - datetime.strptime(v['pub_date'], '%Y-%m-%d').date()).days
+            days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
+        except Exception:
+            days_str = v.get('pub_date', '')
+        meta_parts = [v['ch_name'], days_str, views_str]
+        if dur_str:
+            meta_parts.append(f'⏱ {dur_str}')
+        meta_spans = '<span>·</span>'.join(f'<span>{p}</span>' for p in meta_parts)
+        url = v.get('url', f'https://www.youtube.com/watch?v={vid_id}')
+        top3_html += f'''  <a class="hot-row hot-row-top3" href="{url}" target="_blank" data-cat="{cat}" data-rank="{i+1}">
+    <span class="hot-rank-num {rank_cls[i]}">{rank_sym[i]}</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{vid_id}/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">{v['title'][:60]}</div>
+      <div class="hot-meta">{meta_spans}</div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-{cat}">{cat_label}</span>
+    </div>
+  </a>\n'''
+
+    more_rows = ''
+    for j, v in enumerate(more_items, 4):
+        vid_id    = [k for k, val in video_cache.items() if val is v]
+        vid_id    = vid_id[0] if vid_id else ''
+        views_str = fmt_views(v.get('best_views', 0)) + '뷰' if v.get('best_views', 0) > 0 else ''
+        dur_str   = fmt_duration(v.get('dur_sec', 0))
+        cat       = v.get('cat', 'general')
+        cat_label = CAT_LABEL.get(cat, '일반')
+        try:
+            days_old = (today_dt - datetime.strptime(v['pub_date'], '%Y-%m-%d').date()).days
+            days_str = f'{days_old}일 전' if days_old > 0 else '오늘'
+        except Exception:
+            days_str = v.get('pub_date', '')
+        meta_parts = [v['ch_name'], days_str, views_str]
+        if dur_str:
+            meta_parts.append(f'⏱ {dur_str}')
+        meta_spans = '<span>·</span>'.join(f'<span>{p}</span>' for p in meta_parts)
+        url = v.get('url', f'https://www.youtube.com/watch?v={vid_id}')
+        more_rows += f'''  <a class="hot-row" href="{url}" target="_blank" data-cat="{cat}" data-rank="{j}">
+    <span class="hot-rank-num rn">{j}위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/{vid_id}/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">{v['title'][:60]}</div>
+      <div class="hot-meta">{meta_spans}</div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-{cat}">{cat_label}</span>
+    </div>
+  </a>\n'''
+
+    more_section = ''
+    if more_rows:
+        more_section = f'''  <button class="more-toggle" onclick="toggleMore(this)">
+    <span class="toggle-label">4~10위 더보기</span>
+    <span class="toggle-arrow">▼</span>
+  </button>
+  <div class="more-list">
+{more_rows}  </div>'''
+
+    data_label = f'{max_days // 30}개월'
+    return f'''  <div class="hot-section-label"><span class="tossface">📹</span> {data_label} 롱폼 TOP 10</div>
+  <div class="hot-list">
+{top3_html}  </div>
+{more_section}
+  <div class="cat-view-list"></div>'''
 
 def get_rank_delta_html(vid_id, today_rank, prev_ranking):
     """전일 대비 순위 변동 뱃지 HTML"""
@@ -1296,6 +1443,11 @@ def main():
     today_longform_ids = [v['vid'] for v in all_vids_full if not v.get('is_short')][:10]
     ranking_history = save_ranking_history(ranking_history, today_str, today_longform_ids)
 
+    # 영상 메타데이터 캐시 누적 저장 (6개월/12개월 패널 데이터 원본)
+    print('\n[캐시] 영상 메타데이터 누적 저장 중...')
+    video_cache = load_video_cache()
+    video_cache = save_video_cache(video_cache, all_vids_full, today_str)
+
     # 6a-3. 기간별 핫 콘텐츠 패널 주입 (이번주/1달)
     period_specs = [
         ('WEEK',  7,  'INJECT_HOT_CARDS_WEEK'),
@@ -1303,6 +1455,19 @@ def main():
     ]
     for _label, max_days, marker in period_specs:
         panel_html = build_hot_cards_by_period(all_vids_full, shorts_list, max_days=max_days, prev_ranking=prev_ranking)
+        html = re.sub(
+            rf'<!-- {marker}_START -->.*?<!-- {marker}_END -->',
+            f'<!-- {marker}_START -->\n{panel_html}\n<!-- {marker}_END -->',
+            html, flags=re.DOTALL
+        )
+
+    # 6a-4. 장기 패널 주입 (6개월/12개월) — video_details_cache 기반
+    longterm_specs = [
+        (180, 'INJECT_HOT_CARDS_6MONTH'),
+        (365, 'INJECT_HOT_CARDS_12MONTH'),
+    ]
+    for max_days, marker in longterm_specs:
+        panel_html = build_longterm_panel_html(video_cache, max_days, today_str)
         html = re.sub(
             rf'<!-- {marker}_START -->.*?<!-- {marker}_END -->',
             f'<!-- {marker}_START -->\n{panel_html}\n<!-- {marker}_END -->',
