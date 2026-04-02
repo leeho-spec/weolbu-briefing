@@ -647,14 +647,8 @@ function toggleDark() {
   var isDark = document.body.classList.toggle('dark');
   var btn = document.getElementById('darkToggle');
   if (btn) btn.textContent = isDark ? '☀️ LIGHT' : '🌙 DARK';
-  try { localStorage.setItem('wb-theme', isDark ? 'dark' : 'light'); } catch(e) {}
 }
-(function() {
-  try {
-    var t = localStorage.getItem('wb-theme');
-    if (t === 'dark') { document.body.classList.add('dark'); var btn = document.getElementById('darkToggle'); if (btn) btn.textContent = '☀️ LIGHT'; }
-  } catch(e) {}
-})();
+// 기본값: 항상 화이트로 시작 (localStorage 복원 없음)
 
 (function() {
   // 단일 트랙 안에 items × 2 를 생성 → -50% translate로 끊김 없는 루프
