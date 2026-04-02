@@ -1,0 +1,20 @@
+{
+  "_comment": "채널 추가/수정/제거는 이 파일만 편집하면 됩니다. id: YouTube 채널ID, weight: 가중치(1.0~2.0), cat_hint: 키워드 미매칭 시 기본 카테고리, force_cat: 키워드 무관 강제 카테고리",
+  "소수몽키":             {"id": "UCC3yfxS5qC6PCwDzetUuEWg", "weight": 1.5},
+  "삼프로TV":             {"id": "UChlv4GSd7OQl3js-jkLOnFA", "weight": 1.5},
+  "전인구경제연구소":     {"id": "UCznImSIaxZR7fdLCICLdgaQ", "weight": 1.5},
+  "박곰희TV":             {"id": "UCr7XsrSrvAn_WcU4kF99bbQ", "weight": 1.5, "cat_hint": "fintech"},
+  "부읽남":               {"id": "UC2QeHNJFfuQWB4cy3M-745g", "weight": 1.5},
+  "재테크읽어주는파일럿": {"id": "UCD_5FbxPZtGswkusn63ldiA", "weight": 1.5, "cat_hint": "fintech"},
+  "부티풀":               {"id": "UCriq8I8GEESkQq0svX19oCw", "weight": 1.5, "cat_hint": "fintech"},
+  "와이스트릿":           {"id": "UCupslRq5jW95UGzPjOZz0FA", "weight": 1.5},
+  "머니인사이드":         {"id": "UCxfko2YOD6DODYRGzeOPhIQ", "weight": 1.5},
+  "지식인사이드":         {"id": "UC9M06-cmUNKtB0FK9ol9vbQ", "weight": 1.5, "finance_only": true},
+  "김작가TV":             {"id": "UCvil4OAt-zShzkKHsg9EQAw", "weight": 1.5},
+  "연금박사":             {"id": "UCD9mxN8o9qLei1MbzroeP_A", "weight": 1.5, "cat_hint": "fintech"},
+  "뿅글이":               {"id": "UC_JXWoZ2DQB98xFiKLPrVEQ", "weight": 1.5, "force_cat": "fintech"},
+  "머니하이":             {"id": "UC6mp159KMtzjhP65DmldR0A", "weight": 1.5},
+  "박종훈의지식한방":     {"id": "UCOB62fKRT7b73X7tRxMuN2g", "weight": 1.5},
+  "김짠부":               {"id": "UCiHCmazdsMM9j3Jbqx3p7Ig", "weight": 1.5, "force_cat": "fintech"},
+  "월급쟁이부자들TV":     {"id": "UCDSj40X9FFUAnx1nv7gQhcA", "weight": 1.0}
+}
