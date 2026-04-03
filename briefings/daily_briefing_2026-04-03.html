@@ -77,8 +77,8 @@
   .summary-card { background: var(--bg-card); border-radius: 8px; padding: 20px 22px; box-shadow: var(--shadow); }
 
   /* ── SECTION HEADER ── */
-  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .section-header h2 { font-size: 15px; font-weight: 700; color: var(--text-pri); }
+  .section-header { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+  .section-header h2 { font-size: 15px; font-weight: 700; color: var(--text-pri); margin: 0; line-height: 1; }
   .badge { background: #CC0000; color: #fff; font-size: 9.5px; font-weight: 700; border-radius: 3px; padding: 2px 7px; letter-spacing: 0.3px; }
   .section-divider { width: 24px; height: 3px; background: #CC0000; margin-bottom: 16px; }
   .card { background: var(--bg-card); border-radius: 8px; padding: 22px 26px; box-shadow: var(--shadow); }
@@ -193,11 +193,12 @@
   .heatmap-card { background: #111; border-radius: 8px; padding: 16px 16px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
   .heatmap-title { font-size: 9px; font-weight: 700; color: #fff; letter-spacing: 1.2px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
 
-  /* 히트맵 그리드: 1위 타일이 2행 span, 나머지 2×2 */
+  /* 히트맵 그리드: 점수 비율로 타일 크기 결정 */
   .treemap {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 78px;
+    grid-auto-flow: dense;
     gap: 6px;
     flex: 1;
   }
@@ -220,13 +221,21 @@
   .tm-new  { background: #1565c0; }
   .tm-down1{ background: #1a237e; }
   .tm-name { font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.3; }
-  .tm-score { font-family: 'Paperlogy', sans-serif; font-size: 22px; font-weight: 700; color: #fff; line-height: 1; margin-top: 4px; }
+  .tm-score { font-family: 'Paperlogy', sans-serif; font-size: 20px; font-weight: 700; color: #fff; line-height: 1; margin-top: 4px; }
   .tm-trend { font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,0.65); margin-top: 2px; }
-  /* 1위 타일 — 2행 span, 더 크게 */
-  .tm-big { grid-row: span 2; min-height: 150px; }
-  .tm-big .tm-score { font-size: 36px; margin-top: 8px; }
-  .tm-big .tm-name { font-size: 13px; }
-  .tm-big .tm-trend { font-size: 10.5px; }
+  /* 점수 비율 4단계 크기 시스템 */
+  .tm-xl { grid-column: span 2; grid-row: span 2; }                   /* 1위: 2×2 */
+  .tm-xl .tm-score { font-size: 38px; margin-top: 8px; }
+  .tm-xl .tm-name  { font-size: 13px; }
+  .tm-xl .tm-trend { font-size: 10.5px; }
+  .tm-lg { grid-column: span 1; grid-row: span 2; }                   /* ≥65%: 1×2 */
+  .tm-lg .tm-score { font-size: 26px; margin-top: 6px; }
+  .tm-lg .tm-name  { font-size: 11px; }
+  .tm-md { grid-column: span 1; grid-row: span 1; }                   /* ≥35%: 1×1 일반 */
+  .tm-sm { grid-column: span 1; grid-row: span 1; padding: 8px 10px; } /* <35%: 1×1 소형 */
+  .tm-sm .tm-score { font-size: 14px; margin-top: 2px; }
+  .tm-sm .tm-name  { font-size: 9.5px; }
+  .tm-sm .tm-trend { font-size: 8.5px; }
   .hm-legend { display: flex; align-items: center; gap: 6px; font-size: 9px; color: #444; justify-content: flex-end; margin-top: 2px; }
   .hm-legend-swatch { display: flex; gap: 2px; }
   .hm-sw { width: 12px; height: 8px; border-radius: 1px; }
@@ -714,9 +723,9 @@ function toggleDark() {
     { name:'NASDAQ', cur:21879.2, base:21879.2, dec:1, step:1.9 },
     { name:'S&P500', cur:6582.7, base:6582.7, dec:1, step:0.4 },
     { name:'DOW', cur:46504.7, base:46504.7, dec:1, step:3.1 },
-    { name:'USD/KRW', cur:1509.95, base:1509.95, dec:2, step:0.11 },
+    { name:'USD/KRW', cur:1509.85, base:1509.85, dec:2, step:0.11 },
     { name:'JPY/KRW', cur:9.46, base:9.46, dec:2, step:0.0 },
-    { name:'CNY/KRW', cur:219.38, base:219.38, dec:2, step:0.01 },
+    { name:'CNY/KRW', cur:219.5, base:219.5, dec:2, step:0.01 },
     { name:'NIKKEI', cur:53123.5, base:53123.5, dec:1, step:33.0 },
     { name:'SHANGHAI', cur:3880.1, base:3880.1, dec:1, step:2.0 }
   ];
@@ -1323,7 +1332,7 @@ function newsItemClick(el) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/gC_ynesQX08/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">"환율 1500원과 물가 상승" 앞으로 집 사기 더 어려워집니다</div>
-      <div class="hot-meta"><div class="hot-ch-name">부읽남</div><div class="hot-stats"><span class="hot-views-num">9.2만회</span><span class="hot-dur">⏱ 12분</span><span class="hot-date">1일 전</span></div></div>
+      <div class="hot-meta"><div class="hot-ch-name">부읽남</div><div class="hot-stats"><span class="hot-views-num">9.3만회</span><span class="hot-dur">⏱ 12분</span><span class="hot-date">1일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1409,7 +1418,7 @@ function newsItemClick(el) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/7CY8wh9khKg/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">(광고x) "1금융권 이자 7% 적금 떴다" 매월 35만원만 여기 넣으세요. 목돈 2000만원 순식간에 됩니</div>
-      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6.0만회</span><span class="hot-dur">⏱ 18분</span><span class="hot-date">1일 전</span></div></div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6.1만회</span><span class="hot-dur">⏱ 18분</span><span class="hot-date">1일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1879,7 +1888,7 @@ function newsItemClick(el) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/gC_ynesQX08/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">"환율 1500원과 물가 상승" 앞으로 집 사기 더 어려워집니다</div>
-      <div class="hot-meta"><div class="hot-ch-name">부읽남</div><div class="hot-stats"><span class="hot-views-num">9.2만회</span><span class="hot-dur">⏱ 12분</span><span class="hot-date">1일 전</span></div></div>
+      <div class="hot-meta"><div class="hot-ch-name">부읽남</div><div class="hot-stats"><span class="hot-views-num">9.3만회</span><span class="hot-dur">⏱ 12분</span><span class="hot-date">1일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-macro">거시경제</span>
@@ -1929,12 +1938,12 @@ function newsItemClick(el) {
       <span class="cat-badge cat-fintech">재테크</span>
     </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=Djj_wI9wmME" target="_blank" data-cat="fintech" data-rank="99" data-cat-extra="true">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=AUmc6K-J-mE" target="_blank" data-cat="fintech" data-rank="99" data-cat-extra="true">
     <span class="hot-rank-num rn">—</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Djj_wI9wmME/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/AUmc6K-J-mE/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">"어떤 사람과 결혼해야 할까?" 재테크 유튜버가 말하는 결혼</div>
-      <div class="hot-meta"><div class="hot-ch-name">김짠부</div><div class="hot-stats"><span class="hot-views-num">7.7만회</span><span class="hot-dur">⏱ 11분</span><span class="hot-date">29일 전</span></div></div>
+      <div class="hot-title">"이것만 보셔도 됩니다" 실패 없는 월배당 ETF 포트폴리오 공식 (김정란 작가 풀버전)</div>
+      <div class="hot-meta"><div class="hot-ch-name">머니인사이드</div><div class="hot-stats"><span class="hot-views-num">4.5만회</span><span class="hot-dur">⏱ 55분</span><span class="hot-date">7일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-fintech">재테크</span>
@@ -1954,7 +1963,7 @@ function newsItemClick(el) {
           <div class="shorts-body">
             <div class="shorts-title">미국은 가격의 문제, 한국은 목숨의 문제다 #권효재 #원자재 #유가 #석유 #호르무즈 #전쟁 #미국 #이란 </div>
             <div class="shorts-ch">와이스트릿 · 2026-03-26</div>
-            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">53.2만회</span><span>63초 · 8일 전</span></div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">53.3만회</span><span>63초 · 8일 전</span></div>
           </div>
         </a>
         <a class="shorts-card" href="https://www.youtube.com/shorts/0YDejsEEY04" target="_blank">
@@ -2362,7 +2371,7 @@ function newsItemClick(el) {
           <td class="kw-news-col" rowspan="6">
             <div class="kw-news-label">속보</div><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBOczRFZjlsWk9lZjFWN1JJZGtGNy0xQ09Jb3BYbVNsbmZubmVObU9KMzZtQVphbHRQT3ZrRlYxd2R5cG1mcDExRFBidnVfZTYyLVE3bi1EREwwclVFbGdGY0ppRE0zM3c?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피, 호르무즈 재개 기대감에 5300선 회복…코스닥도 올라</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5OQ0Rxd2pmaGM1dnp4am5EMnNEVWdtVGVnbnNDWW9MeWpCVEduMGdpRjBacVlETl84SFJNbjhhRS1XcThnRkpUM0ExTmxxNGUxNS02VVJGbEI0X1BUNVphTw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">'호르무즈 통행 논의'에 코스피 2.74% 급등...5,300선 회복 - KBC광주방송</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBjamk1a2xfVEJYZUdqWEUzUjFFemR6WkJyVlFJZUxyN1ZLd2pJSHZ5R3pNZ1RzYmt1QmJTanJhMEpkNlA0TkRoakVhY2RwYW41eEJBTlBtcEMzRGJXLU1SNzg1Rk9yNHVCNDgxRtIBb0FVX3lxTE1PSlRZdVdZMExMX21iOW1aV2ZEZWRvdVNPNEVYcEV2R0dJWFo3UlVvbThPWWVBaUxVeEhKS3U1UWRnQld2TFU0d3VGR2JkNExKN05SNVF1UWJOeWMyRU5fSlBjZW9hdnBzVTkzZzd4SQ?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피, 143.25포인트(2.74%) 오른 5377.30 마감</span></a>
             <div class="kw-news-label" style="margin-top:8px;">실시간뉴스</div>
-            <div class="kw-news-scroll"><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073219?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">카이트 ‘글로벌 해커톤 2026’ 파트너로 코인베이스 벤처스·UC 버클리 합류</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/culture/12007667" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">고환율에 해외 고민이라면…가정의 달 겨냥한 6시간 거리 쿠알라룸푸르</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9OUHNqdmI1blhXeGVNUFdNdlY2Tko2VFpiUkt4T0p3SGJTUGFvcmMzSkotVUJ1T01OOEVVSUtTU19rcGlkVERxeFJIZExrc25JTlRkMWZ3?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">프랑스 소유 컨테이너선 호르무즈 해협 첫 통과</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073200?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">비트코인, 월간 변동성 ‘사상 최저 수준’ 압축… “하락세 전환 시 역대급 충격”</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12007659" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">'수익률 꼴찌' 韓ETF 사는 글로벌 개미들</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073180?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">아카시 네트워크 창립자 “2026년은 DePIN의 해, AI 전력 및 연산 위기 해답 될 </span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026040378381" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">환율 고공행진 속 RIA 4800억 몰려</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026040378411" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">"美 AI에 도움"…트럼프, 변압기엔 15% 관세</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9jMmlhZVE3RFVNWGVUNWVuaWNlbjNiZ3dGSWY0NlRJS0w5bE93UkdJaWlCOVBHeGtOcTVrMzdHajBTYzUyWWpNLURoblcyM3lDRFZaanFn?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">한·UAE CEPA, 내달 1일 발효…중동 산유국과 첫 FTA, 공급망 안정 기대</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE42N1oxb18tSU9walp3dTZjcEE1WmktZWx3b193NU1QODZXYzFGYmxoUXgybWI3RnpnVm5KckxZYlRmTy1BaVUxMWxpM2NLTGpvU1JRM3JSNU9rdi12WFRqMlJXMWg?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">코인</span><span class="kw-news-title">코인원 한투 품으로?…가상자산 시장 노리는 증권사 - 서울경제TV</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/world/12007606" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">고유가發 인플레 압력…日 국채금리 27년來 최고</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/world/12007607" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">MS, 日에 100억弗 투자 … AI 기반 구축</span></a></div>
+            <div class="kw-news-scroll"><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073219?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">카이트 ‘글로벌 해커톤 2026’ 파트너로 코인베이스 벤처스·UC 버클리 합류</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/culture/12007667" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">고환율에 해외 고민이라면…가정의 달 겨냥한 6시간 거리 쿠알라룸푸르</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9OUHNqdmI1blhXeGVNUFdNdlY2Tko2VFpiUkt4T0p3SGJTUGFvcmMzSkotVUJ1T01OOEVVSUtTU19rcGlkVERxeFJIZExrc25JTlRkMWZ3?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">프랑스 소유 컨테이너선 호르무즈 해협 첫 통과</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073200?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">비트코인, 월간 변동성 ‘사상 최저 수준’ 압축… “하락세 전환 시 역대급 충격”</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12007659" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">'수익률 꼴찌' 韓ETF 사는 글로벌 개미들</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073180?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">아카시 네트워크 창립자 “2026년은 DePIN의 해, AI 전력 및 연산 위기 해답 될 </span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9jMmlhZVE3RFVNWGVUNWVuaWNlbjNiZ3dGSWY0NlRJS0w5bE93UkdJaWlCOVBHeGtOcTVrMzdHajBTYzUyWWpNLURoblcyM3lDRFZaanFn?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">한·UAE CEPA, 내달 1일 발효…중동 산유국과 첫 FTA, 공급망 안정 기대</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE42N1oxb18tSU9walp3dTZjcEE1WmktZWx3b193NU1QODZXYzFGYmxoUXgybWI3RnpnVm5KckxZYlRmTy1BaVUxMWxpM2NLTGpvU1JRM3JSNU9rdi12WFRqMlJXMWg?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">코인</span><span class="kw-news-title">코인원 한투 품으로?…가상자산 시장 노리는 증권사 - 서울경제TV</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026040378381" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">환율 고공행진 속 RIA 4800억 몰려</span></a><a class="kw-news-row" href="https://www.hankyung.com/article/2026040378411" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">한경</span><span class="kw-news-title">"美 AI에 도움"…트럼프, 변압기엔 15% 관세</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBMNVg2dVRuR2QyOE5DVGswc0VCRXpnV2ZoQWJ5NS1XNGRLLS1mT1pZX2x4bnoxR0oxVXk5UWk0RVRjaE96SjRmSTRiSG5oLTkwaWfSAVNBVV95cUxNMGlCV1FYcThhVTF2UmlGMHZUOTFMV1JHN0dLOWhMUllWMmVoMUhzVVZBbzBpZXBOU0RTMVpYMGZGRWZsNE5idU9KN3dodE95dnU4Yw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">김정관 산업장관 “전쟁 이후 韓경제 도약 위해선 M.AX·5극3특이 해법”</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/world/12007606" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">고유가發 인플레 압력…日 국채금리 27년來 최고</span></a></div>
           </td>
         </tr>
         <!-- 2위 -->
@@ -2471,7 +2480,7 @@ function newsItemClick(el) {
 <!-- INJECT_HOT_TODAY_START -->
       <div class="news-list">
         <div class="news-section-header" data-cat="주식·증시"><span class="news-src-pill cat-pill">주식·증시</span></div>
-        <a class="news-item" href="https://www.mk.co.kr/news/stock/12007659" target="_blank" data-cat="주식·증시" data-hours="10.1" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/stock/12007659" target="_blank" data-cat="주식·증시" data-hours="10.2" onclick="this.classList.add('news-item-read')">
           <div class="news-num">01</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>'수익률 꼴찌' 韓ETF 사는 글로벌 개미들</div>
@@ -2479,7 +2488,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://www.mk.co.kr/news/world/12007606" target="_blank" data-cat="주식·증시" data-hours="10.3" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/world/12007606" target="_blank" data-cat="주식·증시" data-hours="10.4" onclick="this.classList.add('news-item-read')">
           <div class="news-num">02</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>고유가發 인플레 압력…日 국채금리 27년來 최고</div>
@@ -2487,7 +2496,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073020?utm_source=general&utm_medium=rss" target="_blank" data-cat="주식·증시" data-hours="11.1" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073020?utm_source=general&utm_medium=rss" target="_blank" data-cat="주식·증시" data-hours="11.2" onclick="this.classList.add('news-item-read')">
           <div class="news-num">03</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>스테이블코인 발행 산업 심층 분석 – 타이거리서치</div>
@@ -2503,7 +2512,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">12시간 전</div>
         </a>
-        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073156?utm_source=general&utm_medium=rss" target="_blank" data-cat="주식·증시" data-hours="12.1" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073156?utm_source=general&utm_medium=rss" target="_blank" data-cat="주식·증시" data-hours="12.2" onclick="this.classList.add('news-item-read')">
           <div class="news-num">05</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>금융당국, 두나무 주식교환 공시에 정정명령…공시 누락·허위 기재 지적</div>
@@ -2521,7 +2530,7 @@ function newsItemClick(el) {
           <div class="news-time">12시간 전</div>
         </a>
         <div class="news-section-header" data-cat="거시경제·환율"><span class="news-src-pill cat-pill">거시경제·환율</span></div>
-        <a class="news-item" href="https://www.mk.co.kr/news/culture/12007667" target="_blank" data-cat="거시경제·환율" data-hours="9.8" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/culture/12007667" target="_blank" data-cat="거시경제·환율" data-hours="9.9" onclick="this.classList.add('news-item-read')">
           <div class="news-num">07</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>고환율에 해외 고민이라면…가정의 달 겨냥한 6시간 거리 쿠알라룸푸르</div>
@@ -2529,7 +2538,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://www.hankyung.com/article/2026040378381" target="_blank" data-cat="거시경제·환율" data-hours="10.2" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.hankyung.com/article/2026040378381" target="_blank" data-cat="거시경제·환율" data-hours="10.3" onclick="this.classList.add('news-item-read')">
           <div class="news-num">08</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">한경</span>환율 고공행진 속 RIA 4800억 몰려</div>
@@ -2537,7 +2546,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://www.hankyung.com/article/2026040378411" target="_blank" data-cat="거시경제·환율" data-hours="10.2" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.hankyung.com/article/2026040378411" target="_blank" data-cat="거시경제·환율" data-hours="10.3" onclick="this.classList.add('news-item-read')">
           <div class="news-num">09</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">한경</span>"美 AI에 도움"…트럼프, 변압기엔 15% 관세</div>
@@ -2545,7 +2554,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://www.mk.co.kr/news/world/12007607" target="_blank" data-cat="거시경제·환율" data-hours="10.3" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/world/12007607" target="_blank" data-cat="거시경제·환율" data-hours="10.4" onclick="this.classList.add('news-item-read')">
           <div class="news-num">10</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>MS, 日에 100억弗 투자 … AI 기반 구축</div>
@@ -2553,7 +2562,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBaSFVQWWFreW5zcFpyQUdlOHZ2eGxwcDN3ZVBkSWZjYXd5Rkl6a1oyVHY0bmVnYUVRbDd2cUo2ZUpjQl9SekZrZzBDUmI1a3FtVEHSAVNBVV95cUxPOENZMXlRcjFDU1VWNHI3eVA2NjVJMDhuVFhROFRFSC1nVkFMY2VKS095VDMwam44cWx3cWx0cHdrdzJGME5iVXBEUE5mYzBkUkpSOA?oc=5" target="_blank" data-cat="거시경제·환율" data-hours="11.4" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBaSFVQWWFreW5zcFpyQUdlOHZ2eGxwcDN3ZVBkSWZjYXd5Rkl6a1oyVHY0bmVnYUVRbDd2cUo2ZUpjQl9SekZrZzBDUmI1a3FtVEHSAVNBVV95cUxPOENZMXlRcjFDU1VWNHI3eVA2NjVJMDhuVFhROFRFSC1nVkFMY2VKS095VDMwam44cWx3cWx0cHdrdzJGME5iVXBEUE5mYzBkUkpSOA?oc=5" target="_blank" data-cat="거시경제·환율" data-hours="11.5" onclick="this.classList.add('news-item-read')">
           <div class="news-num">11</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">서경</span>트럼프 新철강 관세…변압기 웃고 가전 울고</div>
@@ -2562,7 +2571,7 @@ function newsItemClick(el) {
           <div class="news-time">11시간 전</div>
         </a>
         <div class="news-section-header" data-cat="재테크"><span class="news-src-pill cat-pill">재테크</span></div>
-        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5sOUljVWF5eGh4UlpUWnp6RThfUGUwa013eFZCbHMtTWJPdXVSclRkdzl2X29lckRVRWpYQTROVF9oVmZ3X2duUU9qcHpzaTFOdTYwS1BYa0ZwOWhQSVdLejR5MVF0QQ?oc=5" target="_blank" data-cat="재테크" data-hours="10067.1" onclick="newsItemClick(this)">
+        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5sOUljVWF5eGh4UlpUWnp6RThfUGUwa013eFZCbHMtTWJPdXVSclRkdzl2X29lckRVRWpYQTROVF9oVmZ3X2duUU9qcHpzaTFOdTYwS1BYa0ZwOWhQSVdLejR5MVF0QQ?oc=5" target="_blank" data-cat="재테크" data-hours="10067.2" onclick="newsItemClick(this)">
           <div class="news-num">12</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">머투</span>여야 '연금개혁' 재시동에도…달성 쉽지 않은 이유 '3가지'</div>
@@ -2571,7 +2580,7 @@ function newsItemClick(el) {
           <div class="news-time news-time-old">2/8</div>
         </a>
         <div class="news-section-header" data-cat="비트코인"><span class="news-src-pill cat-pill">비트코인</span></div>
-        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073219?utm_source=general&utm_medium=rss" target="_blank" data-cat="비트코인" data-hours="9.1" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073219?utm_source=general&utm_medium=rss" target="_blank" data-cat="비트코인" data-hours="9.2" onclick="this.classList.add('news-item-read')">
           <div class="news-num">13</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>카이트 ‘글로벌 해커톤 2026’ 파트너로 코인베이스 벤처스·UC 버클리 합류</div>
@@ -2579,7 +2588,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073200?utm_source=general&utm_medium=rss" target="_blank" data-cat="비트코인" data-hours="10.0" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073200?utm_source=general&utm_medium=rss" target="_blank" data-cat="비트코인" data-hours="10.1" onclick="this.classList.add('news-item-read')">
           <div class="news-num">14</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>비트코인, 월간 변동성 ‘사상 최저 수준’ 압축… “하락세 전환 시 역대급 충격”</div>
@@ -2595,7 +2604,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iRmpNNXBTNW9od2NtU1Y3NG1oak1lNVg1Z210cllGcUpYaU1nZkY5SW0yUkswNjRhSWxhaVdUeEhGRTBpa1BqbURXTG4wanlHRkQ4aXBjR0RlN3pkM05N?oc=5" target="_blank" data-cat="비트코인" data-hours="10.4" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iRmpNNXBTNW9od2NtU1Y3NG1oak1lNVg1Z210cllGcUpYaU1nZkY5SW0yUkswNjRhSWxhaVdUeEhGRTBpa1BqbURXTG4wanlHRkQ4aXBjR0RlN3pkM05N?oc=5" target="_blank" data-cat="비트코인" data-hours="10.5" onclick="this.classList.add('news-item-read')">
           <div class="news-num">16</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">코인</span>구글 연구진, 비트코인 양자내성암호 전환 시한 '2029년' 제시</div>
@@ -2603,7 +2612,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE1vUmFhVFVhLW1yV0I3QWpDZ1IxRHU2WmNPSFN5WnFoM2xHeVpaeEVZR0hRUE15ZnM2bnFVSU9Xay1DYzZ2cHlSczY5M3BkTzdrYkEzMU5FZ0NoZ1FPQ1BLYUlJSHJ4R2w2MjNr?oc=5" target="_blank" data-cat="비트코인" data-hours="10.4" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE1vUmFhVFVhLW1yV0I3QWpDZ1IxRHU2WmNPSFN5WnFoM2xHeVpaeEVZR0hRUE15ZnM2bnFVSU9Xay1DYzZ2cHlSczY5M3BkTzdrYkEzMU5FZ0NoZ1FPQ1BLYUlJSHJ4R2w2MjNr?oc=5" target="_blank" data-cat="비트코인" data-hours="10.5" onclick="this.classList.add('news-item-read')">
           <div class="news-num">17</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">코인</span>3대 가상자산거래소 실적 ‘급랭’…본업 성장 빗썸만 영업익 증가 - CEO스코어데일리</div>
@@ -2612,15 +2621,15 @@ function newsItemClick(el) {
           <div class="news-time">10시간 전</div>
         </a>
         <div class="news-section-header" data-cat="기타"><span class="news-src-pill cat-pill">기타</span></div>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9OUHNqdmI1blhXeGVNUFdNdlY2Tko2VFpiUkt4T0p3SGJTUGFvcmMzSkotVUJ1T01OOEVVSUtTU19rcGlkVERxeFJIZExrc25JTlRkMWZ3?oc=5" target="_blank" data-cat="기타" data-hours="9.9" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9OUHNqdmI1blhXeGVNUFdNdlY2Tko2VFpiUkt4T0p3SGJTUGFvcmMzSkotVUJ1T01OOEVVSUtTU19rcGlkVERxeFJIZExrc25JTlRkMWZ3?oc=5" target="_blank" data-cat="기타" data-hours="10.0" onclick="this.classList.add('news-item-read')">
           <div class="news-num">18</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>프랑스 소유 컨테이너선 호르무즈 해협 첫 통과</div>
             
           </div>
-          <div class="news-time">9시간 전</div>
+          <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073180?utm_source=general&utm_medium=rss" target="_blank" data-cat="기타" data-hours="10.1" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073180?utm_source=general&utm_medium=rss" target="_blank" data-cat="기타" data-hours="10.2" onclick="this.classList.add('news-item-read')">
           <div class="news-num">19</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>아카시 네트워크 창립자 “2026년은 DePIN의 해, AI 전력 및 연산 위기 해답 될 것”</div>
@@ -2636,18 +2645,18 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE54OFhtYThQODZlUDhHRnFBNWJEekVHZTViZGE4YkFmLVk1ZXd3dU1ZMDMzaTdMaE5adkVybEhjSDc5S2k1bEhlbGp3ZlFBNVE0VVHSAVNBVV95cUxPT0hJSVdLSXNoWmtYUnN4UUh6UTR0X1ZOMTdWYVczcHZuVWFpdm1NRy1rbEVYQll6LWxVcnFPcnBLQ2lOd2FsQkI4R19OMjgyZDdJMA?oc=5" target="_blank" data-cat="기타" data-hours="10.3" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBMNVg2dVRuR2QyOE5DVGswc0VCRXpnV2ZoQWJ5NS1XNGRLLS1mT1pZX2x4bnoxR0oxVXk5UWk0RVRjaE96SjRmSTRiSG5oLTkwaWfSAVNBVV95cUxNMGlCV1FYcThhVTF2UmlGMHZUOTFMV1JHN0dLOWhMUllWMmVoMUhzVVZBbzBpZXBOU0RTMVpYMGZGRWZsNE5idU9KN3dodE95dnU4Yw?oc=5" target="_blank" data-cat="기타" data-hours="10.3" onclick="this.classList.add('news-item-read')">
           <div class="news-num">21</div>
           <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">서경</span>‘적자 늪’ 가전업계, 수익성 방어 비상…철강도 고객사 이탈 우려</div>
+            <div class="news-headline"><span class="news-src-tag-sm">서경</span>김정관 산업장관 “전쟁 이후 韓경제 도약 위해선 M.AX·5극3특이 해법”</div>
             
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBMNVg2dVRuR2QyOE5DVGswc0VCRXpnV2ZoQWJ5NS1XNGRLLS1mT1pZX2x4bnoxR0oxVXk5UWk0RVRjaE96SjRmSTRiSG5oLTkwaWfSAVNBVV95cUxNMGlCV1FYcThhVTF2UmlGMHZUOTFMV1JHN0dLOWhMUllWMmVoMUhzVVZBbzBpZXBOU0RTMVpYMGZGRWZsNE5idU9KN3dodE95dnU4Yw?oc=5" target="_blank" data-cat="기타" data-hours="10.3" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE54OFhtYThQODZlUDhHRnFBNWJEekVHZTViZGE4YkFmLVk1ZXd3dU1ZMDMzaTdMaE5adkVybEhjSDc5S2k1bEhlbGp3ZlFBNVE0VVHSAVNBVV95cUxPT0hJSVdLSXNoWmtYUnN4UUh6UTR0X1ZOMTdWYVczcHZuVWFpdm1NRy1rbEVYQll6LWxVcnFPcnBLQ2lOd2FsQkI4R19OMjgyZDdJMA?oc=5" target="_blank" data-cat="기타" data-hours="10.4" onclick="this.classList.add('news-item-read')">
           <div class="news-num">22</div>
           <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">서경</span>김정관 산업장관 “전쟁 이후 韓경제 도약 위해선 M.AX·5극3특이 해법”</div>
+            <div class="news-headline"><span class="news-src-tag-sm">서경</span>‘적자 늪’ 가전업계, 수익성 방어 비상…철강도 고객사 이탈 우려</div>
             
           </div>
           <div class="news-time">10시간 전</div>
@@ -2657,9 +2666,9 @@ function newsItemClick(el) {
   </div>
 
   <div class="footer">
-    재테크 트렌드 브리핑(beta) · 콘텐츠팀 이호데이터<br>
+    재테크 트렌드 브리핑(beta) · 콘텐츠팀 이호<br>
     저작권 문제가 있다면 ..살려주세요<br>
-    월부파이팅
+    !-월부 파이팅-!
   </div>
 
 </div>
