@@ -717,15 +717,15 @@ function toggleDark() {
 (function() {
   // 단일 트랙 안에 items × 2 를 생성 → -50% translate로 끊김 없는 루프
   const stocks = [
-    { name:'KOSPI', cur:5431.47, base:5431.47, dec:2, step:2.71 },
-    { name:'KOSDAQ', cur:1061.78, base:1061.78, dec:2, step:0.1 },
+    { name:'KOSPI', cur:5424.55, base:5424.55, dec:2, step:2.36 },
+    { name:'KOSDAQ', cur:1061.48, base:1061.48, dec:2, step:0.11 },
     { name:'NASDAQ', cur:21879.2, base:21879.2, dec:1, step:1.9 },
     { name:'S&P500', cur:6582.7, base:6582.7, dec:1, step:0.4 },
     { name:'DOW', cur:46504.7, base:46504.7, dec:1, step:3.1 },
-    { name:'USD/KRW', cur:1509.78, base:1509.78, dec:2, step:0.03 },
+    { name:'USD/KRW', cur:1509.38, base:1509.38, dec:2, step:0.03 },
     { name:'JPY/KRW', cur:9.45, base:9.45, dec:2, step:0.0 },
     { name:'CNY/KRW', cur:219.55, base:219.55, dec:2, step:0.01 },
-    { name:'NIKKEI', cur:53523.2, base:53523.2, dec:1, step:20.0 },
+    { name:'NIKKEI', cur:53559.8, base:53559.8, dec:1, step:21.8 },
     { name:'SHANGHAI', cur:3880.1, base:3880.1, dec:1, step:2.0 }
   ];
 
@@ -1135,7 +1135,7 @@ function newsItemClick(el) {
       <div class="heatmap-title">KEYWORD HEATMAP</div>
       <div class="treemap">
         <div class="tm-cell tm-s1"
-             style="left:calc(0.000% + 3px);top:calc(0.000% + 3px);width:calc(59.636% - 6px);height:calc(46.091% - 6px);animation-delay:0ms;"
+             style="left:calc(0.000% + 3px);top:calc(0.000% + 3px);width:calc(59.622% - 6px);height:calc(46.091% - 6px);animation-delay:0ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:11px;">예적금 · 재테크</div>
           <div>
@@ -1150,7 +1150,7 @@ function newsItemClick(el) {
           </div>
         </div>
         <div class="tm-cell tm-s2"
-             style="left:calc(0.000% + 3px);top:calc(46.091% + 3px);width:calc(59.636% - 6px);height:calc(27.585% - 6px);animation-delay:70ms;"
+             style="left:calc(0.000% + 3px);top:calc(46.091% + 3px);width:calc(59.622% - 6px);height:calc(27.585% - 6px);animation-delay:70ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:10px;">미국 경기침체</div>
           <div>
@@ -1165,7 +1165,7 @@ function newsItemClick(el) {
           </div>
         </div>
         <div class="tm-cell tm-s3"
-             style="left:calc(0.000% + 3px);top:calc(73.676% + 3px);width:calc(59.636% - 6px);height:calc(26.324% - 6px);animation-delay:140ms;"
+             style="left:calc(0.000% + 3px);top:calc(73.677% + 3px);width:calc(59.622% - 6px);height:calc(26.323% - 6px);animation-delay:140ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:10px;">환율 · 달러</div>
           <div>
@@ -1180,7 +1180,7 @@ function newsItemClick(el) {
           </div>
         </div>
         <div class="tm-cell tm-s3"
-             style="left:calc(59.636% + 3px);top:calc(0.000% + 3px);width:calc(40.364% - 6px);height:calc(35.300% - 6px);animation-delay:210ms;"
+             style="left:calc(59.622% + 3px);top:calc(0.000% + 3px);width:calc(40.378% - 6px);height:calc(35.298% - 6px);animation-delay:210ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:10px;">AI · 반도체</div>
           <div>
@@ -1195,7 +1195,7 @@ function newsItemClick(el) {
           </div>
         </div>
         <div class="tm-cell tm-s3"
-             style="left:calc(59.636% + 3px);top:calc(35.300% + 3px);width:calc(40.364% - 6px);height:calc(34.320% - 6px);animation-delay:280ms;"
+             style="left:calc(59.622% + 3px);top:calc(35.298% + 3px);width:calc(40.378% - 6px);height:calc(34.335% - 6px);animation-delay:280ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:10px;">부동산 규제완화</div>
           <div>
@@ -1210,7 +1210,7 @@ function newsItemClick(el) {
           </div>
         </div>
         <div class="tm-cell tm-s3"
-             style="left:calc(59.636% + 3px);top:calc(69.620% + 3px);width:calc(40.364% - 6px);height:calc(30.380% - 6px);animation-delay:350ms;"
+             style="left:calc(59.622% + 3px);top:calc(69.633% + 3px);width:calc(40.378% - 6px);height:calc(30.367% - 6px);animation-delay:350ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:9px;">금리 인하 기대</div>
           <div>
@@ -2360,19 +2360,19 @@ function newsItemClick(el) {
           <td class="rank-num top1">1</td>
           <td>
             <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">💱</span> 환율 · 달러</span>
-              <span class="kw-trend up">↑ +6%</span><div class="kw-sparkline"><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:13px; background:#e04040;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:12px; background:#e04040;"></div></div><span class="kw-badge rising">급상승</span>
+              <span class="kw-main"><span class="tossface">💰</span> 예적금 · 재테크</span>
+              <span class="kw-trend up">↑ +65%</span><div class="kw-sparkline"><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:20px; background:#CC0000;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:19px; background:#CC0000;"></div></div><span class="kw-badge rising">급상승</span>
             </div>
-            <div class="kw-sub">전인구경제연구소 · 소수몽키 · 부티풀 · 김작가TV</div>
+            <div class="kw-sub">김짠부 · 부티풀 · 연금박사</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=5k7mKfT6fSE" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">반등이 나올 때가 됐는데... 환율 1530원과 코스피 폭락에 대한 넋두리 — 전인구경제연구소</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=vCr2XRcOo7Y" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">환율 1500원 돌파는 전조 신호? 전쟁 충격, 실물 경제 위기까지 번질까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=1i8f9dDvPKU" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동 — 부티풀</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=g-jrrBzfvsc" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">10조 달러 메가 쇼크 터진다, 비트코인에 대한 충격적 소문 (김창익 대표) — 김작가TV</span></a></div></a></div>
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1Pd1hTQWtjWVZGWXphdENLemFWR0RJUVpOWjJ0cXN0a2swYUZLM2U5YzRtNldHN1Q5Q2xwU2dxNTBxb2JNalZWN09pbE1yM00ybllLdU5fNWJNcjZoNVYzRkloekxZcE5FdG1LeE1Mb0NhZTA?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">유가 급등에 쌓인 비트코인 하락 베팅…7만2000달러가 분기점 — 코인뉴스</span></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=lCb7VsVLouo" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"하루라도 어릴 때 매달 50만 원씩 사두세요" 초등학생도 이해할 수 있는 연금저축펀드의 모든 것 — 김짠부</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=PPfnJBFqJEA" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">“역대급 ISA라고?” 나이, 소득제한 없는 새로운 슈퍼 ISA의 모든 것 (청년형 ISA — 김짠부</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=7CY8wh9khKg" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">(광고x) "1금융권 이자 7% 적금 떴다" 매월 35만원만 여기 넣으세요. 목돈 2000 — 부티풀</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=_dBthYdEGAI" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">ISA는 비과세인데... 연금저축 IRP에서 국내 ETF에 투자하면 세금 냅니다. — 연금박사</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.hankyung.com/economy" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">한경 — 경제 최신 기사</span></a></div>
             </div>
           </td>
           <td class="kw-news-col" rowspan="6">
             <div class="kw-news-label">속보</div><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMicEFVX3lxTFAtZlo0ZXZLSjNMM0JYcmpHMExTMUtzam81V3h2TEo4ZHpzbkxnWmgxQTZBQUVKeFJnTjVCaHJBWmt0Rk5kNnJ4eWY0ckljVVg5RUhBT0F0aWtaQlhCeXRRR0xhOHhuUzhidElnR0R0cjU?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피 5423.35로 출발, 전 거래일 대비 0.86% 상승 By Sidae 시대 - I</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE4yWk9DaURLbEctR1RWSGFreFE0TW5PdzdWMXpfS0dHMTZ1enpPOU5tc0ZvTFZFb3AxMHMya2JlMzhqdDhpYnFlTXM0SGVJTUFvbldF?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피, 상승 출발…5,400선 회복</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE1GU1ZqclJSZVRabVgxVjRJOXN5UXdJZmRUTFp3OGYtcXh2VkMzSkxEdHduMC1KMW16NWlhOW0xTS1jYzlOaDRmZGhjZnEtdExxVkk0d9IBTEFVX3lxTE96M1hYdzNuZk5QQW03THpHeF8xdS1RQllpY2c1OVVCMHFhdTRYbHN4UC1KTEhsc2dnbzhkQldqQWs4M2Q3VTJ1U3pFanA?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피 5423.35(▲46.05p, 0.86%), 원·달러 환율 1510.3(▲5.1원)</span></a>
             <div class="kw-news-label" style="margin-top:8px;">실시간뉴스</div>
-            <div class="kw-news-scroll"><a class="kw-news-row" href="https://www.mk.co.kr/news/society/12008739" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">국회서 상 받은 산불피해 봉사단체...진짜 정체는 500억원대 코인사기단?</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12008732" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">[MK시그널] 효성티앤씨, 반도체 특수가스 사업확보 등에 주가 상승세... MK시그널 추천</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/world/12008727" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">AI 앵무새된 대학생들…말투가 똑같아져 토론 수업이 망했다</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFAzZFNNYzVyUmlzRTBSQWsxc0xQVkN3WGI3b1dxRTNYZ283VTh4Y3RsTUFjNUwtaXYzaUplcnFqM3RQOFVQX2JoaWtzaEhQZzh6V1FwTGdB?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">‘2만원 삼계탕’ 현실로…닭값, 언제까지 오를까 [푸드360]</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1pWDJHTVRxNjNUb0FHWHpmd2VLOVdnanB4UnI5QXBvYnlPQU5PazJ6aHJPQXRVdll2S1pscTJQd3l4dENHTEQ5NTJJM3psYzVCVGfSAVNBVV95cUxNUUR5NXRIUm50cnFLeVhZZkxvTTVDbDN0SUFEc1l6OG93N253UTZFbm54SnVRZ0xVYnV4LWJrYU92bHRLSUd4dTYyR1p3anZyOGN1aw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">삼성E&A 15%↑…“전쟁 영향 미미, 삼성전자향 수주도 견조” [줍줍리포트]</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE8wTXdyTmtJaWpGc0JWcnFXRGJyRmhKX3VPcVVQcnNTdmJYbHNUdFRJNmNfM0F6TUVLaU9MdlQ1MUNVV0sweFA5WkFWZUdpblJzLUHSAVNBVV95cUxPaFZnTW9DS0h0LThhZUZOODk4UklUWXNOUEs4VUhmakl0RG91ZDJSV1RxR3RPSUJFdjdleDhUSlJCQWx1ZzZCZUUyZW5HZFBUeWZVMA?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">롯데바이오로직스, 日 제약사와 항암 신약 CDMO 계약</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5ubHdsYnNDc2lsZ2NHTGlUdkpha0Q1Ql9ZeHV3enZ2VmFYZ0VJMEVhbkdpc0xLcWVlNXhRQmNxSmxuSUExYWhhd0htM1RwZGpUZGZWUHVB?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">이란, 쿠웨이트·UAE 에너지 시설 피격…“민간시설 공격 응징”</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBsZHp3aFdvc0hLcDdBclJQVHdqQmU5eUpXXzI1a19YYW9TMFJIZTRoSUdwTlJlc1J5b2djTFhEWVF3SG5oamJ5QVQwc1VrT2VNeUtZSmlB?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">대우건설, 올해 정비사업 수주액 2조원 돌파</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1Pd1hTQWtjWVZGWXphdENLemFWR0RJUVpOWjJ0cXN0a2swYUZLM2U5YzRtNldHN1Q5Q2xwU2dxNTBxb2JNalZWN09pbE1yM00ybllLdU5fNWJNcjZoNVYzRkloekxZcE5FdG1LeE1Mb0NhZTA?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">코인</span><span class="kw-news-title">유가 급등에 쌓인 비트코인 하락 베팅…7만2000달러가 분기점</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HbVpHc1dCTlI1MmlIUVdZcHZhX3RCaWJkMUhEWlNDSG9VeVpkRTFRdV9GZmpSbEpXZDc2Uk56WnRkdXU5OXp5TmJRUW5oc1lJVWVscVJR?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">‘준비된 예비 금융인’ 발굴…한국투자증권, 대학생 금융·경제 학회 동아리 등록제 시행</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12008640" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">코스피 5400선 상승 출발하긴 했는데…“확전 불안과 협상 기대감 혼재”</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073834?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">[개장시황] 코스피, 1%대 상승 출발…5400선 회복</span></a></div>
+            <div class="kw-news-scroll"><a class="kw-news-row" href="https://www.mk.co.kr/news/society/12008739" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">국회서 상 받은 산불피해 봉사단체...진짜 정체는 500억원대 코인사기단?</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12008732" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">[MK시그널] 효성티앤씨, 반도체 특수가스 사업확보 등에 주가 상승세... MK시그널 추천</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE1sOGtSUHpTTXFkVUU3cUNLdWhFM1NwMUcta0J5WXN5Q0VEUUtIZkJfS1RJLWYtQTlYNHBMTDN1cWEtMVJtUV81MVNfYnljVEpXSFdjMHlTWEF4Q3JlU0JVQ3ZKZw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">[속보] 김관영 ‘현금 살포’ 논란에 경찰 전북도청 압수수색</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/world/12008727" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">AI 앵무새된 대학생들…말투가 똑같아져 토론 수업이 망했다</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1EbWxqaFVSY1J4dzQxcVJYX0JRYWlVRk1uT09YUFhmcWRIOE5vNjFNbGdfMndfQ0N5QWVoVlR5dXVDalFCUWJQVWE0VHJHRTJZTzR6OXRpOTRna3c5cHI40gFTQVVfeXFMUHMzVFNFcGxBQ1ZSZE5oWkVHTUpwSGZvTGR0ZHg2dkNxd2pJTEJBTmE2ejNyT1ZJV0dPcnFlNWlYcGxqRm15LXI2ZXJ6Qmd6N2swUXM?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">[속보] 당정 “정유업계 사후정산제 원칙적 폐지”</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE8wTXdyTmtJaWpGc0JWcnFXRGJyRmhKX3VPcVVQcnNTdmJYbHNUdFRJNmNfM0F6TUVLaU9MdlQ1MUNVV0sweFA5WkFWZUdpblJzLUHSAVNBVV95cUxPaFZnTW9DS0h0LThhZUZOODk4UklUWXNOUEs4VUhmakl0RG91ZDJSV1RxR3RPSUJFdjdleDhUSlJCQWx1ZzZCZUUyZW5HZFBUeWZVMA?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">롯데바이오로직스, 日 제약사와 항암 신약 CDMO 계약</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5ubHdsYnNDc2lsZ2NHTGlUdkpha0Q1Ql9ZeHV3enZ2VmFYZ0VJMEVhbkdpc0xLcWVlNXhRQmNxSmxuSUExYWhhd0htM1RwZGpUZGZWUHVB?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">이란, 쿠웨이트·UAE 에너지 시설 피격…“민간시설 공격 응징”</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFAzZFNNYzVyUmlzRTBSQWsxc0xQVkN3WGI3b1dxRTNYZ283VTh4Y3RsTUFjNUwtaXYzaUplcnFqM3RQOFVQX2JoaWtzaEhQZzh6V1FwTGdB?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">‘2만원 삼계탕’ 현실로…닭값, 언제까지 오를까 [푸드360]</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1pWDJHTVRxNjNUb0FHWHpmd2VLOVdnanB4UnI5QXBvYnlPQU5PazJ6aHJPQXRVdll2S1pscTJQd3l4dENHTEQ5NTJJM3psYzVCVGfSAVNBVV95cUxNUUR5NXRIUm50cnFLeVhZZkxvTTVDbDN0SUFEc1l6OG93N253UTZFbm54SnVRZ0xVYnV4LWJrYU92bHRLSUd4dTYyR1p3anZyOGN1aw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">삼성E&A 15%↑…“전쟁 영향 미미, 삼성전자향 수주도 견조” [줍줍리포트]</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBsZHp3aFdvc0hLcDdBclJQVHdqQmU5eUpXXzI1a19YYW9TMFJIZTRoSUdwTlJlc1J5b2djTFhEWVF3SG5oamJ5QVQwc1VrT2VNeUtZSmlB?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">대우건설, 올해 정비사업 수주액 2조원 돌파</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1Pd1hTQWtjWVZGWXphdENLemFWR0RJUVpOWjJ0cXN0a2swYUZLM2U5YzRtNldHN1Q5Q2xwU2dxNTBxb2JNalZWN09pbE1yM00ybllLdU5fNWJNcjZoNVYzRkloekxZcE5FdG1LeE1Mb0NhZTA?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">코인</span><span class="kw-news-title">유가 급등에 쌓인 비트코인 하락 베팅…7만2000달러가 분기점</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1073834?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">[개장시황] 코스피, 1%대 상승 출발…5400선 회복</span></a></div>
           </td>
         </tr>
         <!-- 2위 -->
@@ -2380,8 +2380,38 @@ function newsItemClick(el) {
           <td class="rank-num top2">2</td>
           <td>
             <div class="kw-trend-row">
+              <span class="kw-main"><span class="tossface">📉</span> 미국 경기침체</span>
+              <span class="kw-trend stable">→ 보합 유지</span><div class="kw-sparkline"><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:13px; background:#e04040;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:13px; background:#e04040;"></div></div>
+            </div>
+            <div class="kw-sub">전인구경제연구소 · 소수몽키 · 삼프로TV</div>
+            <div class="kw-default-links">
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=tMY30HnCdXc" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">트럼프의 석기시대발언의 진짜 의미(ft.코스피 급락) — 전인구경제연구소</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=W6m1JmvDPpk" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프도 예상 못했다? 홍해 봉쇄 우려, 미 증시에 더 큰 혼란 줄까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=NseuX7PjrI8" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=KwT70fFHg4w" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"쌍욕 발사 트럼프", 이란은 속으로 웃고 있다? | 박현도, 성일광 교수 [글로벌 인터뷰 — 삼프로TV</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5uUDltdDM4S1VjdU1sWTFHcU04RnJIbllMaXFsMWFzS0s2QUhVRU9GcEZlX1g4b0h0dmNFdTRsLWRrc0JWS2NPU1RwNDdkcFh4ZHRoN1lB?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">바이낸스 "비트코인, 연준 통화정책 더이상 안따라가" — 코인뉴스</span></a></div>
+            </div>
+          </td>
+        </tr>
+        <!-- 3위 -->
+        <tr>
+          <td class="rank-num top3">3</td>
+          <td>
+            <div class="kw-trend-row">
+              <span class="kw-main"><span class="tossface">💱</span> 환율 · 달러</span>
+              <span class="kw-trend stable">→ 보합 유지</span>
+            </div>
+            <div class="kw-sub">전인구경제연구소 · 소수몽키 · 부티풀 · 김작가TV</div>
+            <div class="kw-default-links">
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=5k7mKfT6fSE" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">반등이 나올 때가 됐는데... 환율 1530원과 코스피 폭락에 대한 넋두리 — 전인구경제연구소</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=vCr2XRcOo7Y" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">환율 1500원 돌파는 전조 신호? 전쟁 충격, 실물 경제 위기까지 번질까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=1i8f9dDvPKU" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동 — 부티풀</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=g-jrrBzfvsc" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">10조 달러 메가 쇼크 터진다, 비트코인에 대한 충격적 소문 (김창익 대표) — 김작가TV</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1Pd1hTQWtjWVZGWXphdENLemFWR0RJUVpOWjJ0cXN0a2swYUZLM2U5YzRtNldHN1Q5Q2xwU2dxNTBxb2JNalZWN09pbE1yM00ybllLdU5fNWJNcjZoNVYzRkloekxZcE5FdG1LeE1Mb0NhZTA?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">유가 급등에 쌓인 비트코인 하락 베팅…7만2000달러가 분기점 — 코인뉴스</span></a></div>
+            </div>
+          </td>
+        </tr>
+        <!-- 4위 -->
+        <tr>
+          <td class="rank-num ">4</td>
+          <td>
+            <div class="kw-trend-row">
               <span class="kw-main"><span class="tossface">🤖</span> AI · 반도체</span>
-              <span class="kw-trend down">↓ 15% 하락</span><div class="kw-sparkline"><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:12px; background:#f08080;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:12px; background:#f08080;"></div></div>
+              <span class="kw-trend stable">→ 보합 유지</span>
             </div>
             <div class="kw-sub">김작가TV · 소수몽키</div>
             <div class="kw-default-links">
@@ -2390,9 +2420,9 @@ function newsItemClick(el) {
             </div>
           </td>
         </tr>
-        <!-- 3위 -->
+        <!-- 5위 -->
         <tr>
-          <td class="rank-num top3">3</td>
+          <td class="rank-num ">5</td>
           <td>
             <div class="kw-trend-row">
               <span class="kw-main"><span class="tossface">🏠</span> 부동산 규제완화</span>
@@ -2405,24 +2435,9 @@ function newsItemClick(el) {
             </div>
           </td>
         </tr>
-        <!-- 4위 -->
+        <!-- 6위 -->
         <tr>
-          <td class="rank-num ">4</td>
-          <td>
-            <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">📉</span> 미국 경기침체</span>
-              <span class="kw-trend stable">→ 보합 유지</span>
-            </div>
-            <div class="kw-sub">전인구경제연구소 · 소수몽키 · 삼프로TV</div>
-            <div class="kw-default-links">
-              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=tMY30HnCdXc" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">트럼프의 석기시대발언의 진짜 의미(ft.코스피 급락) — 전인구경제연구소</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=W6m1JmvDPpk" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프도 예상 못했다? 홍해 봉쇄 우려, 미 증시에 더 큰 혼란 줄까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=NseuX7PjrI8" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=KwT70fFHg4w" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"쌍욕 발사 트럼프", 이란은 속으로 웃고 있다? | 박현도, 성일광 교수 [글로벌 인터뷰 — 삼프로TV</span></a></div></a></div>
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5uUDltdDM4S1VjdU1sWTFHcU04RnJIbllMaXFsMWFzS0s2QUhVRU9GcEZlX1g4b0h0dmNFdTRsLWRrc0JWS2NPU1RwNDdkcFh4ZHRoN1lB?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">바이낸스 "비트코인, 연준 통화정책 더이상 안따라가" — 코인뉴스</span></a></div>
-            </div>
-          </td>
-        </tr>
-        <!-- 5위 -->
-        <tr>
-          <td class="rank-num ">5</td>
+          <td class="rank-num ">6</td>
           <td>
             <div class="kw-trend-row">
               <span class="kw-main"><span class="tossface">🏦</span> 금리 인하 기대</span>
@@ -2432,21 +2447,6 @@ function newsItemClick(el) {
             <div class="kw-default-links">
               <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=7CY8wh9khKg" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">(광고x) "1금융권 이자 7% 적금 떴다" 매월 35만원만 여기 넣으세요. 목돈 2000만원 순식 — 부티풀</span></a></div>
               <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5uUDltdDM4S1VjdU1sWTFHcU04RnJIbllMaXFsMWFzS0s2QUhVRU9GcEZlX1g4b0h0dmNFdTRsLWRrc0JWS2NPU1RwNDdkcFh4ZHRoN1lB?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">바이낸스 "비트코인, 연준 통화정책 더이상 안따라가" — 코인뉴스</span></a></div>
-            </div>
-          </td>
-        </tr>
-        <!-- 6위 -->
-        <tr>
-          <td class="rank-num ">6</td>
-          <td>
-            <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">💰</span> 예적금 · 재테크</span>
-              <span class="kw-trend stable">→ 보합 유지</span>
-            </div>
-            <div class="kw-sub">김짠부 · 부티풀 · 연금박사</div>
-            <div class="kw-default-links">
-              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=lCb7VsVLouo" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"하루라도 어릴 때 매달 50만 원씩 사두세요" 초등학생도 이해할 수 있는 연금저축펀드의 모든 것 — 김짠부</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=PPfnJBFqJEA" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">“역대급 ISA라고?” 나이, 소득제한 없는 새로운 슈퍼 ISA의 모든 것 (청년형 ISA — 김짠부</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=7CY8wh9khKg" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">(광고x) "1금융권 이자 7% 적금 떴다" 매월 35만원만 여기 넣으세요. 목돈 2000 — 부티풀</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=_dBthYdEGAI" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">ISA는 비과세인데... 연금저축 IRP에서 국내 ETF에 투자하면 세금 냅니다. — 연금박사</span></a></div></a></div>
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.hankyung.com/economy" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">한경 — 경제 최신 기사</span></a></div>
             </div>
           </td>
         </tr>
@@ -2481,7 +2481,7 @@ function newsItemClick(el) {
 <!-- INJECT_HOT_TODAY_START -->
       <div class="news-list">
         <div class="news-section-header" data-cat="주식·증시"><span class="news-src-pill cat-pill">주식·증시</span></div>
-        <a class="news-item" href="https://www.mk.co.kr/news/society/12008739" target="_blank" data-cat="주식·증시" data-hours="9.0" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/society/12008739" target="_blank" data-cat="주식·증시" data-hours="9.1" onclick="this.classList.add('news-item-read')">
           <div class="news-num">01</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>국회서 상 받은 산불피해 봉사단체...진짜 정체는 500억원대 코인사기단?</div>
@@ -2497,23 +2497,23 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://www.mk.co.kr/news/stock/12008640" target="_blank" data-cat="주식·증시" data-hours="9.6" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">03</div>
-          <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">매경</span>코스피 5400선 상승 출발하긴 했는데…“확전 불안과 협상 기대감 혼재”</div>
-            <div class="news-summary">미국과 이란의 확전 불안감과 협상 타결 기대감이 뒤섞이는 가운데, 6일 코스피가 상승 출발했다. 이날 오전 9시 10분 현재 코스피는 전일 대비 102.51포인트(1.91%) 오른..</div>
-          </div>
-          <div class="news-time">9시간 전</div>
-        </a>
         <a class="news-item" href="https://www.blockmedia.co.kr/archives/1073834?utm_source=general&utm_medium=rss" target="_blank" data-cat="주식·증시" data-hours="9.6" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">04</div>
+          <div class="news-num">03</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>[개장시황] 코스피, 1%대 상승 출발…5400선 회복</div>
             <div class="news-summary">[블록미디어 오수환 기자] 코스피가 장 초반 상승세를 보이며 5400선 후반까지 올라섰다. 반도체 중심으로 기관 매수세가 유입되며 투자심리가 개선되는 모습이다. 6일 한국거래소에 따르면 오전 9시11분 기준 코스피 </div>
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMicEFVX3lxTFAtZlo0ZXZLSjNMM0JYcmpHMExTMUtzam81V3h2TEo4ZHpzbkxnWmgxQTZBQUVKeFJnTjVCaHJBWmt0Rk5kNnJ4eWY0ckljVVg5RUhBT0F0aWtaQlhCeXRRR0xhOHhuUzhidElnR0R0cjU?oc=5" target="_blank" data-cat="주식·증시" data-hours="9.6" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/stock/12008640" target="_blank" data-cat="주식·증시" data-hours="9.7" onclick="this.classList.add('news-item-read')">
+          <div class="news-num">04</div>
+          <div style="min-width:0;flex:1;">
+            <div class="news-headline"><span class="news-src-tag-sm">매경</span>코스피 5400선 상승 출발하긴 했는데…“확전 불안과 협상 기대감 혼재”</div>
+            <div class="news-summary">미국과 이란의 확전 불안감과 협상 타결 기대감이 뒤섞이는 가운데, 6일 코스피가 상승 출발했다. 이날 오전 9시 10분 현재 코스피는 전일 대비 102.51포인트(1.91%) 오른..</div>
+          </div>
+          <div class="news-time">9시간 전</div>
+        </a>
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMicEFVX3lxTFAtZlo0ZXZLSjNMM0JYcmpHMExTMUtzam81V3h2TEo4ZHpzbkxnWmgxQTZBQUVKeFJnTjVCaHJBWmt0Rk5kNnJ4eWY0ckljVVg5RUhBT0F0aWtaQlhCeXRRR0xhOHhuUzhidElnR0R0cjU?oc=5" target="_blank" data-cat="주식·증시" data-hours="9.7" onclick="this.classList.add('news-item-read')">
           <div class="news-num">05</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">속보</span>코스피 5423.35로 출발, 전 거래일 대비 0.86% 상승 By Sidae 시대 - Investing.com 한국어</div>
@@ -2522,7 +2522,7 @@ function newsItemClick(el) {
           <div class="news-time">9시간 전</div>
         </a>
         <div class="news-section-header" data-cat="부동산"><span class="news-src-pill cat-pill">부동산</span></div>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5IVWYtZm5yTDJWdHFIU0NGQ191M09qSjZEbXlRZUp2ell6dldsU2Z2Vm56OS1JNWZVai1ZRmgxMWN5SE9pUlplanpBVDh5azZKVGJfOU1B?oc=5" target="_blank" data-cat="부동산" data-hours="9.7" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5IVWYtZm5yTDJWdHFIU0NGQ191M09qSjZEbXlRZUp2ell6dldsU2Z2Vm56OS1JNWZVai1ZRmgxMWN5SE9pUlplanpBVDh5azZKVGJfOU1B?oc=5" target="_blank" data-cat="부동산" data-hours="9.8" onclick="this.classList.add('news-item-read')">
           <div class="news-num">06</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>“가격 더 내릴게요” 강남 상승거래 ‘58.7%→40.5%’ 축소 [부동산360]</div>
@@ -2546,15 +2546,15 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9xMFU5RDJjMHNFTlQwZUplZTZfd21lbzRMN0pwUUFGb1hlb1hybUwtWU4yODNZZmhOX1ZzbzVNZUtrYnRkRk5zblg0bDRqb3pDNFRFM2F3?oc=5" target="_blank" data-cat="부동산" data-hours="11.9" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9xMFU5RDJjMHNFTlQwZUplZTZfd21lbzRMN0pwUUFGb1hlb1hybUwtWU4yODNZZmhOX1ZzbzVNZUtrYnRkRk5zblg0bDRqb3pDNFRFM2F3?oc=5" target="_blank" data-cat="부동산" data-hours="12.0" onclick="this.classList.add('news-item-read')">
           <div class="news-num">09</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>도봉구, GTX-C 노선 공사비 갈등 타결 “적극 환영”</div>
             
           </div>
-          <div class="news-time">11시간 전</div>
+          <div class="news-time">12시간 전</div>
         </a>
-        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPcFEwb0VYV3hmdFZGRFo4YW8zWWNFVE9wUVItYXdIMG1mVlNSZlRfRHJGVnRfTGxFeUFFQmV3Ym1yc2I5NVBncGNIZ2hHWUp6N2lzOFgtS0k4dmMwTUQtZVVTdmJGUXotdmtSSE5FQTJSd3NPWi1pRmNxOWZUc2RTcUdSWXc0YkFs0gGcAUFVX3lxTE8tRDI1QnlrazRGRWdLNUNQR1d4MlJpNGNXNXNMWlNfTVpJX3BsSjhkaEstdmpDZngtV2hINHdTdEZ3NnFsR1hKVzNvRDkxSE1qTmFjMDNIM2VNQ1NVcE1nck8tVWI4eUIydlhBYnJlVURjMVBWY2NaU1F1ZUJ0X29fS1JnTDE4NFBzQW1HRkMtSExNWXUwT0VTRVZ0Mg?oc=5" target="_blank" data-cat="부동산" data-hours="57.0" onclick="newsItemClick(this)">
+        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPcFEwb0VYV3hmdFZGRFo4YW8zWWNFVE9wUVItYXdIMG1mVlNSZlRfRHJGVnRfTGxFeUFFQmV3Ym1yc2I5NVBncGNIZ2hHWUp6N2lzOFgtS0k4dmMwTUQtZVVTdmJGUXotdmtSSE5FQTJSd3NPWi1pRmNxOWZUc2RTcUdSWXc0YkFs0gGcAUFVX3lxTE8tRDI1QnlrazRGRWdLNUNQR1d4MlJpNGNXNXNMWlNfTVpJX3BsSjhkaEstdmpDZngtV2hINHdTdEZ3NnFsR1hKVzNvRDkxSE1qTmFjMDNIM2VNQ1NVcE1nck8tVWI4eUIydlhBYnJlVURjMVBWY2NaU1F1ZUJ0X29fS1JnTDE4NFBzQW1HRkMtSExNWXUwT0VTRVZ0Mg?oc=5" target="_blank" data-cat="부동산" data-hours="57.1" onclick="newsItemClick(this)">
           <div class="news-num">10</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">조선</span>신현송 한은 총재 후보자, 다주택 보유… 82억 재산 신고</div>
@@ -2563,7 +2563,7 @@ function newsItemClick(el) {
           <div class="news-time news-time-old">4/4</div>
         </a>
         <div class="news-section-header" data-cat="거시경제·환율"><span class="news-src-pill cat-pill">거시경제·환율</span></div>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1Pd1hTQWtjWVZGWXphdENLemFWR0RJUVpOWjJ0cXN0a2swYUZLM2U5YzRtNldHN1Q5Q2xwU2dxNTBxb2JNalZWN09pbE1yM00ybllLdU5fNWJNcjZoNVYzRkloekxZcE5FdG1LeE1Mb0NhZTA?oc=5" target="_blank" data-cat="거시경제·환율" data-hours="9.3" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1Pd1hTQWtjWVZGWXphdENLemFWR0RJUVpOWjJ0cXN0a2swYUZLM2U5YzRtNldHN1Q5Q2xwU2dxNTBxb2JNalZWN09pbE1yM00ybllLdU5fNWJNcjZoNVYzRkloekxZcE5FdG1LeE1Mb0NhZTA?oc=5" target="_blank" data-cat="거시경제·환율" data-hours="9.4" onclick="this.classList.add('news-item-read')">
           <div class="news-num">11</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">코인</span>유가 급등에 쌓인 비트코인 하락 베팅…7만2000달러가 분기점</div>
@@ -2604,7 +2604,7 @@ function newsItemClick(el) {
           <div class="news-time">10시간 전</div>
         </a>
         <div class="news-section-header" data-cat="재테크"><span class="news-src-pill cat-pill">재테크</span></div>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9sQ0NJMGVnQnItUkNJdUdYQmV6ZHF1UkRrLTNFYUF4U3duN1E0YnVsQmFrR2hjRnJHWjdaOEZIVnJyZ19NSWs4a3dldk91ZV9QQ0dmVnln?oc=5" target="_blank" data-cat="재테크" data-hours="10.5" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9sQ0NJMGVnQnItUkNJdUdYQmV6ZHF1UkRrLTNFYUF4U3duN1E0YnVsQmFrR2hjRnJHWjdaOEZIVnJyZ19NSWs4a3dldk91ZV9QQ0dmVnln?oc=5" target="_blank" data-cat="재테크" data-hours="10.6" onclick="this.classList.add('news-item-read')">
           <div class="news-num">16</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>오세희 의원, ‘노후 산단 구조고도화·불법 매매 차단’ 산집법 개정안 2건 대표발의</div>
@@ -2612,7 +2612,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5sOUljVWF5eGh4UlpUWnp6RThfUGUwa013eFZCbHMtTWJPdXVSclRkdzl2X29lckRVRWpYQTROVF9oVmZ3X2duUU9qcHpzaTFOdTYwS1BYa0ZwOWhQSVdLejR5MVF0QQ?oc=5" target="_blank" data-cat="재테크" data-hours="10129.9" onclick="newsItemClick(this)">
+        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5sOUljVWF5eGh4UlpUWnp6RThfUGUwa013eFZCbHMtTWJPdXVSclRkdzl2X29lckRVRWpYQTROVF9oVmZ3X2duUU9qcHpzaTFOdTYwS1BYa0ZwOWhQSVdLejR5MVF0QQ?oc=5" target="_blank" data-cat="재테크" data-hours="10130.0" onclick="newsItemClick(this)">
           <div class="news-num">17</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">머투</span>여야 '연금개혁' 재시동에도…달성 쉽지 않은 이유 '3가지'</div>
@@ -2645,7 +2645,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMi1gJBVV95cUxOXzJzVjM0N3pub3BmQTBkS3pMTFRScnBJY1Rob2VqOEN6dlBfemJjeDNtdEZGVmVDWnZGbllWTkdONzZqUkphcHJIZGdUOGJCSzg0NEUyNnlldGg0OHVuVmZVNTUtSHk2NkExdTNySXJRNzRqSk5TZkg0eUEyRTByTXlqQnUzbjZ2a1lxUUZuRjFFTWpXOV9HYlplVVRNdGd4X1FQSnpxSkV6TE1PdnZPUFJuSTlNZkV1TGhLa1VGcUlIdWZ4ZGlFd2FuQWtyLS02ZWxUT2YyUVpRTHA1cjRLY2lhbVR1dnJFYXJYNGN0c3Z5VnFQY2ZyRHluODFCbjI5eEZUMkJNQ3R1anh4czFMSU53Z2hFQUEyN2Nad0VVc3hFZHhibVBNbEtjOENMVUFoLThRM2tyYWFXc2NjbDlqaTRnTS1BY1Z4SzloZFJVSk5UM3phVFE?oc=5" target="_blank" data-cat="비트코인" data-hours="10.4" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMi1gJBVV95cUxOXzJzVjM0N3pub3BmQTBkS3pMTFRScnBJY1Rob2VqOEN6dlBfemJjeDNtdEZGVmVDWnZGbllWTkdONzZqUkphcHJIZGdUOGJCSzg0NEUyNnlldGg0OHVuVmZVNTUtSHk2NkExdTNySXJRNzRqSk5TZkg0eUEyRTByTXlqQnUzbjZ2a1lxUUZuRjFFTWpXOV9HYlplVVRNdGd4X1FQSnpxSkV6TE1PdnZPUFJuSTlNZkV1TGhLa1VGcUlIdWZ4ZGlFd2FuQWtyLS02ZWxUT2YyUVpRTHA1cjRLY2lhbVR1dnJFYXJYNGN0c3Z5VnFQY2ZyRHluODFCbjI5eEZUMkJNQ3R1anh4czFMSU53Z2hFQUEyN2Nad0VVc3hFZHhibVBNbEtjOENMVUFoLThRM2tyYWFXc2NjbDlqaTRnTS1BY1Z4SzloZFJVSk5UM3phVFE?oc=5" target="_blank" data-cat="비트코인" data-hours="10.5" onclick="this.classList.add('news-item-read')">
           <div class="news-num">21</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">코인</span>주간 암호화폐 뉴스: 코인베이스 신탁회사 승인, 비트코인에 대한 양자컴 위협 등</div>
@@ -2653,7 +2653,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPSF8tQ0Z0cDZRTkVPMGRCeFd1QTNoRER1UWczb05uUzFqMTFQdmpMYXlfT2xpVm9DUWMwcTVIRndqS2tHR0oxTEZHaFZITF9FcE95ZWdDbzhKSDlGOHUxb0ZKOG44RUpibENJV1VJSGpEakp3VmhyQ28xTHdGLXpkRdIBlAFBVV95cUxPcWZEUlo3UmN3bXZmdjBEMHVQOERCZXFZYkdGZXNPallOMUxnc3BYM0dOcDNpRFJpdzY3SlhueW5YcmQzSHpDbUhhRXN5UjRueVprQlREeUxHWk5sSkJlUExocXhNMGlsUWUxaEJBR0F2R2NfdWFNVGNjUW1tMjRkZm84WWRiZUV2czlBU2tDaFpVT29C?oc=5" target="_blank" data-cat="비트코인" data-hours="10.4" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPSF8tQ0Z0cDZRTkVPMGRCeFd1QTNoRER1UWczb05uUzFqMTFQdmpMYXlfT2xpVm9DUWMwcTVIRndqS2tHR0oxTEZHaFZITF9FcE95ZWdDbzhKSDlGOHUxb0ZKOG44RUpibENJV1VJSGpEakp3VmhyQ28xTHdGLXpkRdIBlAFBVV95cUxPcWZEUlo3UmN3bXZmdjBEMHVQOERCZXFZYkdGZXNPallOMUxnc3BYM0dOcDNpRFJpdzY3SlhueW5YcmQzSHpDbUhhRXN5UjRueVprQlREeUxHWk5sSkJlUExocXhNMGlsUWUxaEJBR0F2R2NfdWFNVGNjUW1tMjRkZm84WWRiZUV2czlBU2tDaFpVT29C?oc=5" target="_blank" data-cat="비트코인" data-hours="10.5" onclick="this.classList.add('news-item-read')">
           <div class="news-num">22</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">코인</span>스트래티지 비트코인 매입에 가상자산 오름세… 2%대 상승</div>
@@ -2662,26 +2662,26 @@ function newsItemClick(el) {
           <div class="news-time">10시간 전</div>
         </a>
         <div class="news-section-header" data-cat="기타"><span class="news-src-pill cat-pill">기타</span></div>
-        <a class="news-item" href="https://www.mk.co.kr/news/world/12008727" target="_blank" data-cat="기타" data-hours="9.1" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE1sOGtSUHpTTXFkVUU3cUNLdWhFM1NwMUcta0J5WXN5Q0VEUUtIZkJfS1RJLWYtQTlYNHBMTDN1cWEtMVJtUV81MVNfYnljVEpXSFdjMHlTWEF4Q3JlU0JVQ3ZKZw?oc=5" target="_blank" data-cat="기타" data-hours="9.1" onclick="this.classList.add('news-item-read')">
           <div class="news-num">23</div>
+          <div style="min-width:0;flex:1;">
+            <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>[속보] 김관영 ‘현금 살포’ 논란에 경찰 전북도청 압수수색</div>
+            
+          </div>
+          <div class="news-time">9시간 전</div>
+        </a>
+        <a class="news-item" href="https://www.mk.co.kr/news/world/12008727" target="_blank" data-cat="기타" data-hours="9.2" onclick="this.classList.add('news-item-read')">
+          <div class="news-num">24</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>AI 앵무새된 대학생들…말투가 똑같아져 토론 수업이 망했다</div>
             <div class="news-summary">미국 대학생들, AI에 토론 의존 AI가 표현 동질화한다는 연구도 “학생들, 앵두새처럼 의견 같아”예일대 4학년 아만다는 많은 동급생들이 인공지능(AI) 챗봇으로 과제를 쓴다는 걸..</div>
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFAzZFNNYzVyUmlzRTBSQWsxc0xQVkN3WGI3b1dxRTNYZ283VTh4Y3RsTUFjNUwtaXYzaUplcnFqM3RQOFVQX2JoaWtzaEhQZzh6V1FwTGdB?oc=5" target="_blank" data-cat="기타" data-hours="9.1" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">24</div>
-          <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>‘2만원 삼계탕’ 현실로…닭값, 언제까지 오를까 [푸드360]</div>
-            
-          </div>
-          <div class="news-time">9시간 전</div>
-        </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1pWDJHTVRxNjNUb0FHWHpmd2VLOVdnanB4UnI5QXBvYnlPQU5PazJ6aHJPQXRVdll2S1pscTJQd3l4dENHTEQ5NTJJM3psYzVCVGfSAVNBVV95cUxNUUR5NXRIUm50cnFLeVhZZkxvTTVDbDN0SUFEc1l6OG93N253UTZFbm54SnVRZ0xVYnV4LWJrYU92bHRLSUd4dTYyR1p3anZyOGN1aw?oc=5" target="_blank" data-cat="기타" data-hours="9.2" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1EbWxqaFVSY1J4dzQxcVJYX0JRYWlVRk1uT09YUFhmcWRIOE5vNjFNbGdfMndfQ0N5QWVoVlR5dXVDalFCUWJQVWE0VHJHRTJZTzR6OXRpOTRna3c5cHI40gFTQVVfeXFMUHMzVFNFcGxBQ1ZSZE5oWkVHTUpwSGZvTGR0ZHg2dkNxd2pJTEJBTmE2ejNyT1ZJV0dPcnFlNWlYcGxqRm15LXI2ZXJ6Qmd6N2swUXM?oc=5" target="_blank" data-cat="기타" data-hours="9.2" onclick="this.classList.add('news-item-read')">
           <div class="news-num">25</div>
           <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">서경</span>삼성E&A 15%↑…“전쟁 영향 미미, 삼성전자향 수주도 견조” [줍줍리포트]</div>
+            <div class="news-headline"><span class="news-src-tag-sm">서경</span>[속보] 당정 “정유업계 사후정산제 원칙적 폐지”</div>
             
           </div>
           <div class="news-time">9시간 전</div>
