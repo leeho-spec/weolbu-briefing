@@ -717,15 +717,15 @@ function toggleDark() {
 (function() {
   // 단일 트랙 안에 items × 2 를 생성 → -50% translate로 끊김 없는 루프
   const stocks = [
-    { name:'KOSPI', cur:5780.21, base:5780.21, dec:2, step:0.05 },
-    { name:'KOSDAQ', cur:1072.55, base:1072.55, dec:2, step:0.02 },
+    { name:'KOSPI', cur:5780.1, base:5780.1, dec:2, step:0.05 },
+    { name:'KOSDAQ', cur:1073.49, base:1073.49, dec:2, step:0.02 },
     { name:'NASDAQ', cur:22017.8, base:22017.8, dec:1, step:1.1 },
     { name:'S&P500', cur:6616.9, base:6616.9, dec:1, step:0.3 },
     { name:'DOW', cur:46584.5, base:46584.5, dec:1, step:4.3 },
-    { name:'USD/KRW', cur:1479.98, base:1479.98, dec:2, step:1.39 },
+    { name:'USD/KRW', cur:1479.92, base:1479.92, dec:2, step:1.4 },
     { name:'JPY/KRW', cur:9.33, base:9.33, dec:2, step:0.01 },
     { name:'CNY/KRW', cur:218.25, base:218.25, dec:2, step:0.01 },
-    { name:'NIKKEI', cur:55839.3, base:55839.3, dec:1, step:1.5 },
+    { name:'NIKKEI', cur:55975.5, base:55975.5, dec:1, step:1.5 },
     { name:'SHANGHAI', cur:nan, base:nan, dec:1, step:nan }
   ];
 
@@ -1039,12 +1039,12 @@ function newsItemClick(el) {
         <div class="brief-item">
           <span class="brief-num" style="color:#CC0000;">1</span>
           <div class="brief-body">
-            <div class="brief-title">AI · 반도체</div>
-            <div class="brief-desc">"알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들..." · 소수몽키</div>
+            <div class="brief-title">미국 경기침체</div>
+            <div class="brief-desc">"석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시..." · 전인구경제연구소</div>
           </div>
           <span class="brief-hint">링크 ›</span>
         </div>
-        <div class="brief-links"><a class="bl-item" href="https://www.mk.co.kr/news/business/12010590" target="_blank"><span class="bl-lbl news">뉴스</span><span class="bl-text">도시와경제, 11일 부동산 투자 무료 세미나 개최</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들 — 소수몽키</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=8NWdGpym8Ws" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">AI투자 → 대량 해고 쓰나미 시작? 최악의 시나리오 현실화될까 — 소수몽키</span></a></div>
+        <div class="brief-links"><a class="bl-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9Tcnk5QkQ1YUVjcWYwbS1saXBCMVlyYUl5M3JCWUM1aUJsMVh5MDYwY1BhOGxvRWY3SmVuWGl3TG5HTFh6R3B3RFZPSGlXQlktbVNrTjNR?oc=5" target="_blank"><span class="bl-lbl news">뉴스</span><span class="bl-text">도시와경제, 11일 부동산 투자 무료 세미나 개최</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=V_2Z-9bTa-Q" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시 — 전인구경제연구소</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=tMY30HnCdXc" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">트럼프의 석기시대 발언의 진짜 의미(ft. 코스피 급락) — 전인구경제연구소</span></a></div>
       </div>
       <div class="brief-item-wrap">
         <div class="brief-item">
@@ -1061,34 +1061,15 @@ function newsItemClick(el) {
         <div class="brief-item">
           <span class="brief-num" style="color:#cc7700;">3</span>
           <div class="brief-body">
-            <div class="brief-title">예적금 · 재테크<span style="display:inline-block;margin-left:6px;padding:1px 6px;border-radius:10px;font-size:10px;background:#eceff1;color:#546e7a;font-weight:700;">↓ -47%</span></div>
-            <div class="brief-desc">""적금만 하면 바보일까?" 현실을 말해드립니다...." · 뿅글이</div>
+            <div class="brief-title">환율 · 달러</div>
+            <div class="brief-desc">""원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있..." · 부티풀</div>
           </div>
           <span class="brief-hint">링크 ›</span>
         </div>
-        <div class="brief-links"><a class="bl-item" href="https://www.blockmedia.co.kr/archives/1074959?utm_source=general&utm_medium=rss" target="_blank"><span class="bl-lbl news">뉴스</span><span class="bl-text">도시와경제, 11일 부동산 투자 무료 세미나 개최</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=FiBjOzRcsXs" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">"적금만 하면 바보일까?" 현실을 말해드립니다. — 뿅글이</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=pRVI8Jdhtq8" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">"복잡한 차트 볼 필요 없습니다" 무조건 돈 버는 ETF 세팅법 I 머니리포트 — 머니인사이드</span></a></div>
+        <div class="brief-links"><a class="bl-item" href="https://www.mk.co.kr/news/stock/12010979" target="_blank"><span class="bl-lbl news">뉴스</span><span class="bl-text">도시와경제, 11일 부동산 투자 무료 세미나 개최</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=1i8f9dDvPKU" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동기  — 부티풀</span></a><a class="bl-item" href="https://www.youtube.com/watch?v=TthSeiogVGA" target="_blank"><span class="bl-lbl yt">YT</span><span class="bl-text">"원화 추락에 곳간도 텅텅.." IMF 섬뜩한 경고 떴다. 지금 현실이 되고 있는 중입니다 | — 부티풀</span></a></div>
       </div>
       <div style="height:1px;background:#f0f0f0;margin:4px 0 6px;"></div>
       <div class="summary-card-title" style="margin-bottom:6px;">YOUTUBE BRIEF</div>
-      <div class="brief-item-wrap">
-        <div class="brief-item">
-          <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;gap:2px;">
-            <span class="tossface" style="font-size:20px;line-height:1;">📈</span>
-            <span style="font-size:8px;color:#aaa;font-weight:600;letter-spacing:0.3px;">주식</span>
-          </div>
-          <div class="brief-body">
-            <div class="brief-title">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들</div>
-            <div class="brief-desc">소수몽키 · ?일 전 · 16.3만회</div>
-          </div>
-          <span class="brief-hint">링크 ›</span>
-        </div>
-        <div class="brief-links">
-          <a class="bl-item" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank">
-            <span class="bl-lbl yt">YT</span>
-            <span class="bl-text">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들 — 소수몽키</span>
-          </a>
-        </div>
-      </div>
       <div class="brief-item-wrap">
         <div class="brief-item">
           <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;gap:2px;">
@@ -1108,7 +1089,7 @@ function newsItemClick(el) {
           </a>
         </div>
       </div>
-      <div class="brief-item-wrap" style="border-bottom:none;">
+      <div class="brief-item-wrap">
         <div class="brief-item">
           <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;gap:2px;">
             <span class="tossface" style="font-size:20px;line-height:1;">💰</span>
@@ -1127,6 +1108,25 @@ function newsItemClick(el) {
           </a>
         </div>
       </div>
+      <div class="brief-item-wrap" style="border-bottom:none;">
+        <div class="brief-item">
+          <div style="display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0;gap:2px;">
+            <span class="tossface" style="font-size:20px;line-height:1;">🌐</span>
+            <span style="font-size:8px;color:#aaa;font-weight:600;letter-spacing:0.3px;">경제</span>
+          </div>
+          <div class="brief-body">
+            <div class="brief-title">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시</div>
+            <div class="brief-desc">전인구경제연구소 · ?일 전 · 20.5만회</div>
+          </div>
+          <span class="brief-hint">링크 ›</span>
+        </div>
+        <div class="brief-links">
+          <a class="bl-item" href="https://www.youtube.com/watch?v=V_2Z-9bTa-Q" target="_blank">
+            <span class="bl-lbl yt">YT</span>
+            <span class="bl-text">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시 — 전인구경제연구소</span>
+          </a>
+        </div>
+      </div>
 <!-- INJECT_BRIEF_END -->
     </div>
 <!-- INJECT_HEATMAP_START -->
@@ -1135,82 +1135,82 @@ function newsItemClick(el) {
       <div class="heatmap-title">KEYWORD HEATMAP</div>
       <div class="treemap">
         <div class="tm-cell tm-s1"
-             style="left:calc(0.000% + 3px);top:calc(0.000% + 3px);width:calc(79.364% - 6px);height:calc(62.706% - 6px);animation-delay:0ms;"
+             style="left:calc(0.000% + 3px);top:calc(0.000% + 3px);width:calc(51.977% - 6px);height:calc(100.000% - 6px);animation-delay:0ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
-          <div class="tm-name" style="font-size:14px;">AI · 반도체</div>
+          <div class="tm-name" style="font-size:14px;">미국 경기침체</div>
           <div>
-            <div class="tm-score" style="font-size:37px;">100</div>
-            <div class="tm-trend" style="font-size:11px;">↓ 16% 하락</div>
+            <div class="tm-score" style="font-size:38px;">100</div>
+            <div class="tm-trend" style="font-size:11px;">→ 보합</div>
           </div>
           <div class="tm-tooltip">
             <div class="tm-tt-title">1주일 트렌드</div>
-            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:47%;background:rgba(255,120,80,0.61);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:48%;background:rgba(255,120,80,0.61);"></div><div class="tm-tt-bar" style="height:51%;background:rgba(255,120,80,0.63);"></div><div class="tm-tt-bar" style="height:43%;background:#e53935;"></div></div>
+            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:56%;background:rgba(255,120,80,0.66);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:56%;background:rgba(255,120,80,0.66);"></div><div class="tm-tt-bar" style="height:67%;background:rgba(255,120,80,0.72);"></div><div class="tm-tt-bar" style="height:69%;background:#e53935;"></div></div>
             <div class="tm-tt-days"><span>7일전</span><span>오늘</span></div>
-            <div class="tm-tt-val">스코어 100 · ↓ 16% 하락</div>
+            <div class="tm-tt-val">스코어 100 · → 보합</div>
           </div>
         </div>
-        <div class="tm-cell tm-s3"
-             style="left:calc(0.000% + 3px);top:calc(62.706% + 3px);width:calc(79.364% - 6px);height:calc(37.294% - 6px);animation-delay:70ms;"
+        <div class="tm-cell tm-s4"
+             style="left:calc(51.977% + 3px);top:calc(0.000% + 3px);width:calc(48.023% - 6px);height:calc(39.860% - 6px);animation-delay:70ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
-          <div class="tm-name" style="font-size:12px;">부동산 규제완화</div>
+          <div class="tm-name" style="font-size:10px;">부동산 규제완화</div>
           <div>
-            <div class="tm-score" style="font-size:26px;">59</div>
+            <div class="tm-score" style="font-size:21px;">37</div>
             <div class="tm-trend" style="font-size:9px;">↑ +143% 급상승</div>
           </div>
           <div class="tm-tooltip">
             <div class="tm-tt-title">1주일 트렌드</div>
-            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:29%;background:rgba(255,120,80,0.51);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:47%;background:rgba(255,120,80,0.61);"></div><div class="tm-tt-bar" style="height:11%;background:rgba(255,120,80,0.41);"></div><div class="tm-tt-bar" style="height:26%;background:#f57c00;"></div></div>
+            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:29%;background:rgba(120,144,156,0.51);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:47%;background:rgba(120,144,156,0.61);"></div><div class="tm-tt-bar" style="height:11%;background:rgba(120,144,156,0.41);"></div><div class="tm-tt-bar" style="height:26%;background:#546e7a;"></div></div>
             <div class="tm-tt-days"><span>7일전</span><span>오늘</span></div>
-            <div class="tm-tt-val">스코어 59 · ↑ +143% 급상승</div>
+            <div class="tm-tt-val">스코어 37 · ↑ +143% 급상승</div>
           </div>
         </div>
-        <div class="tm-cell tm-s3"
-             style="left:calc(79.364% + 3px);top:calc(0.000% + 3px);width:calc(20.636% - 6px);height:calc(100.000% - 6px);animation-delay:140ms;"
+        <div class="tm-cell tm-s4"
+             style="left:calc(51.977% + 3px);top:calc(39.860% + 3px);width:calc(48.023% - 6px);height:calc(32.355% - 6px);animation-delay:140ms;"
+             onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
+          <div class="tm-name" style="font-size:10px;">환율 · 달러</div>
+          <div>
+            <div class="tm-score" style="font-size:19px;">30</div>
+            <div class="tm-trend" style="font-size:8px;">↓ 17% 하락</div>
+          </div>
+          <div class="tm-tooltip">
+            <div class="tm-tt-title">1주일 트렌드</div>
+            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:56%;background:rgba(120,144,156,0.66);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:53%;background:rgba(120,144,156,0.64);"></div><div class="tm-tt-bar" style="height:25%;background:rgba(120,144,156,0.49);"></div><div class="tm-tt-bar" style="height:21%;background:#546e7a;"></div></div>
+            <div class="tm-tt-days"><span>7일전</span><span>오늘</span></div>
+            <div class="tm-tt-val">스코어 30 · ↓ 17% 하락</div>
+          </div>
+        </div>
+        <div class="tm-cell tm-s4"
+             style="left:calc(51.977% + 3px);top:calc(72.215% + 3px);width:calc(48.023% - 6px);height:calc(27.785% - 6px);animation-delay:210ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:10px;">예적금 · 재테크</div>
           <div>
-            <div class="tm-score" style="font-size:21px;">41</div>
-            <div class="tm-trend" style="font-size:9px;">↓ 47% 하락</div>
+            <div class="tm-score" style="font-size:17px;">26</div>
+            <div class="tm-trend" style="font-size:8px;">↓ 47% 하락</div>
           </div>
           <div class="tm-tooltip">
             <div class="tm-tt-title">1주일 트렌드</div>
-            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:100%;background:rgba(255,120,80,0.90);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(255,120,80,0.37);"></div><div class="tm-tt-bar" style="height:93%;background:rgba(255,120,80,0.86);"></div><div class="tm-tt-bar" style="height:33%;background:rgba(255,120,80,0.53);"></div><div class="tm-tt-bar" style="height:18%;background:#f57c00;"></div></div>
+            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:100%;background:rgba(120,144,156,0.90);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:93%;background:rgba(120,144,156,0.86);"></div><div class="tm-tt-bar" style="height:33%;background:rgba(120,144,156,0.53);"></div><div class="tm-tt-bar" style="height:18%;background:#546e7a;"></div></div>
             <div class="tm-tt-days"><span>7일전</span><span>오늘</span></div>
-            <div class="tm-tt-val">스코어 41 · ↓ 47% 하락</div>
+            <div class="tm-tt-val">스코어 26 · ↓ 47% 하락</div>
           </div>
         </div>
         <div class="tm-cell tm-s5"
-             style="left:calc(79.364% + 3px);top:calc(100.000% + 3px);width:calc(0.000% - 6px);height:calc(0.000% - 6px);animation-delay:210ms;"
+             style="left:calc(100.000% + 3px);top:calc(72.215% + 3px);width:calc(0.000% - 6px);height:calc(0.000% - 6px);animation-delay:280ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
-          <div class="tm-name" style="font-size:9px;">환율 · 달러</div>
+          <div class="tm-name" style="font-size:9px;">AI · 반도체</div>
           <div>
             <div class="tm-score" style="font-size:11px;">0</div>
             <div class="tm-trend" style="font-size:8px;">↓ 100% 하락</div>
           </div>
           <div class="tm-tooltip">
             <div class="tm-tt-title">1주일 트렌드</div>
-            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:56%;background:rgba(120,144,156,0.66);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:53%;background:rgba(120,144,156,0.64);"></div><div class="tm-tt-bar" style="height:25%;background:rgba(120,144,156,0.49);"></div><div class="tm-tt-bar" style="height:4%;background:#546e7a;"></div></div>
+            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:47%;background:rgba(120,144,156,0.61);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:48%;background:rgba(120,144,156,0.61);"></div><div class="tm-tt-bar" style="height:51%;background:rgba(120,144,156,0.63);"></div><div class="tm-tt-bar" style="height:4%;background:#546e7a;"></div></div>
             <div class="tm-tt-days"><span>7일전</span><span>오늘</span></div>
             <div class="tm-tt-val">스코어 0 · ↓ 100% 하락</div>
           </div>
         </div>
         <div class="tm-cell tm-s5"
-             style="left:calc(79.364% + 3px);top:calc(100.000% + 3px);width:calc(0.000% - 6px);height:calc(0.000% - 6px);animation-delay:280ms;"
-             onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
-          <div class="tm-name" style="font-size:9px;">미국 경기침체</div>
-          <div>
-            <div class="tm-score" style="font-size:11px;">0</div>
-            <div class="tm-trend" style="font-size:8px;">↓ 100% 하락</div>
-          </div>
-          <div class="tm-tooltip">
-            <div class="tm-tt-title">1주일 트렌드</div>
-            <div class="tm-tt-bars"><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:56%;background:rgba(120,144,156,0.66);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:4%;background:rgba(120,144,156,0.37);"></div><div class="tm-tt-bar" style="height:56%;background:rgba(120,144,156,0.66);"></div><div class="tm-tt-bar" style="height:67%;background:rgba(120,144,156,0.72);"></div><div class="tm-tt-bar" style="height:4%;background:#546e7a;"></div></div>
-            <div class="tm-tt-days"><span>7일전</span><span>오늘</span></div>
-            <div class="tm-tt-val">스코어 0 · ↓ 100% 하락</div>
-          </div>
-        </div>
-        <div class="tm-cell tm-s5"
-             style="left:calc(79.364% + 3px);top:calc(100.000% + 3px);width:calc(20.636% - 6px);height:calc(0.000% - 6px);animation-delay:350ms;"
+             style="left:calc(100.000% + 3px);top:calc(72.215% + 3px);width:calc(0.000% - 6px);height:calc(27.785% - 6px);animation-delay:350ms;"
              onclick="document.getElementById('kw-anchor').scrollIntoView({behavior:'smooth'})">
           <div class="tm-name" style="font-size:9px;">금리 인하 기대</div>
           <div>
@@ -1280,8 +1280,40 @@ function newsItemClick(el) {
 <!-- INJECT_HOT_CARDS_WEEK_START -->
   <div class="hot-section-label"><span class="tossface">📹</span> 롱폼 TOP 5</div>
   <div class="hot-list">
-  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=sO-JwqR-EnA" target="_blank" data-cat="realestate" data-rank="1">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=V_2Z-9bTa-Q" target="_blank" data-cat="macro" data-rank="1">
     <span class="hot-rank-num r1"><span class="tossface">🥇</span></span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/V_2Z-9bTa-Q/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시</div>
+      <div class="hot-meta"><div class="hot-ch-name">전인구경제연구소</div><div class="hot-stats"><span class="hot-views-num">20.5만회</span><span class="hot-dur">⏱ 15분</span><span class="hot-date">2일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-same">—</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/V_2Z-9bTa-Q/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/V_2Z-9bTa-Q/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시</div>
+    </div>
+  </a>
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=tMY30HnCdXc" target="_blank" data-cat="macro" data-rank="2">
+    <span class="hot-rank-num r2"><span class="tossface">🥈</span></span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/tMY30HnCdXc/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">트럼프의 석기시대 발언의 진짜 의미(ft. 코스피 급락)</div>
+      <div class="hot-meta"><div class="hot-ch-name">전인구경제연구소</div><div class="hot-stats"><span class="hot-views-num">17.1만회</span><span class="hot-dur">⏱ 13분</span><span class="hot-date">6일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-same">—</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/tMY30HnCdXc/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/tMY30HnCdXc/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">트럼프의 석기시대 발언의 진짜 의미(ft. 코스피 급락)</div>
+    </div>
+  </a>
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=sO-JwqR-EnA" target="_blank" data-cat="realestate" data-rank="3">
+    <span class="hot-rank-num r3"><span class="tossface">🥉</span></span>
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/sO-JwqR-EnA/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">'다주택자는 대출 연장 막힌다?' 앞으로 2주 부동산 시장에 벌어질 일 (#월부뉴스브리핑)</div>
@@ -1296,181 +1328,20 @@ function newsItemClick(el) {
       <div class="thumb-preview-title">'다주택자는 대출 연장 막힌다?' 앞으로 2주 부동산 시장에 벌어질 일 (#월부뉴스브리핑)</div>
     </div>
   </a>
-  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=UA-OwenEkSo" target="_blank" data-cat="realestate" data-rank="2">
-    <span class="hot-rank-num r2"><span class="tossface">🥈</span></span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/UA-OwenEkSo/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">스페이스X 상장 임박, 전세계 돈 빨아들일 대표 수혜주들</div>
-      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">5.8만회</span><span class="hot-dur">⏱ 11분</span><span class="hot-date">1일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/UA-OwenEkSo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/UA-OwenEkSo/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">스페이스X 상장 임박, 전세계 돈 빨아들일 대표 수혜주들</div>
-    </div>
-  </a>
-  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=38S9aJHmvSw" target="_blank" data-cat="realestate" data-rank="3">
-    <span class="hot-rank-num r3"><span class="tossface">🥉</span></span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/38S9aJHmvSw/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">"현장 완전 난리났다" 비거주 1주택도 규제한다. 집값 최대 -70%까지 빠질 겁니다 | 이현철 소장 풀버전</div>
-      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">3.4만회</span><span class="hot-dur">⏱ 1시간</span><span class="hot-date">3일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/38S9aJHmvSw/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/38S9aJHmvSw/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">"현장 완전 난리났다" 비거주 1주택도 규제한다. 집값 최대 -70%까지 빠질 겁니다 | 이현철 소</div>
-    </div>
-  </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=LoP3JsdojXU" target="_blank" data-cat="realestate" data-rank="4">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=1i8f9dDvPKU" target="_blank" data-cat="macro" data-rank="4">
     <span class="hot-rank-num rn">4위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/LoP3JsdojXU/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/1i8f9dDvPKU/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">연봉 1억 버는 30대 대기업 과장이 굳이 지금 서울 아파트 팔려고 하는 이유 (구해줘월부 부동산 상담)</div>
-      <div class="hot-meta"><div class="hot-ch-name">월급쟁이부자들TV</div><div class="hot-stats"><span class="hot-views-num">3.8만회</span><span class="hot-dur">⏱ 23분</span><span class="hot-date">3일 전</span></div></div>
+      <div class="hot-title">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동기 박사 3부 #돈</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6.3만회</span><span class="hot-dur">⏱ 25분</span><span class="hot-date">4일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
+      <span class="cat-badge cat-macro">거시경제</span>
     </div>
     <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/LoP3JsdojXU/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/LoP3JsdojXU/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">연봉 1억 버는 30대 대기업 과장이 굳이 지금 서울 아파트 팔려고 하는 이유 (구해줘월부 부동산 </div>
-    </div>
-  </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=6beV-opvExo" target="_blank" data-cat="realestate" data-rank="5">
-    <span class="hot-rank-num rn">5위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/6beV-opvExo/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">“부동산 이상징조 포착” 급매 쏟아져도 아무도 안 산다. 앞으로 2개월 부동산 난리날 겁니다 | 빠숑 김학렬</div>
-      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6,709회</span><span class="hot-dur">⏱ 14분</span><span class="hot-date">1일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/6beV-opvExo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/6beV-opvExo/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">“부동산 이상징조 포착” 급매 쏟아져도 아무도 안 산다. 앞으로 2개월 부동산 난리날 겁니다 | 빠</div>
-    </div>
-  </a>
-  </div>
-  <button class="more-toggle" onclick="toggleMore(this)">
-    <span class="toggle-label">6~10위 더보기</span>
-    <span class="toggle-arrow">▼</span>
-  </button>
-  <div class="more-list">
-  <a class="hot-row" href="https://www.youtube.com/watch?v=duBEMCxz_pU" target="_blank" data-cat="realestate" data-rank="4">
-    <span class="hot-rank-num rn">4위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/duBEMCxz_pU/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">Since 2021 ☆연금박사 라이브☆ 국내 유일 실시간 연금상담 월요일저녁 9시 #국민연금 #퇴직연금 #개</div>
-      <div class="hot-meta"><div class="hot-ch-name">연금박사</div><div class="hot-stats"><span class="hot-views-num">2,987회</span><span class="hot-dur">⏱ 1시간 4분</span><span class="hot-date">2일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/duBEMCxz_pU/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/duBEMCxz_pU/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">Since 2021 ☆연금박사 라이브☆ 국내 유일 실시간 연금상담 월요일저녁 9시 #국민연금 #퇴직</div>
-    </div>
-  </a>
-  </div>
-
-  <div class="cat-view-list"></div>
-  <div class="hot-section-label shorts-label" style="margin-top:22px;">
-    <span><span class="tossface">📱</span> 숏폼 TOP 5</span>
-  </div>
-  <div class="shorts-list">
-        <a class="shorts-card" href="https://www.youtube.com/shorts/JMruGmiL8z8" target="_blank">
-          <div class="shorts-thumb-wrap">
-            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/JMruGmiL8z8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/JMruGmiL8z8/hqdefault.jpg'" alt="">
-            <div class="shorts-rank-badge">1위</div>
-          </div>
-          <div class="shorts-body">
-            <div class="shorts-title">주식할 때 은근 짜증나는 포인트 ,, 😣</div>
-            <div class="shorts-ch">뿅글이 · 2026-04-06</div>
-            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">2.8만회</span><span>46초 · 2일 전</span></div>
-          </div>
-        </a>
-  </div>
-<!-- INJECT_HOT_CARDS_WEEK_END -->
-    </div>
-
-    <!-- 1달 패널 -->
-    <div class="period-panel" id="panel-month">
-<!-- INJECT_HOT_CARDS_MONTH_START -->
-  <div class="hot-section-label"><span class="tossface">📹</span> 롱폼 TOP 5</div>
-  <div class="hot-list">
-  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank" data-cat="stock" data-rank="1">
-    <span class="hot-rank-num r1"><span class="tossface">🥇</span></span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Mj9BKoYoTmo/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들</div>
-      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">16.3만회</span><span class="hot-dur">⏱ 18분</span><span class="hot-date">15일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-up">▲3</span>
-      <span class="cat-badge cat-stock">주식·증시</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/Mj9BKoYoTmo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Mj9BKoYoTmo/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들</div>
-    </div>
-  </a>
-  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=8NWdGpym8Ws" target="_blank" data-cat="stock" data-rank="2">
-    <span class="hot-rank-num r2"><span class="tossface">🥈</span></span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/8NWdGpym8Ws/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">AI투자 → 대량 해고 쓰나미 시작? 최악의 시나리오 현실화될까</div>
-      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">15.6만회</span><span class="hot-dur">⏱ 19분</span><span class="hot-date">22일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-up">▲5</span>
-      <span class="cat-badge cat-stock">주식·증시</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/8NWdGpym8Ws/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/8NWdGpym8Ws/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">AI투자 → 대량 해고 쓰나미 시작? 최악의 시나리오 현실화될까</div>
-    </div>
-  </a>
-  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=aiv2Grvc6d4" target="_blank" data-cat="stock" data-rank="3">
-    <span class="hot-rank-num r3"><span class="tossface">🥉</span></span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/aiv2Grvc6d4/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">머스크 우주 반도체 올인 선언의 최대 수혜주들</div>
-      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">12.0만회</span><span class="hot-dur">⏱ 12분</span><span class="hot-date">14일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-up">▲6</span>
-      <span class="cat-badge cat-stock">주식·증시</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/aiv2Grvc6d4/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/aiv2Grvc6d4/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">머스크 우주 반도체 올인 선언의 최대 수혜주들</div>
-    </div>
-  </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=sO-JwqR-EnA" target="_blank" data-cat="realestate" data-rank="4">
-    <span class="hot-rank-num rn">4위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/sO-JwqR-EnA/hqdefault.jpg" alt="" loading="lazy">
-    <div class="hot-body">
-      <div class="hot-title">'다주택자는 대출 연장 막힌다?' 앞으로 2주 부동산 시장에 벌어질 일 (#월부뉴스브리핑)</div>
-      <div class="hot-meta"><div class="hot-ch-name">월급쟁이부자들TV</div><div class="hot-stats"><span class="hot-views-num">12.2만회</span><span class="hot-dur">⏱ 27분</span><span class="hot-date">6일 전</span></div></div>
-    </div>
-    <div class="hot-right">
-      <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
-    </div>
-    <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/sO-JwqR-EnA/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/sO-JwqR-EnA/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">'다주택자는 대출 연장 막힌다?' 앞으로 2주 부동산 시장에 벌어질 일 (#월부뉴스브리핑)</div>
+      <img src="https://img.youtube.com/vi/1i8f9dDvPKU/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/1i8f9dDvPKU/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동기 박사 </div>
     </div>
   </a>
   <a class="hot-row" href="https://www.youtube.com/watch?v=UA-OwenEkSo" target="_blank" data-cat="realestate" data-rank="5">
@@ -1478,7 +1349,7 @@ function newsItemClick(el) {
     <img class="hot-thumb-sm" src="https://img.youtube.com/vi/UA-OwenEkSo/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
       <div class="hot-title">스페이스X 상장 임박, 전세계 돈 빨아들일 대표 수혜주들</div>
-      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">5.8만회</span><span class="hot-dur">⏱ 11분</span><span class="hot-date">1일 전</span></div></div>
+      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">5.9만회</span><span class="hot-dur">⏱ 11분</span><span class="hot-date">1일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
@@ -1495,20 +1366,20 @@ function newsItemClick(el) {
     <span class="toggle-arrow">▼</span>
   </button>
   <div class="more-list">
-  <a class="hot-row" href="https://www.youtube.com/watch?v=FiBjOzRcsXs" target="_blank" data-cat="fintech" data-rank="4">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=zDcF_zPTSYE" target="_blank" data-cat="fintech" data-rank="4">
     <span class="hot-rank-num rn">4위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/FiBjOzRcsXs/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/zDcF_zPTSYE/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">"적금만 하면 바보일까?" 현실을 말해드립니다.</div>
-      <div class="hot-meta"><div class="hot-ch-name">뿅글이</div><div class="hot-stats"><span class="hot-views-num">6.1만회</span><span class="hot-dur">⏱ 8분</span><span class="hot-date">10일 전</span></div></div>
+      <div class="hot-title">🤖 매번 꾸준히 투자하는 게 어렵다면? 기계의 힘을 빌리자! | ETF 자동매수 약정 | 주식 모으기</div>
+      <div class="hot-meta"><div class="hot-ch-name">박곰희TV</div><div class="hot-stats"><span class="hot-views-num">4.8만회</span><span class="hot-dur">⏱ 30분</span><span class="hot-date">5일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
       <span class="cat-badge cat-fintech">재테크</span>
     </div>
     <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/FiBjOzRcsXs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/FiBjOzRcsXs/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">"적금만 하면 바보일까?" 현실을 말해드립니다.</div>
+      <img src="https://img.youtube.com/vi/zDcF_zPTSYE/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/zDcF_zPTSYE/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">🤖 매번 꾸준히 투자하는 게 어렵다면? 기계의 힘을 빌리자! | ETF 자동매수 약정 | 주식 모으</div>
     </div>
   </a>
   <a class="hot-row" href="https://www.youtube.com/watch?v=38S9aJHmvSw" target="_blank" data-cat="realestate" data-rank="5">
@@ -1527,20 +1398,20 @@ function newsItemClick(el) {
       <div class="thumb-preview-title">"현장 완전 난리났다" 비거주 1주택도 규제한다. 집값 최대 -70%까지 빠질 겁니다 | 이현철 소</div>
     </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=pRVI8Jdhtq8" target="_blank" data-cat="fintech" data-rank="6">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=TthSeiogVGA" target="_blank" data-cat="macro" data-rank="6">
     <span class="hot-rank-num rn">6위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/pRVI8Jdhtq8/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/TthSeiogVGA/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">"복잡한 차트 볼 필요 없습니다" 무조건 돈 버는 ETF 세팅법 I 머니리포트</div>
-      <div class="hot-meta"><div class="hot-ch-name">머니인사이드</div><div class="hot-stats"><span class="hot-views-num">3.6만회</span><span class="hot-dur">⏱ 13분</span><span class="hot-date">8일 전</span></div></div>
+      <div class="hot-title">"원화 추락에 곳간도 텅텅.." IMF 섬뜩한 경고 떴다. 지금 현실이 되고 있는 중입니다 | 서동기 박사 </div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">3.0만회</span><span class="hot-dur">⏱ 56분</span><span class="hot-date">2일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-fintech">재테크</span>
+      <span class="cat-badge cat-macro">거시경제</span>
     </div>
     <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/pRVI8Jdhtq8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/pRVI8Jdhtq8/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">"복잡한 차트 볼 필요 없습니다" 무조건 돈 버는 ETF 세팅법 I 머니리포트</div>
+      <img src="https://img.youtube.com/vi/TthSeiogVGA/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TthSeiogVGA/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">"원화 추락에 곳간도 텅텅.." IMF 섬뜩한 경고 떴다. 지금 현실이 되고 있는 중입니다 | 서동</div>
     </div>
   </a>
   <a class="hot-row" href="https://www.youtube.com/watch?v=LoP3JsdojXU" target="_blank" data-cat="realestate" data-rank="7">
@@ -1559,30 +1430,30 @@ function newsItemClick(el) {
       <div class="thumb-preview-title">연봉 1억 버는 30대 대기업 과장이 굳이 지금 서울 아파트 팔려고 하는 이유 (구해줘월부 부동산 </div>
     </div>
   </a>
-  <a class="hot-row" href="https://www.youtube.com/watch?v=6beV-opvExo" target="_blank" data-cat="realestate" data-rank="8">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=Pu2pQcZadho" target="_blank" data-cat="macro" data-rank="8">
     <span class="hot-rank-num rn">8위</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/6beV-opvExo/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Pu2pQcZadho/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">“부동산 이상징조 포착” 급매 쏟아져도 아무도 안 산다. 앞으로 2개월 부동산 난리날 겁니다 | 빠숑 김학렬</div>
-      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6,709회</span><span class="hot-dur">⏱ 14분</span><span class="hot-date">1일 전</span></div></div>
+      <div class="hot-title">원달러 환율 1500원 시대, 예적금 싹다 빼서 현금 '여기로' 옮기세요. 원화 녹고 있습니다 | 김규동 이</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">1.3만회</span><span class="hot-dur">⏱ 19분</span><span class="hot-date">3일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="rank-delta rank-new">NEW</span>
-      <span class="cat-badge cat-realestate">부동산</span>
+      <span class="cat-badge cat-macro">거시경제</span>
     </div>
     <div class="thumb-preview">
-      <img src="https://img.youtube.com/vi/6beV-opvExo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/6beV-opvExo/hqdefault.jpg'" alt="">
-      <div class="thumb-preview-title">“부동산 이상징조 포착” 급매 쏟아져도 아무도 안 산다. 앞으로 2개월 부동산 난리날 겁니다 | 빠</div>
+      <img src="https://img.youtube.com/vi/Pu2pQcZadho/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Pu2pQcZadho/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">원달러 환율 1500원 시대, 예적금 싹다 빼서 현금 '여기로' 옮기세요. 원화 녹고 있습니다 | </div>
     </div>
   </a>
   </div>
   <div class="cat-extra-list">
-  <a class="hot-row" href="https://www.youtube.com/watch?v=duBEMCxz_pU" target="_blank" data-cat="realestate" data-rank="99" data-cat-extra="true">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=6beV-opvExo" target="_blank" data-cat="realestate" data-rank="99" data-cat-extra="true">
     <span class="hot-rank-num rn">—</span>
-    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/duBEMCxz_pU/hqdefault.jpg" alt="" loading="lazy">
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/6beV-opvExo/hqdefault.jpg" alt="" loading="lazy">
     <div class="hot-body">
-      <div class="hot-title">Since 2021 ☆연금박사 라이브☆ 국내 유일 실시간 연금상담 월요일저녁 9시 #국민연금 #퇴직연금 #개</div>
-      <div class="hot-meta"><div class="hot-ch-name">연금박사</div><div class="hot-stats"><span class="hot-views-num">2,987회</span><span class="hot-dur">⏱ 1시간 4분</span><span class="hot-date">2일 전</span></div></div>
+      <div class="hot-title">“부동산 이상징조 포착” 급매 쏟아져도 아무도 안 산다. 앞으로 2개월 부동산 난리날 겁니다 | 빠숑 김학렬</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6,709회</span><span class="hot-dur">⏱ 14분</span><span class="hot-date">1일 전</span></div></div>
     </div>
     <div class="hot-right">
       <span class="cat-badge cat-realestate">부동산</span>
@@ -1594,26 +1465,374 @@ function newsItemClick(el) {
     <span><span class="tossface">📱</span> 숏폼 TOP 5</span>
   </div>
   <div class="shorts-list">
-        <a class="shorts-card" href="https://www.youtube.com/shorts/An0s3eCVK3k" target="_blank">
+        <a class="shorts-card" href="https://www.youtube.com/shorts/h6xwSitcwzY" target="_blank">
           <div class="shorts-thumb-wrap">
-            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/An0s3eCVK3k/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/An0s3eCVK3k/hqdefault.jpg'" alt="">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/h6xwSitcwzY/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/h6xwSitcwzY/hqdefault.jpg'" alt="">
             <div class="shorts-rank-badge">1위</div>
           </div>
           <div class="shorts-body">
-            <div class="shorts-title">청년은 서울 아파트 대출 없이 산다고!?</div>
-            <div class="shorts-ch">뿅글이 · 2026-03-24</div>
-            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">5.0만회</span><span>88초 · 15일 전</span></div>
+            <div class="shorts-title">5월 9일 지나면 집값 이렇게 됩니다 [제네시스박]</div>
+            <div class="shorts-ch">부읽남 · 2026-04-05</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">35.2만회</span><span>32초 · 3일 전</span></div>
           </div>
         </a>
-        <a class="shorts-card" href="https://www.youtube.com/shorts/JMruGmiL8z8" target="_blank">
+        <a class="shorts-card" href="https://www.youtube.com/shorts/vWJxL5pSv88" target="_blank">
           <div class="shorts-thumb-wrap">
-            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/JMruGmiL8z8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/JMruGmiL8z8/hqdefault.jpg'" alt="">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/vWJxL5pSv88/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/vWJxL5pSv88/hqdefault.jpg'" alt="">
             <div class="shorts-rank-badge">2위</div>
           </div>
           <div class="shorts-body">
-            <div class="shorts-title">주식할 때 은근 짜증나는 포인트 ,, 😣</div>
-            <div class="shorts-ch">뿅글이 · 2026-04-06</div>
-            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">2.8만회</span><span>46초 · 2일 전</span></div>
+            <div class="shorts-title">7월 세제개편 나오면 집값 이렇게 될 겁니다 [제네시스박]</div>
+            <div class="shorts-ch">부읽남 · 2026-04-05</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">16.9만회</span><span>46초 · 3일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/OqfSl1FZhgk" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/OqfSl1FZhgk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/OqfSl1FZhgk/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">3위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">🙋 S&P500 몰빵해도 되나요? #S&P500 #지수투자 #분산투자 #shorts</div>
+            <div class="shorts-ch">박곰희TV · 2026-04-02</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">8.9만회</span><span>59초 · 6일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/cgZCan5uly0" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/cgZCan5uly0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/cgZCan5uly0/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">4위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">월급 통장 바꿨더니 매달 스벅 쿠폰을 준다고?</div>
+            <div class="shorts-ch">김짠부 · 2026-04-03</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">4.9만회</span><span>54초 · 5일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/Hv7WZ0APt1o" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/Hv7WZ0APt1o/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Hv7WZ0APt1o/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">5위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">💰 ISA 배당금, 뽑아 쓸 수 있나요? #ISA #배당금 #배당금인출 #shorts</div>
+            <div class="shorts-ch">박곰희TV · 2026-04-05</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">3.8만회</span><span>56초 · 3일 전</span></div>
+          </div>
+        </a>
+  </div>
+<!-- INJECT_HOT_CARDS_WEEK_END -->
+    </div>
+
+    <!-- 1달 패널 -->
+    <div class="period-panel" id="panel-month">
+<!-- INJECT_HOT_CARDS_MONTH_START -->
+  <div class="hot-section-label"><span class="tossface">📹</span> 롱폼 TOP 5</div>
+  <div class="hot-list">
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=V_2Z-9bTa-Q" target="_blank" data-cat="macro" data-rank="1">
+    <span class="hot-rank-num r1"><span class="tossface">🥇</span></span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/V_2Z-9bTa-Q/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시</div>
+      <div class="hot-meta"><div class="hot-ch-name">전인구경제연구소</div><div class="hot-stats"><span class="hot-views-num">20.5만회</span><span class="hot-dur">⏱ 15분</span><span class="hot-date">2일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-same">—</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/V_2Z-9bTa-Q/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/V_2Z-9bTa-Q/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시</div>
+    </div>
+  </a>
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=tMY30HnCdXc" target="_blank" data-cat="macro" data-rank="2">
+    <span class="hot-rank-num r2"><span class="tossface">🥈</span></span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/tMY30HnCdXc/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">트럼프의 석기시대 발언의 진짜 의미(ft. 코스피 급락)</div>
+      <div class="hot-meta"><div class="hot-ch-name">전인구경제연구소</div><div class="hot-stats"><span class="hot-views-num">17.1만회</span><span class="hot-dur">⏱ 13분</span><span class="hot-date">6일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-same">—</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/tMY30HnCdXc/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/tMY30HnCdXc/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">트럼프의 석기시대 발언의 진짜 의미(ft. 코스피 급락)</div>
+    </div>
+  </a>
+  <a class="hot-row hot-row-top3" href="https://www.youtube.com/watch?v=W6m1JmvDPpk" target="_blank" data-cat="macro" data-rank="3">
+    <span class="hot-rank-num r3"><span class="tossface">🥉</span></span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/W6m1JmvDPpk/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">트럼프도 예상 못했다? 홍해 봉쇄 우려, 미 증시에 더 큰 혼란 줄까</div>
+      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">14.0만회</span><span class="hot-dur">⏱ 28분</span><span class="hot-date">9일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-up">▲2</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/W6m1JmvDPpk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/W6m1JmvDPpk/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">트럼프도 예상 못했다? 홍해 봉쇄 우려, 미 증시에 더 큰 혼란 줄까</div>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=NseuX7PjrI8" target="_blank" data-cat="macro" data-rank="4">
+    <span class="hot-rank-num rn">4위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/NseuX7PjrI8/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까</div>
+      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">16.4만회</span><span class="hot-dur">⏱ 30분</span><span class="hot-date">23일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-up">▲2</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/NseuX7PjrI8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/NseuX7PjrI8/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까</div>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=sO-JwqR-EnA" target="_blank" data-cat="realestate" data-rank="5">
+    <span class="hot-rank-num rn">5위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/sO-JwqR-EnA/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">'다주택자는 대출 연장 막힌다?' 앞으로 2주 부동산 시장에 벌어질 일 (#월부뉴스브리핑)</div>
+      <div class="hot-meta"><div class="hot-ch-name">월급쟁이부자들TV</div><div class="hot-stats"><span class="hot-views-num">12.2만회</span><span class="hot-dur">⏱ 27분</span><span class="hot-date">6일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-new">NEW</span>
+      <span class="cat-badge cat-realestate">부동산</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/sO-JwqR-EnA/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/sO-JwqR-EnA/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">'다주택자는 대출 연장 막힌다?' 앞으로 2주 부동산 시장에 벌어질 일 (#월부뉴스브리핑)</div>
+    </div>
+  </a>
+  </div>
+  <button class="more-toggle" onclick="toggleMore(this)">
+    <span class="toggle-label">6~10위 더보기</span>
+    <span class="toggle-arrow">▼</span>
+  </button>
+  <div class="more-list">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=1i8f9dDvPKU" target="_blank" data-cat="macro" data-rank="4">
+    <span class="hot-rank-num rn">4위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/1i8f9dDvPKU/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동기 박사 3부 #돈</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6.3만회</span><span class="hot-dur">⏱ 25분</span><span class="hot-date">4일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-new">NEW</span>
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/1i8f9dDvPKU/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/1i8f9dDvPKU/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동기 박사 </div>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=UA-OwenEkSo" target="_blank" data-cat="realestate" data-rank="5">
+    <span class="hot-rank-num rn">5위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/UA-OwenEkSo/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">스페이스X 상장 임박, 전세계 돈 빨아들일 대표 수혜주들</div>
+      <div class="hot-meta"><div class="hot-ch-name">소수몽키</div><div class="hot-stats"><span class="hot-views-num">5.9만회</span><span class="hot-dur">⏱ 11분</span><span class="hot-date">1일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-new">NEW</span>
+      <span class="cat-badge cat-realestate">부동산</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/UA-OwenEkSo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/UA-OwenEkSo/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">스페이스X 상장 임박, 전세계 돈 빨아들일 대표 수혜주들</div>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=FiBjOzRcsXs" target="_blank" data-cat="fintech" data-rank="6">
+    <span class="hot-rank-num rn">6위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/FiBjOzRcsXs/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">"적금만 하면 바보일까?" 현실을 말해드립니다.</div>
+      <div class="hot-meta"><div class="hot-ch-name">뿅글이</div><div class="hot-stats"><span class="hot-views-num">6.1만회</span><span class="hot-dur">⏱ 8분</span><span class="hot-date">10일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-new">NEW</span>
+      <span class="cat-badge cat-fintech">재테크</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/FiBjOzRcsXs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/FiBjOzRcsXs/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">"적금만 하면 바보일까?" 현실을 말해드립니다.</div>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=zDcF_zPTSYE" target="_blank" data-cat="fintech" data-rank="7">
+    <span class="hot-rank-num rn">7위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/zDcF_zPTSYE/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">🤖 매번 꾸준히 투자하는 게 어렵다면? 기계의 힘을 빌리자! | ETF 자동매수 약정 | 주식 모으기</div>
+      <div class="hot-meta"><div class="hot-ch-name">박곰희TV</div><div class="hot-stats"><span class="hot-views-num">4.8만회</span><span class="hot-dur">⏱ 30분</span><span class="hot-date">5일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-new">NEW</span>
+      <span class="cat-badge cat-fintech">재테크</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/zDcF_zPTSYE/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/zDcF_zPTSYE/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">🤖 매번 꾸준히 투자하는 게 어렵다면? 기계의 힘을 빌리자! | ETF 자동매수 약정 | 주식 모으</div>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=Yr2yMyGLsX0" target="_blank" data-cat="fintech" data-rank="8">
+    <span class="hot-rank-num rn">8위</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Yr2yMyGLsX0/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">📊 ISA 혹시 나만 하고 있는 건 아니겠지?ㅣ통계자료ㅣ금융투자협회 | ver.2026</div>
+      <div class="hot-meta"><div class="hot-ch-name">박곰희TV</div><div class="hot-stats"><span class="hot-views-num">4.5만회</span><span class="hot-dur">⏱ 28분</span><span class="hot-date">8일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="rank-delta rank-new">NEW</span>
+      <span class="cat-badge cat-fintech">재테크</span>
+    </div>
+    <div class="thumb-preview">
+      <img src="https://img.youtube.com/vi/Yr2yMyGLsX0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Yr2yMyGLsX0/hqdefault.jpg'" alt="">
+      <div class="thumb-preview-title">📊 ISA 혹시 나만 하고 있는 건 아니겠지?ㅣ통계자료ㅣ금융투자협회 | ver.2026</div>
+    </div>
+  </a>
+  </div>
+  <div class="cat-extra-list">
+  <a class="hot-row" href="https://www.youtube.com/watch?v=38S9aJHmvSw" target="_blank" data-cat="realestate" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/38S9aJHmvSw/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">"현장 완전 난리났다" 비거주 1주택도 규제한다. 집값 최대 -70%까지 빠질 겁니다 | 이현철 소장 풀버전</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">3.4만회</span><span class="hot-dur">⏱ 1시간</span><span class="hot-date">3일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-realestate">부동산</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=LoP3JsdojXU" target="_blank" data-cat="realestate" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/LoP3JsdojXU/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">연봉 1억 버는 30대 대기업 과장이 굳이 지금 서울 아파트 팔려고 하는 이유 (구해줘월부 부동산 상담)</div>
+      <div class="hot-meta"><div class="hot-ch-name">월급쟁이부자들TV</div><div class="hot-stats"><span class="hot-views-num">3.8만회</span><span class="hot-dur">⏱ 23분</span><span class="hot-date">3일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-realestate">부동산</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=6beV-opvExo" target="_blank" data-cat="realestate" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/6beV-opvExo/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">“부동산 이상징조 포착” 급매 쏟아져도 아무도 안 산다. 앞으로 2개월 부동산 난리날 겁니다 | 빠숑 김학렬</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">6,709회</span><span class="hot-dur">⏱ 14분</span><span class="hot-date">1일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-realestate">부동산</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=TthSeiogVGA" target="_blank" data-cat="macro" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/TthSeiogVGA/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">"원화 추락에 곳간도 텅텅.." IMF 섬뜩한 경고 떴다. 지금 현실이 되고 있는 중입니다 | 서동기 박사 </div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">3.0만회</span><span class="hot-dur">⏱ 56분</span><span class="hot-date">2일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=RLR14ieNgj4" target="_blank" data-cat="macro" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/RLR14ieNgj4/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">1억 넣으면 10년간 연5% 수익 쌓아주는 달러연금이 출시됐습니다</div>
+      <div class="hot-meta"><div class="hot-ch-name">연금박사</div><div class="hot-stats"><span class="hot-views-num">2.9만회</span><span class="hot-dur">⏱ 8분</span><span class="hot-date">28일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=Pu2pQcZadho" target="_blank" data-cat="macro" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/Pu2pQcZadho/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">원달러 환율 1500원 시대, 예적금 싹다 빼서 현금 '여기로' 옮기세요. 원화 녹고 있습니다 | 김규동 이</div>
+      <div class="hot-meta"><div class="hot-ch-name">부티풀</div><div class="hot-stats"><span class="hot-views-num">1.3만회</span><span class="hot-dur">⏱ 19분</span><span class="hot-date">3일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-macro">거시경제</span>
+    </div>
+  </a>
+  <a class="hot-row" href="https://www.youtube.com/watch?v=pRVI8Jdhtq8" target="_blank" data-cat="fintech" data-rank="99" data-cat-extra="true">
+    <span class="hot-rank-num rn">—</span>
+    <img class="hot-thumb-sm" src="https://img.youtube.com/vi/pRVI8Jdhtq8/hqdefault.jpg" alt="" loading="lazy">
+    <div class="hot-body">
+      <div class="hot-title">"복잡한 차트 볼 필요 없습니다" 무조건 돈 버는 ETF 세팅법 I 머니리포트</div>
+      <div class="hot-meta"><div class="hot-ch-name">머니인사이드</div><div class="hot-stats"><span class="hot-views-num">3.6만회</span><span class="hot-dur">⏱ 13분</span><span class="hot-date">8일 전</span></div></div>
+    </div>
+    <div class="hot-right">
+      <span class="cat-badge cat-fintech">재테크</span>
+    </div>
+  </a>
+  </div>
+  <div class="cat-view-list"></div>
+  <div class="hot-section-label shorts-label" style="margin-top:22px;">
+    <span><span class="tossface">📱</span> 숏폼 TOP 5</span>
+  </div>
+  <div class="shorts-list">
+        <a class="shorts-card" href="https://www.youtube.com/shorts/h6xwSitcwzY" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/h6xwSitcwzY/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/h6xwSitcwzY/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">1위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">5월 9일 지나면 집값 이렇게 됩니다 [제네시스박]</div>
+            <div class="shorts-ch">부읽남 · 2026-04-05</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">35.2만회</span><span>32초 · 3일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/vWJxL5pSv88" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/vWJxL5pSv88/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/vWJxL5pSv88/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">2위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">7월 세제개편 나오면 집값 이렇게 될 겁니다 [제네시스박]</div>
+            <div class="shorts-ch">부읽남 · 2026-04-05</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">16.9만회</span><span>46초 · 3일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/OqfSl1FZhgk" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/OqfSl1FZhgk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/OqfSl1FZhgk/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">3위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">🙋 S&P500 몰빵해도 되나요? #S&P500 #지수투자 #분산투자 #shorts</div>
+            <div class="shorts-ch">박곰희TV · 2026-04-02</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">8.9만회</span><span>59초 · 6일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/2ATBmntaEaE" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/2ATBmntaEaE/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/2ATBmntaEaE/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">4위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">☝️ 단 하나의 상품에 투자한다면? 투자 뭐부터 해야하나요? #투자시작 #단하나의투자 #CMA #ISA #연</div>
+            <div class="shorts-ch">박곰희TV · 2026-03-30</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">8.7만회</span><span>9일 전</span></div>
+          </div>
+        </a>
+        <a class="shorts-card" href="https://www.youtube.com/shorts/cgZCan5uly0" target="_blank">
+          <div class="shorts-thumb-wrap">
+            <img class="shorts-thumb-v" src="https://img.youtube.com/vi/cgZCan5uly0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/cgZCan5uly0/hqdefault.jpg'" alt="">
+            <div class="shorts-rank-badge">5위</div>
+          </div>
+          <div class="shorts-body">
+            <div class="shorts-title">월급 통장 바꿨더니 매달 스벅 쿠폰을 준다고?</div>
+            <div class="shorts-ch">김짠부 · 2026-04-03</div>
+            <div class="shorts-why"><span class="cat-badge cat-general" style="font-size:8.5px;padding:1px 5px;">일반</span><span class="shorts-views-badge">4.9만회</span><span>54초 · 5일 전</span></div>
           </div>
         </a>
   </div>
@@ -1965,19 +2184,19 @@ function newsItemClick(el) {
           <td class="rank-num top1">1</td>
           <td>
             <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">🤖</span> AI · 반도체</span>
-              <span class="kw-trend up">↑ +16%</span><div class="kw-sparkline"><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:12px; background:#f08080;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:12px; background:#f08080;"></div><div class="spark-bar" style="height:12px; background:#e04040;"></div><div class="spark-bar" style="height:11px; background:#f08080;"></div></div><span class="kw-badge rising">급상승</span>
+              <span class="kw-main"><span class="tossface">📉</span> 미국 경기침체</span>
+              <span class="kw-trend up">↑ +4%</span><div class="kw-sparkline"><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:13px; background:#e04040;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:4px; background:#f8c0c0;"></div><div class="spark-bar" style="height:13px; background:#e04040;"></div><div class="spark-bar" style="height:15px; background:#e04040;"></div><div class="spark-bar" style="height:15px; background:#e04040;"></div></div><span class="kw-badge rising">급상승</span>
             </div>
-            <div class="kw-sub">소수몽키</div>
+            <div class="kw-sub">전인구경제연구소 · 소수몽키</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=Mj9BKoYoTmo" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">알아서 돈 벌어오는 AI에이전트 시대 개막, 젠슨황 충격 전망의 수혜주들 — 소수몽키</span><span class="kw-link-more">+2 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=8NWdGpym8Ws" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">AI투자 → 대량 해고 쓰나미 시작? 최악의 시나리오 현실화될까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=aiv2Grvc6d4" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">머스크 우주 반도체 올인 선언의 최대 수혜주들 — 소수몽키</span></a></div></a></div>
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.mk.co.kr/news/business/12010590" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">더브이씨, 비상장 스타트업 AI 재무분석 출시…상세 재무 데이터까지 한눈에 본다 — 매일경제</span></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=V_2Z-9bTa-Q" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">석기시대냐? 휴전이냐? 새벽 2시 트럼프의 선택에 달린 증시 — 전인구경제연구소</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=tMY30HnCdXc" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프의 석기시대 발언의 진짜 의미(ft. 코스피 급락) — 전인구경제연구소</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=W6m1JmvDPpk" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프도 예상 못했다? 홍해 봉쇄 우려, 미 증시에 더 큰 혼란 줄까 — 소수몽키</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=NseuX7PjrI8" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">트럼프의 강력 힌트, 벼랑 끝에 선 미 증시 살려낼까 — 소수몽키</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9Tcnk5QkQ1YUVjcWYwbS1saXBCMVlyYUl5M3JCWUM1aUJsMVh5MDYwY1BhOGxvRWY3SmVuWGl3TG5HTFh6R3B3RFZPSGlXQlktbVNrTjNR?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">파키스탄, 이란 협상 2주 연장 제안…백악관 “트럼프 인지, 답변 나올 것”[1일1트] — 헤럴드경제</span></a></div>
             </div>
           </td>
           <td class="kw-news-col" rowspan="6">
             <div class="kw-news-label">속보</div><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9zMkJEOXhieVRQRzgxSGwyZTVJR1cxa1VRYkdZQUd4b2diTWJJcFhnZk4yaklWZ3FxSWVza1BlM2NGeDBLeW1GZnZkT2UtR295QWtLZWdRLUxPOUk?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피·코스닥 모두 매수 사이드카 발동</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMidEFVX3lxTE81cmxTc0RDMldhWmxvMnJ3c1ZJWHUzSGliZ3poN2FYWTYxc0lsYVRDLTdpVVBDNnhBNE1jSnN1MVZJNVZnVGh5V3N4eHlfY3REYTkyXzcwSXZiaUlNR2hkNG1Ed05tX1NGeGdlTFNkMEs4ZmdR0gF0QVVfeXFMUGh1Q1l2UU13RDBHQUdBaVRfa2tja085OVlRa0F3YkdING9BQWlTU29ES0tFOWhSRXEweG92ZXlxWVhMUTYySnBOV1ZWMDRJS0l6X2FvaFZpTEh4YUVJYno2VGpKSFF5SndiZTJYSHUwZ05mU0o?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피·코스닥 급등에 매수 사이드카 발동 - MBC 뉴스</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE8tRmpHQzY2amEyV0swSWZUbW0xTkY5M3ZhWVZ3NGJKTFgyUzYyOVo0aVhWRERfN081YV9BZ09icGVOZ3ZIdnNPclA2a3BFcU9lWEE?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">속보</span><span class="kw-news-title">코스피 이어 코스닥도 매수 사이드카 발동 - 매일경제 마켓</span></a>
             <div class="kw-news-label" style="margin-top:8px;">실시간뉴스</div>
-            <div class="kw-news-scroll"><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPbjZRTUlRdGVZVG9JUTJFaWM5MnZtVno3NDJmdk0tMjZXTWdIZ1BlWURHZFVwa1FTTkpKYUdLOUpQOXpGWm1oUTU2S2FZMXNDTllVME1qZkgwUm5YQV9sUWg0RkFFdV9sZkpPMzNRLWEwMFpmR3ZsTnYtU3B4WG1QXw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">이데</span><span class="kw-news-title">도시와경제, 11일 부동산 투자 무료 세미나 개최</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1075097?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">[개장시황] 코스피, 미·이란 휴전 합의에 5%대 급등 출발…5800선 회복</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/business/12010590" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">더브이씨, 비상장 스타트업 AI 재무분석 출시…상세 재무 데이터까지 한눈에 본다</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1oMXM1QTJoZWs4OWs3Q2ZXaDhGbXB6WHhqYW9jUExIcTdwZWwyMmVnQkRGZEM4REo0QlhxOXYyX0h0U2JzSFBvN0hPTFo1czg?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">코인</span><span class="kw-news-title">비트코인, 2주 휴전 소식에 급등…7만1000달러선 - v.daum.net</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010982" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">여러 가상자산 한번에…빗썸, ‘포트폴리오 매수 서비스’ 출시</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010979" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">다날핀테크, JB전북은행과 원화 스테이블코인 플랫폼 실증 완료</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010978" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">美 FDIC, 은행권 스테이블코인 발행 규제안 승인</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010976" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">“채권 토큰화로 비용 60% 절감”…a16z “토큰화 앱 규제 면제 혜택 압도적”</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010974" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">DSRV, 사이오닉에이아이와 AI 에이전트 경제 생태계 구축 MOU</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010973" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">드디어 휴전인가…5% 뛴 비트코인, 7.2만불 회복 [매일코인]</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1uQVFoUnlKQ25qSHdnUnRXM3lsaXBRVEJ0OFAzc093RVh5a3ZGNXN6U3NGTFJfNFVWZ3R1RVJjejRCdWM2UEFfOHFtcnVmTjFkZHJDVnpn?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">헤럴드</span><span class="kw-news-title">美, 이란과 대면 협상 준비…밴스 부통령 참석 가능성</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010970" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">[속보] 코스피 이어 코스닥도 매수 사이드카 발동</span></a></div>
+            <div class="kw-news-scroll"><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPbjZRTUlRdGVZVG9JUTJFaWM5MnZtVno3NDJmdk0tMjZXTWdIZ1BlWURHZFVwa1FTTkpKYUdLOUpQOXpGWm1oUTU2S2FZMXNDTllVME1qZkgwUm5YQV9sUWg0RkFFdV9sZkpPMzNRLWEwMFpmR3ZsTnYtU3B4WG1QXw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">이데</span><span class="kw-news-title">도시와경제, 11일 부동산 투자 무료 세미나 개최</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1YaE9iYnVBYjVHbGRXUzRMOEtkN0tMVmlhdFNRUXhsQXQwUlNlN0I2Qm9sNmt2M0NOT1JBM3hyTjlMZU40YmdtS3dqN0xjNTJaVEHSAVNBVV95cUxQUF93WnF0RWtQd0RKd0J4Uk9qdTdIWW9HcEcxQVFiNXFLV3BlVXpJN3pHVVBkc09odDdWMURydFVfUTIzZ1lmb2Fxc3lxYWtaN3h6bw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">대전시, 국비 5조 원 시대 연다</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE15VXk5cVVxTk51ZEMyUEczSFF4UWZ6ZjBrbXJ2ZW9WbHdpMDVRVFdCVE5JQ0VMd1Z2YkJhRllraWtONU1qeHFHUUxnWUFQZTM5eFHSAVNBVV95cUxQb0dXZFY2QlVscGpIQmpub01mVE45N19qWXQ3Z0t3QWhFTENuQVFSdUhJRWMydTNIV21zUGxQN1dSUGl4T3M3V2trT01OVVg3TVd6aw?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">서경</span><span class="kw-news-title">부산교육청, 유아 정서·심리 집단상담 첫 도입</span></a><a class="kw-news-row" href="https://www.blockmedia.co.kr/archives/1075097?utm_source=general&utm_medium=rss" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">블록</span><span class="kw-news-title">[개장시황] 코스피, 미·이란 휴전 합의에 5%대 급등 출발…5800선 회복</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/business/12010590" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">더브이씨, 비상장 스타트업 AI 재무분석 출시…상세 재무 데이터까지 한눈에 본다</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010982" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">여러 가상자산 한번에…빗썸, ‘포트폴리오 매수 서비스’ 출시</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010979" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">다날핀테크, JB전북은행과 원화 스테이블코인 플랫폼 실증 완료</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010978" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">美 FDIC, 은행권 스테이블코인 발행 규제안 승인</span></a><a class="kw-news-row" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1oMXM1QTJoZWs4OWs3Q2ZXaDhGbXB6WHhqYW9jUExIcTdwZWwyMmVnQkRGZEM4REo0QlhxOXYyX0h0U2JzSFBvN0hPTFo1czg?oc=5" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">코인</span><span class="kw-news-title">비트코인, 2주 휴전 소식에 급등…7만1000달러선 - v.daum.net</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010976" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">“채권 토큰화로 비용 60% 절감”…a16z “토큰화 앱 규제 면제 혜택 압도적”</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010974" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">DSRV, 사이오닉에이아이와 AI 에이전트 경제 생태계 구축 MOU</span></a><a class="kw-news-row" href="https://www.mk.co.kr/news/stock/12010973" target="_blank" onclick="this.classList.add('kw-news-row-read')"><span class="kw-news-src-badge">매경</span><span class="kw-news-title">드디어 휴전인가…5% 뛴 비트코인, 7.2만불 회복 [매일코인]</span></a></div>
           </td>
         </tr>
         <!-- 2위 -->
@@ -2000,13 +2219,13 @@ function newsItemClick(el) {
           <td class="rank-num top3">3</td>
           <td>
             <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">💰</span> 예적금 · 재테크</span>
-              <span class="kw-trend down">↓ 47% 하락</span>
+              <span class="kw-main"><span class="tossface">💱</span> 환율 · 달러</span>
+              <span class="kw-trend down">↓ 17% 하락</span>
             </div>
-            <div class="kw-sub">뿅글이 · 머니인사이드</div>
+            <div class="kw-sub">부티풀 · 연금박사</div>
             <div class="kw-default-links">
-              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=FiBjOzRcsXs" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"적금만 하면 바보일까?" 현실을 말해드립니다. — 뿅글이</span><span class="kw-link-more">+1 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=pRVI8Jdhtq8" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"복잡한 차트 볼 필요 없습니다" 무조건 돈 버는 ETF 세팅법 I 머니리포트 — 머니인사이드</span></a></div></a></div>
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.blockmedia.co.kr/archives/1074959?utm_source=general&utm_medium=rss" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">美 FDIC, 스테이블코인 감독규정 승인… “예금 토큰, 일반 예금과 동일 보호” — 블록미디어</span></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=1i8f9dDvPKU" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"원화 추락에 곳간도 텅텅" IMF 경고 무시한 한국, 경제가 나락으로 가고 있다 | 서동기 박사  — 부티풀</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=TthSeiogVGA" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"원화 추락에 곳간도 텅텅.." IMF 섬뜩한 경고 떴다. 지금 현실이 되고 있는 중입니다 — 부티풀</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=RLR14ieNgj4" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">1억 넣으면 10년간 연5% 수익 쌓아주는 달러연금이 출시됐습니다 — 연금박사</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=Pu2pQcZadho" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">원달러 환율 1500원 시대, 예적금 싹다 빼서 현금 '여기로' 옮기세요. 원화 녹고 있습 — 부티풀</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.mk.co.kr/news/stock/12010979" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">다날핀테크, JB전북은행과 원화 스테이블코인 플랫폼 실증 완료 — 매일경제</span></a></div>
             </div>
           </td>
         </tr>
@@ -2015,13 +2234,13 @@ function newsItemClick(el) {
           <td class="rank-num ">4</td>
           <td>
             <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">💱</span> 환율 · 달러</span>
-              <span class="kw-trend down">↓ 100% 하락</span>
+              <span class="kw-main"><span class="tossface">💰</span> 예적금 · 재테크</span>
+              <span class="kw-trend down">↓ 47% 하락</span>
             </div>
-            <div class="kw-sub">—</div>
+            <div class="kw-sub">뿅글이 · 박곰희TV · 머니인사이드</div>
             <div class="kw-default-links">
-              
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1oMXM1QTJoZWs4OWs3Q2ZXaDhGbXB6WHhqYW9jUExIcTdwZWwyMmVnQkRGZEM4REo0QlhxOXYyX0h0U2JzSFBvN0hPTFo1czg?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">비트코인, 2주 휴전 소식에 급등…7만1000달러선 - v.daum.net — 코인뉴스</span></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base yt" href="https://www.youtube.com/watch?v=FiBjOzRcsXs" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-link-text">"적금만 하면 바보일까?" 현실을 말해드립니다. — 뿅글이</span><span class="kw-link-more">+3 ›</span><div class="kw-expand"><a class="kw-exp-item" href="https://www.youtube.com/watch?v=zDcF_zPTSYE" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">🤖 매번 꾸준히 투자하는 게 어렵다면? 기계의 힘을 빌리자! | ETF 자동매수 약정 |  — 박곰희TV</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=Yr2yMyGLsX0" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">📊 ISA 혹시 나만 하고 있는 건 아니겠지?ㅣ통계자료ㅣ금융투자협회 | ver.2026 — 박곰희TV</span></a><a class="kw-exp-item" href="https://www.youtube.com/watch?v=pRVI8Jdhtq8" target="_blank"><span class="kw-link-icon yt">YT</span><span class="kw-exp-text">"복잡한 차트 볼 필요 없습니다" 무조건 돈 버는 ETF 세팅법 I 머니리포트 — 머니인사이드</span></a></div></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.blockmedia.co.kr/archives/1074959?utm_source=general&utm_medium=rss" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">美 FDIC, 스테이블코인 감독규정 승인… “예금 토큰, 일반 예금과 동일 보호” — 블록미디어</span></a></div>
             </div>
           </td>
         </tr>
@@ -2030,13 +2249,13 @@ function newsItemClick(el) {
           <td class="rank-num ">5</td>
           <td>
             <div class="kw-trend-row">
-              <span class="kw-main"><span class="tossface">📉</span> 미국 경기침체</span>
+              <span class="kw-main"><span class="tossface">🤖</span> AI · 반도체</span>
               <span class="kw-trend down">↓ 100% 하락</span>
             </div>
             <div class="kw-sub">—</div>
             <div class="kw-default-links">
               
-              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE9Tcnk5QkQ1YUVjcWYwbS1saXBCMVlyYUl5M3JCWUM1aUJsMVh5MDYwY1BhOGxvRWY3SmVuWGl3TG5HTFh6R3B3RFZPSGlXQlktbVNrTjNR?oc=5" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">파키스탄, 이란 협상 2주 연장 제안…백악관 “트럼프 인지, 답변 나올 것”[1일1트] — 헤럴드경제</span></a></div>
+              <div class="kw-link-wrap"><a class="kw-link-base news" href="https://www.mk.co.kr/news/business/12010590" target="_blank"><span class="kw-link-icon news">뉴스</span><span class="kw-link-text">더브이씨, 비상장 스타트업 AI 재무분석 출시…상세 재무 데이터까지 한눈에 본다 — 매일경제</span></a></div>
             </div>
           </td>
         </tr>
@@ -2118,11 +2337,11 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE8tRmpHQzY2amEyV0swSWZUbW0xTkY5M3ZhWVZ3NGJKTFgyUzYyOVo0aVhWRERfN081YV9BZ09icGVOZ3ZIdnNPclA2a3BFcU9lWEE?oc=5" target="_blank" data-cat="주식·증시" data-hours="9.5" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/stock/12010982" target="_blank" data-cat="주식·증시" data-hours="9.6" onclick="this.classList.add('news-item-read')">
           <div class="news-num">05</div>
           <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">속보</span>코스피 이어 코스닥도 매수 사이드카 발동 - 매일경제 마켓</div>
-            
+            <div class="news-headline"><span class="news-src-tag-sm">매경</span>여러 가상자산 한번에…빗썸, ‘포트폴리오 매수 서비스’ 출시</div>
+            <div class="news-summary">빗썸이 여러 가상자산에 한 번에 분산 투자할 수 있는 ‘포트폴리오 매수 서비스’를 출시했다고 8일 밝혔다. 이 서비스는 투자자가 개별 종목을 일일이 선택하지 않아도 복수의 가상자산..</div>
           </div>
           <div class="news-time">9시간 전</div>
         </a>
@@ -2143,7 +2362,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time news-time-old">4/6</div>
         </a>
-        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPcFEwb0VYV3hmdFZGRFo4YW8zWWNFVE9wUVItYXdIMG1mVlNSZlRfRHJGVnRfTGxFeUFFQmV3Ym1yc2I5NVBncGNIZ2hHWUp6N2lzOFgtS0k4dmMwTUQtZVVTdmJGUXotdmtSSE5FQTJSd3NPWi1pRmNxOWZUc2RTcUdSWXc0YkFs0gGcAUFVX3lxTE8tRDI1QnlrazRGRWdLNUNQR1d4MlJpNGNXNXNMWlNfTVpJX3BsSjhkaEstdmpDZngtV2hINHdTdEZ3NnFsR1hKVzNvRDkxSE1qTmFjMDNIM2VNQ1NVcE1nck8tVWI4eUIydlhBYnJlVURjMVBWY2NaU1F1ZUJ0X29fS1JnTDE4NFBzQW1HRkMtSExNWXUwT0VTRVZ0Mg?oc=5" target="_blank" data-cat="부동산" data-hours="105.1" onclick="newsItemClick(this)">
+        <a class="news-item news-item-old-age" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPcFEwb0VYV3hmdFZGRFo4YW8zWWNFVE9wUVItYXdIMG1mVlNSZlRfRHJGVnRfTGxFeUFFQmV3Ym1yc2I5NVBncGNIZ2hHWUp6N2lzOFgtS0k4dmMwTUQtZVVTdmJGUXotdmtSSE5FQTJSd3NPWi1pRmNxOWZUc2RTcUdSWXc0YkFs0gGcAUFVX3lxTE8tRDI1QnlrazRGRWdLNUNQR1d4MlJpNGNXNXNMWlNfTVpJX3BsSjhkaEstdmpDZngtV2hINHdTdEZ3NnFsR1hKVzNvRDkxSE1qTmFjMDNIM2VNQ1NVcE1nck8tVWI4eUIydlhBYnJlVURjMVBWY2NaU1F1ZUJ0X29fS1JnTDE4NFBzQW1HRkMtSExNWXUwT0VTRVZ0Mg?oc=5" target="_blank" data-cat="부동산" data-hours="105.2" onclick="newsItemClick(this)">
           <div class="news-num">08</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">조선</span>신현송 한은 총재 후보자, 다주택 보유… 82억 재산 신고</div>
@@ -2168,23 +2387,23 @@ function newsItemClick(el) {
           <div class="news-time news-time-old">12/19</div>
         </a>
         <div class="news-section-header" data-cat="거시경제·환율"><span class="news-src-pill cat-pill">거시경제·환율</span></div>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1oMXM1QTJoZWs4OWs3Q2ZXaDhGbXB6WHhqYW9jUExIcTdwZWwyMmVnQkRGZEM4REo0QlhxOXYyX0h0U2JzSFBvN0hPTFo1czg?oc=5" target="_blank" data-cat="거시경제·환율" data-hours="9.5" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">11</div>
-          <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">코인</span>비트코인, 2주 휴전 소식에 급등…7만1000달러선 - v.daum.net</div>
-            
-          </div>
-          <div class="news-time">9시간 전</div>
-        </a>
         <a class="news-item" href="https://www.mk.co.kr/news/stock/12010979" target="_blank" data-cat="거시경제·환율" data-hours="9.6" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">12</div>
+          <div class="news-num">11</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>다날핀테크, JB전북은행과 원화 스테이블코인 플랫폼 실증 완료</div>
             <div class="news-summary">다날의 블록체인 전문 계열사인 다날핀테크는 JB전북은행과 함께 원화 스테이블코인의 유통부터 가맹점 결제, 정산까지 전 과정을 구현하는 기술검증(PoC)을 완료했다고 8일 밝혔다. ..</div>
           </div>
           <div class="news-time">9시간 전</div>
         </a>
-        <a class="news-item" href="https://www.mk.co.kr/news/stock/12010973" target="_blank" data-cat="거시경제·환율" data-hours="9.6" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE1oMXM1QTJoZWs4OWs3Q2ZXaDhGbXB6WHhqYW9jUExIcTdwZWwyMmVnQkRGZEM4REo0QlhxOXYyX0h0U2JzSFBvN0hPTFo1czg?oc=5" target="_blank" data-cat="거시경제·환율" data-hours="9.6" onclick="this.classList.add('news-item-read')">
+          <div class="news-num">12</div>
+          <div style="min-width:0;flex:1;">
+            <div class="news-headline"><span class="news-src-tag-sm">코인</span>비트코인, 2주 휴전 소식에 급등…7만1000달러선 - v.daum.net</div>
+            
+          </div>
+          <div class="news-time">9시간 전</div>
+        </a>
+        <a class="news-item" href="https://www.mk.co.kr/news/stock/12010973" target="_blank" data-cat="거시경제·환율" data-hours="9.7" onclick="this.classList.add('news-item-read')">
           <div class="news-num">13</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>드디어 휴전인가…5% 뛴 비트코인, 7.2만불 회복 [매일코인]</div>
@@ -2209,7 +2428,7 @@ function newsItemClick(el) {
           <div class="news-time">10시간 전</div>
         </a>
         <div class="news-section-header" data-cat="재테크"><span class="news-src-pill cat-pill">재테크</span></div>
-        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1074959?utm_source=general&utm_medium=rss" target="_blank" data-cat="재테크" data-hours="10.8" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.blockmedia.co.kr/archives/1074959?utm_source=general&utm_medium=rss" target="_blank" data-cat="재테크" data-hours="10.9" onclick="this.classList.add('news-item-read')">
           <div class="news-num">16</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">블록</span>美 FDIC, 스테이블코인 감독규정 승인… “예금 토큰, 일반 예금과 동일 보호”</div>
@@ -2226,7 +2445,7 @@ function newsItemClick(el) {
           <div class="news-time">11시간 전</div>
         </a>
         <div class="news-section-header" data-cat="비트코인"><span class="news-src-pill cat-pill">비트코인</span></div>
-        <a class="news-item" href="https://www.mk.co.kr/news/stock/12010974" target="_blank" data-cat="비트코인" data-hours="9.6" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://www.mk.co.kr/news/stock/12010974" target="_blank" data-cat="비트코인" data-hours="9.7" onclick="this.classList.add('news-item-read')">
           <div class="news-num">18</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">매경</span>DSRV, 사이오닉에이아이와 AI 에이전트 경제 생태계 구축 MOU</div>
@@ -2242,7 +2461,7 @@ function newsItemClick(el) {
           </div>
           <div class="news-time">10시간 전</div>
         </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wRTFDZ28wZHBwQmZRdUQzOThGT0VSSWIxMVpjWk4zM3NfWkZwdEpTVG13RjBHOHU3aThRLURUdEdBdG9CV1FGSy15OHotYUlVWWw3cFdieHo5UWxTWm9WUdIBeEFVX3lxTE5fWGRlYjRsb3VMMnMxVVhpb1owRjBrVHBNZEFodWRTUWM3SU9aOWhKTlRNdGh4Ylh3UnAzOUxiWUR5djRkcjFaMUZKMjlnWFFWSjl5bHUzWG1hTTh5enlMejBZLURLQkYtZjFya3BTNkNCNXNrelBjTw?oc=5" target="_blank" data-cat="비트코인" data-hours="10.7" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wRTFDZ28wZHBwQmZRdUQzOThGT0VSSWIxMVpjWk4zM3NfWkZwdEpTVG13RjBHOHU3aThRLURUdEdBdG9CV1FGSy15OHotYUlVWWw3cFdieHo5UWxTWm9WUdIBeEFVX3lxTE5fWGRlYjRsb3VMMnMxVVhpb1owRjBrVHBNZEFodWRTUWM3SU9aOWhKTlRNdGh4Ylh3UnAzOUxiWUR5djRkcjFaMUZKMjlnWFFWSjl5bHUzWG1hTTh5enlMejBZLURLQkYtZjFya3BTNkNCNXNrelBjTw?oc=5" target="_blank" data-cat="비트코인" data-hours="10.8" onclick="this.classList.add('news-item-read')">
           <div class="news-num">20</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">코인</span>비트코인, '2주 휴전' 소식에 4%대 급등…1억600만원</div>
@@ -2267,45 +2486,45 @@ function newsItemClick(el) {
           <div class="news-time">11시간 전</div>
         </a>
         <div class="news-section-header" data-cat="기타"><span class="news-src-pill cat-pill">기타</span></div>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1uQVFoUnlKQ25qSHdnUnRXM3lsaXBRVEJ0OFAzc093RVh5a3ZGNXN6U3NGTFJfNFVWZ3R1RVJjejRCdWM2UEFfOHFtcnVmTjFkZHJDVnpn?oc=5" target="_blank" data-cat="기타" data-hours="9.6" onclick="this.classList.add('news-item-read')">
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1YaE9iYnVBYjVHbGRXUzRMOEtkN0tMVmlhdFNRUXhsQXQwUlNlN0I2Qm9sNmt2M0NOT1JBM3hyTjlMZU40YmdtS3dqN0xjNTJaVEHSAVNBVV95cUxQUF93WnF0RWtQd0RKd0J4Uk9qdTdIWW9HcEcxQVFiNXFLV3BlVXpJN3pHVVBkc09odDdWMURydFVfUTIzZ1lmb2Fxc3lxYWtaN3h6bw?oc=5" target="_blank" data-cat="기타" data-hours="9.1" onclick="this.classList.add('news-item-read')">
           <div class="news-num">23</div>
           <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>美, 이란과 대면 협상 준비…밴스 부통령 참석 가능성</div>
+            <div class="news-headline"><span class="news-src-tag-sm">서경</span>대전시, 국비 5조 원 시대 연다</div>
+            
+          </div>
+          <div class="news-time">9시간 전</div>
+        </a>
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE15VXk5cVVxTk51ZEMyUEczSFF4UWZ6ZjBrbXJ2ZW9WbHdpMDVRVFdCVE5JQ0VMd1Z2YkJhRllraWtONU1qeHFHUUxnWUFQZTM5eFHSAVNBVV95cUxQb0dXZFY2QlVscGpIQmpub01mVE45N19qWXQ3Z0t3QWhFTENuQVFSdUhJRWMydTNIV21zUGxQN1dSUGl4T3M3V2trT01OVVg3TVd6aw?oc=5" target="_blank" data-cat="기타" data-hours="9.1" onclick="this.classList.add('news-item-read')">
+          <div class="news-num">24</div>
+          <div style="min-width:0;flex:1;">
+            <div class="news-headline"><span class="news-src-tag-sm">서경</span>부산교육청, 유아 정서·심리 집단상담 첫 도입</div>
             
           </div>
           <div class="news-time">9시간 전</div>
         </a>
         <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5QMk56dEliUnhxelg5T3NlQTBKR2NKX0RqVjJCaHp5SVowbGh6eVI2eW4xSEdfakNuazNmV1liemtkZFBMWFQ0ckppaXdTQ0hUSXhnQUx3?oc=5" target="_blank" data-cat="기타" data-hours="9.7" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">24</div>
+          <div class="news-num">25</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>한국연구재단, 경제위기 극복 ‘상생협력·ESG 경영’ 추진</div>
             
           </div>
           <div class="news-time">9시간 전</div>
         </a>
+        <a class="news-item" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1uQVFoUnlKQ25qSHdnUnRXM3lsaXBRVEJ0OFAzc093RVh5a3ZGNXN6U3NGTFJfNFVWZ3R1RVJjejRCdWM2UEFfOHFtcnVmTjFkZHJDVnpn?oc=5" target="_blank" data-cat="기타" data-hours="9.7" onclick="this.classList.add('news-item-read')">
+          <div class="news-num">26</div>
+          <div style="min-width:0;flex:1;">
+            <div class="news-headline"><span class="news-src-tag-sm">헤럴드</span>美, 이란과 대면 협상 준비…밴스 부통령 참석 가능성</div>
+            
+          </div>
+          <div class="news-time">9시간 전</div>
+        </a>
         <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1ubHRFaEFiVlVWQnV1QlVxazdJLUphbWNtOVM5Yl9HQnFucUhwOVFHWEhsRU0tNGtjUmtSV210NzdNRGRSd2hVSXlGblc3QXU0UnfSAVNBVV95cUxNTFRRdVdHdUMweGRWVGpnLWJBZkg0MkdYeXh0N1g3WVRlOU1NMWZKQURlYlFoOURjeFlpZHEtOHNhYzdJVG02TFg2UFZlMWZEUTlZRQ?oc=5" target="_blank" data-cat="기타" data-hours="9.9" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">25</div>
+          <div class="news-num">27</div>
           <div style="min-width:0;flex:1;">
             <div class="news-headline"><span class="news-src-tag-sm">서경</span>“비전투국인데, 韓이 제일 큰 충격” 한국에 전쟁났냐고 하더니…美싱크탱크의 분석</div>
             
           </div>
           <div class="news-time">9시간 전</div>
-        </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE1FbkpfTE5aNTdxbzZGSE1UbVdpcjFWanRKaVFLQnFOSHVkYXFpN1pTZlVFODBuTkVKNjFKdDUweWNXeUxSTlFjSmVHckNPWDlqQ2fSAVNBVV95cUxPLUVhNUhhTm05QVhsZ3FQQzVrNEVfWC12dV9kSmFxQlR4Y3NPbmdRMEJnN2xKeW9uTUh6UEpISEtscXppWWVwMzVIY210V01lV3J5SQ?oc=5" target="_blank" data-cat="기타" data-hours="10.0" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">26</div>
-          <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">서경</span>배민, 비닐봉투 200만장 소상공인에 무상 지원</div>
-            
-          </div>
-          <div class="news-time">10시간 전</div>
-        </a>
-        <a class="news-item" href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE9VUjRuOUZTODBab1JGU2drV3NZZ2IxWEFLMnJDRFFLRC1KVVR4SnpCS0FGb09YbF9Nb3Y3dkk4ZmZLeG1laWFsdEstUHRXcjhaOGfSAVNBVV95cUxQV09VLS1jUGFzNDhXaWw1Tmxta3J6aDNoS0twdkljUUc3V29jYU05WXJYbkh1RHpHN3B5eU9uZDE2aHkwMU9VYWpNYko5eTJ1MTZ1cw?oc=5" target="_blank" data-cat="기타" data-hours="10.1" onclick="this.classList.add('news-item-read')">
-          <div class="news-num">27</div>
-          <div style="min-width:0;flex:1;">
-            <div class="news-headline"><span class="news-src-tag-sm">서경</span>“유럽 32% 폭등할 때 한국은 8% 올랐다”…최고가격제로 경유값 ‘버티기’</div>
-            
-          </div>
-          <div class="news-time">10시간 전</div>
         </a>
       </div>
 <!-- INJECT_HOT_TODAY_END -->
