@@ -153,10 +153,8 @@ MARKET_SYMBOLS = [
 def korean_date_str(dt=None):
     if dt is None:
         dt = datetime.now()
-    weekdays = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
-    return f"{dt.year}년 {dt.month:02d}월 {dt.day:02d}일 {weekdays[dt.weekday()]}"
-
-
+    week_num = (dt.day - 1) // 7 + 1
+    return f"{dt.month}월 {week_num}주차"
 # ─── 템플릿 로드 ────────────────────────────────────
 
 def load_template():
@@ -1145,10 +1143,12 @@ def build_heatmap_html(kw_results, kw_score_history, today_str):
         name_fs   = max(9,  min(14, round(8  + area_pct * 0.12)))
         trend_fs  = max(8,  min(11, round(7  + area_pct * 0.08)))
 
-        # 트렌드 텍스트
-        prev = prev_scores.get(label)
-        if prev and prev > 0:
-            pct_chg = round((score - prev) / prev * 100)
+        # 트렌드 텍스트 — 위클리 7일 평균 대비
+        weekly_scores = [kw_score_history.get(d, {}).get(label, 0) for d in date_keys[:-1]]
+        non_zero_wk   = [s for s in weekly_scores if s > 0]
+        week_avg      = sum(non_zero_wk) / len(non_zero_wk) if non_zero_wk else 0
+        if week_avg > 0:
+            pct_chg = round((score - week_avg) / week_avg * 100)
             if   pct_chg >  15: trend_txt = f'↑ +{pct_chg}% 급상승'
             elif pct_chg >   5: trend_txt = f'↑ +{pct_chg}% 상승'
             elif pct_chg < -15: trend_txt = f'↓ {abs(pct_chg)}% 하락'
@@ -1213,7 +1213,7 @@ def build_heatmap_html(kw_results, kw_score_history, today_str):
 
     return f'''    <!-- 주식형 히트맵 트리맵 -->
     <div class="heatmap-card">
-      <div class="heatmap-title">KEYWORD HEATMAP</div>
+      <div class="heatmap-title">WEEKLY TREND</div>
       <div class="treemap">
 {tiles_html}      </div>
 {legend_html}
