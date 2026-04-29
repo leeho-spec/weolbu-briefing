@@ -373,43 +373,51 @@ KEYWORD_TITLE_MAP = {
 
 
 def collect_keyword_data(keyword_cfg):
-    """RSS로 채널별 최신 영상 수집 → 키워드 필터 → 스코어 정렬"""
-    query    = keyword_cfg['query']
-    kw_words = KEYWORD_TITLE_MAP.get(query, query.split())
-    is_realestate = '부동산' in query or '청약' in query or '전세' in query
+    """search.list API로 키워드 검색 → 스코어 정렬 (100유닛/호출)
+    RSS 방식 대신 사용 — 서버 IP에서 YouTube RSS가 차단되는 문제 해결"""
+    query = keyword_cfg['query']
 
-    candidate_ids = []  # (vid_id, ch_name, weight)
-    for ch_name, ch_info in CHANNELS.items():
-        if ch_info.get('finance_only') and is_realestate:
-            continue
-        rss_videos = fetch_channel_rss(ch_info['id'])
-        for v in rss_videos:
-            # 제목에 키워드 단어 하나라도 포함되면 후보 추가
-            title_upper = v['title'].upper()
-            if any(kw.upper() in title_upper for kw in kw_words):
-                # 최근 N일 이내만
-                if RECENCY_DAYS:
-                    try:
-                        pub = datetime.fromisoformat(v['published']).date()
-                        if (datetime.now().date() - pub).days > RECENCY_DAYS:
-                            continue
-                    except Exception:
-                        pass
-                candidate_ids.append((v['vid'], ch_name, ch_info['weight']))
+    # 채널ID → (채널명, weight) 역방향 맵 (알려진 채널에 가중치 적용)
+    ch_id_map = {info['id']: (name, info['weight']) for name, info in CHANNELS.items()}
 
-    if not candidate_ids:
+    published_after = (datetime.now(timezone.utc) - timedelta(days=RECENCY_DAYS)).strftime('%Y-%m-%dT00:00:00Z')
+
+    try:
+        data = yt_get('search', {
+            'part':              'snippet',
+            'q':                 query,
+            'type':              'video',
+            'maxResults':        25,
+            'order':             'viewCount',
+            'publishedAfter':    published_after,
+            'relevanceLanguage': 'ko',
+            'regionCode':        'KR',
+        })
+    except Exception as e:
+        print(f'  [search.list] 오류: {e}')
         return []
 
-    # 중복 제거 (같은 vid가 여러 채널에서 걸릴 수 있음)
-    seen, unique = set(), []
-    for vid, ch_name, weight in candidate_ids:
-        if vid not in seen:
-            seen.add(vid)
-            unique.append((vid, ch_name, weight))
+    items = data.get('items', [])
+    if not items:
+        return []
 
-    # videos.list로 조회수 일괄 조회 (1유닛/50개)
-    stats = get_video_stats([v[0] for v in unique])
-    ch_map = {vid: (ch_name, weight) for vid, ch_name, weight in unique}
+    # search 결과에서 videoId·채널정보 추출
+    vid_ids, snippet_map = [], {}
+    for item in items:
+        vid = item.get('id', {}).get('videoId')
+        if not vid:
+            continue
+        vid_ids.append(vid)
+        ch_id      = item['snippet']['channelId']
+        ch_name_yt = item['snippet']['channelTitle']
+        ch_name, weight = ch_id_map.get(ch_id, (ch_name_yt, 1.0))
+        snippet_map[vid] = (ch_name, weight)
+
+    if not vid_ids:
+        return []
+
+    # videos.list로 조회수·duration 일괄 조회 (1유닛/50개)
+    stats = get_video_stats(vid_ids)
 
     today = datetime.now(timezone.utc).date()
     scored = []
@@ -418,9 +426,9 @@ def collect_keyword_data(keyword_cfg):
             continue
         if is_live_video(info):            # 라이브/예정/리플레이 제외
             continue
-        if 0 < info.get('dur_sec', 0) < 120:  # 롱폼 최소 2분 미만 제외 (회색지대 영상)
+        if 0 < info.get('dur_sec', 0) < 120:  # 롱폼 최소 2분 미만 제외
             continue
-        ch_name, weight = ch_map.get(vid, ('?', 1.0))
+        ch_name, weight = snippet_map.get(vid, (info.get('channel', '?'), 1.0))
         days_old = (today - datetime.fromisoformat(info['date']).date()).days
         recency  = max(0, 1 - days_old / 30)   # 30일 지나면 0, 오늘 업로드면 1
         score    = info['views'] * weight * (1 + recency)
@@ -2046,7 +2054,7 @@ def main():
 
     pages_url = f'https://leeho-spec.github.io/weolbu-briefing/latest.html'
     print(f'\n🚀 배포 완료: {pages_url}')
-    print(f'쿼터: ~{len(KEYWORDS) * len(CHANNELS) * 100 + 30} units / 10,000')
+    print(f'쿼터: ~{len(KEYWORDS) * 100 + 30} units / 10,000  (search.list {len(KEYWORDS)}회)')
 
     # 11. Slack 발송용 요약 JSON 저장
     top3_longform = [v for v in all_vids_full if not v.get('is_short')][:3]
