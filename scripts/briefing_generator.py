@@ -1846,7 +1846,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     yesterday  = today - timedelta(days=1)
     yesterday_str2 = yesterday.strftime('%Y-%m-%d')
-    today_label    = today.strftime('%Y. %m. %d')
+    today_label    = korean_date_str(today)
     # 어제 파일이 로컬에 있을 때만 링크 활성
     prev_file = os.path.join(script_dir, f'daily_briefing_{yesterday_str2}.html')
     if os.path.exists(prev_file):
