@@ -96,7 +96,7 @@ KEYWORDS = [
     {'label': '부동산 규제완화', 'query': '부동산 규제',                                'emoji': '🏠', 'cat': 'realestate'},
     {'label': '미국 경기침체',  'query': '미국 경기침체',                              'emoji': '📉', 'cat': 'macro'},
     {'label': '금리 인하 기대', 'query': '금리 인하',                                  'emoji': '🏦', 'cat': 'macro'},
-    {'label': '예적금 · 재테크', 'query': '예금 적금 재테크 ISA IRP ETF 연금저축 청년도약 발행어음 절세', 'emoji': '💰', 'cat': 'fintech'},
+    {'label': '예적금 · 재테크', 'query': '재테크 ETF ISA IRP 절세', 'emoji': '💰', 'cat': 'fintech'},
 ]
 
 # 카테고리 레이블 매핑 (뱃지 텍스트)
@@ -447,6 +447,12 @@ def collect_keyword_data(keyword_cfg):
         days_old = (today - datetime.fromisoformat(info['date']).date()).days
         recency  = max(0, 1 - days_old / 30)   # 30일 지나면 0, 오늘 업로드면 1
         score    = info['views'] * weight * (1 + recency)
+        # fintech 채널이면 cat을 fintech으로 강제 (재테크 항목에 표시)
+        ch_info_meta = CHANNELS.get(ch_name, {})
+        if ch_info_meta.get('force_cat'):
+            info = {**info, 'cat': ch_info_meta['force_cat']}
+        elif ch_info_meta.get('cat_hint') and not info.get('cat'):
+            info = {**info, 'cat': ch_info_meta['cat_hint']}
         scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score})
 
     return sorted(scored, key=lambda x: x['score'], reverse=True)
@@ -1047,6 +1053,25 @@ def save_kw_score_history(kw_results, today_str):
     except Exception as e:
         print(f'[경고] 키워드 스코어 히스토리 저장 실패: {e}')
     return history
+
+
+
+def get_weekly_surge(kw_score_history, today_str, top_n=3):
+    """7일 평균 대비 오늘 급상승 키워드 TOP N 반환"""
+    from datetime import datetime, timedelta
+    date_keys = [(datetime.strptime(today_str, '%Y-%m-%d') - timedelta(days=i)).strftime('%Y-%m-%d')
+                 for i in range(1, 8)]
+    today_scores = kw_score_history.get(today_str, {})
+    surges = []
+    for label, score in today_scores.items():
+        if score <= 0:
+            continue
+        past = [kw_score_history.get(d, {}).get(label, 0) for d in date_keys]
+        non_zero = [s for s in past if s > 0]
+        avg = sum(non_zero) / len(non_zero) if non_zero else 0
+        pct = round((score - avg) / avg * 100) if avg > 0 else 999
+        surges.append({'label': label, 'score': score, 'avg': avg, 'pct': pct})
+    return sorted(surges, key=lambda x: x['pct'], reverse=True)[:top_n]
 
 
 def get_kw_sparkline(label, kw_score_history, today_str, days=7):
@@ -2078,10 +2103,12 @@ def main():
 
     # 11. Slack 발송용 요약 JSON 저장
     top3_longform = [v for v in all_vids_full if not v.get('is_short')][:3]
+    surge = get_weekly_surge(kw_score_history, today_str)
     slack_summary = {
         'date': today_str,
         'date_label': korean_date_str(today),
         'pages_url': pages_url,
+        'weekly_surge': surge,
         'top3': [
             {
                 'rank': i + 1,
