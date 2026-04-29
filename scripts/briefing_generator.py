@@ -303,48 +303,6 @@ def get_video_stats(video_ids):
     return result
 
 
-def collect_shorts_data():
-    """모든 채널 RSS → duration ≤60초 Shorts만 추려 스코어 정렬
-    (UUSH 플레이리스트는 구형 콘텐츠만 반환하여 제거 — 일반 RSS 최신 15개 사용)"""
-    all_ids = []  # (vid, ch_name, weight, published)
-    for ch_name, ch_info in CHANNELS.items():
-        ch_id = ch_info['id']
-        for v in fetch_channel_rss(ch_id):
-            all_ids.append((v['vid'], ch_name, ch_info['weight'], v['published']))
-
-    if not all_ids:
-        return []
-
-    # 중복 제거
-    seen, unique = set(), []
-    for vid, ch_name, weight, pub in all_ids:
-        if vid not in seen:
-            seen.add(vid)
-            unique.append((vid, ch_name, weight, pub))
-
-    # videos.list (contentDetails 포함)
-    stats = get_video_stats([v[0] for v in unique])
-    ch_map = {vid: (ch_name, weight) for vid, ch_name, weight, pub in unique}
-
-    today = datetime.now(timezone.utc).date()
-    scored = []
-    for vid, info in stats.items():
-        if not info.get('is_short'):
-            continue
-        if is_live_video(info):           # 라이브/예정/리플레이 제외
-            continue
-        ch_name, weight = ch_map.get(vid, ('?', 1.0))
-        days_old = (today - datetime.fromisoformat(info['date']).date()).days
-        if days_old > RECENCY_DAYS:
-            continue
-        recency = max(0, 1 - days_old / 30)
-        score   = info['views'] * weight * (1 + recency)
-        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score})
-
-    return sorted(scored, key=lambda x: x['score'], reverse=True)
-
-
-# 라이브 방송 리플레이 제목 패턴 (API liveBroadcastContent 우회 케이스 대응)
 LIVE_TITLE_PATTERNS = [
     '전체보기', '오전 방송', '오후 방송', '방송 전체', '생방송', '생방',
     '[LIVE]', '(LIVE)', 'LIVE방송', '라이브방송', '실시간방송',
@@ -354,9 +312,68 @@ def is_live_video(info):
     """라이브 방송 / 라이브 리플레이 여부 판정"""
     if info.get('is_live'):
         return True
-    # completed 리플레이: title 패턴으로 감지
     title = info.get('title', '')
     return any(p in title for p in LIVE_TITLE_PATTERNS)
+
+
+def collect_shorts_data():
+    """search.list API로 Shorts 수집 (videoDuration=short, 100유닛/호출)
+    RSS 방식 대신 사용 — 서버 IP에서 YouTube RSS가 차단되는 문제 해결"""
+    ch_id_map = {info['id']: (name, info['weight']) for name, info in CHANNELS.items()}
+    published_after = (datetime.now(timezone.utc) - timedelta(days=RECENCY_DAYS)).strftime('%Y-%m-%dT00:00:00Z')
+
+    try:
+        data = yt_get('search', {
+            'part':              'snippet',
+            'q':                 '재테크 투자 주식 부동산 경제',
+            'type':              'video',
+            'videoDuration':     'short',
+            'maxResults':        25,
+            'order':             'viewCount',
+            'publishedAfter':    published_after,
+            'relevanceLanguage': 'ko',
+            'regionCode':        'KR',
+        })
+    except Exception as e:
+        print(f'  [Shorts search.list] 오류: {e}')
+        return []
+
+    items = data.get('items', [])
+    if not items:
+        return []
+
+    vid_ids, snippet_map = [], {}
+    for item in items:
+        vid = item.get('id', {}).get('videoId')
+        if not vid:
+            continue
+        vid_ids.append(vid)
+        ch_id      = item['snippet']['channelId']
+        ch_name_yt = item['snippet']['channelTitle']
+        ch_name, weight = ch_id_map.get(ch_id, (ch_name_yt, 1.0))
+        snippet_map[vid] = (ch_name, weight)
+
+    if not vid_ids:
+        return []
+
+    stats  = get_video_stats(vid_ids)
+    today  = datetime.now(timezone.utc).date()
+    scored = []
+    for vid, info in stats.items():
+        if not info.get('is_short'):
+            continue
+        if is_live_video(info):
+            continue
+        ch_name, weight = snippet_map.get(vid, (info.get('channel', '?'), 1.0))
+        days_old = (today - datetime.fromisoformat(info['date']).date()).days
+        if days_old > RECENCY_DAYS:
+            continue
+        recency = max(0, 1 - days_old / 30)
+        score   = info['views'] * weight * (1 + recency)
+        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score})
+
+    return sorted(scored, key=lambda x: x['score'], reverse=True)
+
 
 
 # 키워드 필터링용 — 제목에 이 중 하나 이상 포함되면 관련 영상으로 판단
@@ -1176,11 +1193,14 @@ def build_heatmap_html(kw_results, kw_score_history, today_str):
         delay  = rank_i * 70
 
         # calc()로 GAP 적용 — 각 타일이 정확히 할당 영역을 채우되 간격만큼 축소
+        # 부동소수점 누적 오차 방지 — 100% 초과 시 clamp
+        cw = min(lw, 100.0 - lx)
+        ch = min(lh, 100.0 - ly)
         pos_style = (
             f'left:calc({lx:.3f}% + {GAP}px);'
             f'top:calc({ly:.3f}% + {GAP}px);'
-            f'width:calc({lw:.3f}% - {GAP*2}px);'
-            f'height:calc({lh:.3f}% - {GAP*2}px);'
+            f'width:calc({cw:.3f}% - {GAP*2}px);'
+            f'height:calc({ch:.3f}% - {GAP*2}px);'
         )
 
         tiles_html += f'''        <div class="tm-cell {tile_color}"
