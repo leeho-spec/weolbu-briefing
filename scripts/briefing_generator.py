@@ -370,7 +370,7 @@ def collect_shorts_data():
             continue
         recency = max(0, 1 - days_old / 30)
         score   = info['views'] * weight * (1 + recency)
-        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score})
+        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score, 'days_old': days_old})
 
     return sorted(scored, key=lambda x: x['score'], reverse=True)
 
@@ -453,7 +453,7 @@ def collect_keyword_data(keyword_cfg):
             info = {**info, 'cat': ch_info_meta['force_cat']}
         elif ch_info_meta.get('cat_hint') and not info.get('cat'):
             info = {**info, 'cat': ch_info_meta['cat_hint']}
-        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score})
+        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight, 'score': score, 'days_old': days_old})
 
     return sorted(scored, key=lambda x: x['score'], reverse=True)
 
@@ -1548,7 +1548,11 @@ def build_summary_card_html(kw_results, all_vids_full, news_items,
         label = CAT_KR.get(cat, '일반')
         title = top['title'][:52]
         views_str = fmt_views(top['views']) if top.get('views', 0) > 0 else ''
-        freshness = '오늘' if top.get('days_old', 99) <= 1 else f'{top.get("days_old", "?")}일 전'
+        try:
+            _d = (datetime.now().date() - datetime.fromisoformat(top['date']).date()).days
+        except Exception:
+            _d = top.get('days_old', 99)
+        freshness = '오늘' if _d <= 1 else f'{_d}일 전' 
         desc = f'{top["ch_name"]} · {freshness}'
         if views_str:
             desc += f' · {views_str}'
@@ -1731,27 +1735,8 @@ def build_kw_rows_html(kw_results, news_items=None, kw_score_history=None, today
             for h, c in spark_data
         )
 
-        # 트렌드 배지 (TOP2만 스파크라인 + 배지, 나머지는 텍스트만)
-        if rank == 1:
-            badge_html = '<span class="kw-badge rising">급상승</span>'
-            trend_html = (f'<span class="kw-trend up">↑ +{abs(pct_vs_prev)}%</span>'
-                         f'<div class="kw-sparkline">{pattern_html}</div>{badge_html}')
-        elif rank == 2:
-            if pct_vs_prev > 5:
-                pct_label = f'↑ +{abs(pct_vs_prev)}% 상승'
-                trend_cls2 = 'up'
-            elif pct_vs_prev < -5:
-                pct_label = f'↓ {abs(pct_vs_prev)}% 하락'
-                trend_cls2 = 'down'
-            else:
-                pct_label = '→ 보합 유지'
-                trend_cls2 = 'stable'
-            trend_html = (f'<span class="kw-trend {trend_cls2}">{pct_label}</span>'
-                         f'<div class="kw-sparkline">{pattern_html}</div>')
-        elif pct_vs_prev < -15:
-            trend_html = f'<span class="kw-trend down">↓ {abs(pct_vs_prev)}% 하락</span>'
-        else:
-            trend_html = f'<span class="kw-trend stable">→ 보합 유지</span>'
+        # 트렌드: 스파크라인만 표시 (% 텍스트 제거)
+        trend_html = f'<div class="kw-sparkline">{pattern_html}</div>'
 
         # YT 링크 블록
         yt_block = ''
