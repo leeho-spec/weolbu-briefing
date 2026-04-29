@@ -387,6 +387,75 @@ KEYWORD_TITLE_MAP = {
 }
 
 
+def collect_fintech_channel_videos(max_per_ch=5):
+    """fintech 채널의 최신 영상을 uploads playlist API로 직접 수집
+    channels.list(1유닛) + playlistItems.list(N채널유닛) + videos.list(1유닛) = ~15유닛"""
+    fintech_chs = {name: info for name, info in CHANNELS.items()
+                   if info.get('force_cat') == 'fintech' or info.get('cat_hint') == 'fintech'}
+    if not fintech_chs:
+        return []
+
+    ch_ids = [info['id'] for info in fintech_chs.values()]
+
+    # 1) channels.list → uploads playlist ID 조회
+    try:
+        data = yt_get('channels', {'part': 'contentDetails', 'id': ','.join(ch_ids)})
+    except Exception as e:
+        print(f'  [fintech channels.list] 오류: {e}')
+        return []
+
+    # channel_id → uploads_playlist_id 매핑
+    upload_map = {}
+    for item in data.get('items', []):
+        ch_id  = item['id']
+        pl_id  = item.get('contentDetails', {}).get('relatedPlaylists', {}).get('uploads')
+        if pl_id:
+            upload_map[ch_id] = pl_id
+
+    ch_id_to_name = {info['id']: name for name, info in fintech_chs.items()}
+
+    # 2) 각 채널 uploads 재생목록에서 최신 영상 수집
+    all_vids = []  # (vid_id, ch_name, weight)
+    for ch_id, pl_id in upload_map.items():
+        ch_name = ch_id_to_name.get(ch_id, ch_id)
+        weight  = fintech_chs.get(ch_name, {}).get('weight', 1.0)
+        try:
+            pl_data = yt_get('playlistItems', {
+                'part':       'snippet',
+                'playlistId': pl_id,
+                'maxResults': max_per_ch,
+            })
+            for item in pl_data.get('items', []):
+                vid = item['snippet']['resourceId'].get('videoId')
+                if vid:
+                    all_vids.append((vid, ch_name, weight))
+        except Exception as e:
+            print(f'  [fintech playlistItems {ch_name}] 오류: {e}')
+
+    if not all_vids:
+        return []
+
+    # 3) videos.list로 조회수·duration 일괄 조회
+    stats   = get_video_stats([v[0] for v in all_vids])
+    ch_map  = {vid: (ch_name, weight) for vid, ch_name, weight in all_vids}
+    today   = datetime.now(timezone.utc).date()
+    scored  = []
+    for vid, info in stats.items():
+        if info.get('is_short') or is_live_video(info):
+            continue
+        if 0 < info.get('dur_sec', 0) < 120:
+            continue
+        days_old = (today - datetime.fromisoformat(info['date']).date()).days
+        if days_old > RECENCY_DAYS:
+            continue
+        ch_name, weight = ch_map.get(vid, ('?', 1.0))
+        recency = max(0, 1 - days_old / 30)
+        score   = info['views'] * weight * (1 + recency)
+        scored.append({**info, 'ch_name': ch_name, 'ch_weight': weight,
+                       'score': score, 'days_old': days_old, 'cat': 'fintech'})
+    return sorted(scored, key=lambda x: x['score'], reverse=True)
+
+
 def collect_keyword_data(keyword_cfg):
     """search.list API로 키워드 검색 → 스코어 정렬 (100유닛/호출)
     RSS 방식 대신 사용 — 서버 IP에서 YouTube RSS가 차단되는 문제 해결"""
@@ -1927,8 +1996,13 @@ def main():
         else:
             print('    → 결과 없음')
 
+    # 4-a. fintech 특화 채널 직접 수집 (뿅글이, 김짠부 등)
+    print('[재테크 채널] 직접 수집 중...')
+    fintech_vids = collect_fintech_channel_videos(max_per_ch=5)
+    print(f'  → {len(fintech_vids)}개 수집' + (f', 1위: {fintech_vids[0]["title"][:35]} ({fintech_vids[0]["ch_name"]})' if fintech_vids else ''))
+
     # 4. 오늘의 핫 콘텐츠 TOP5 선정 (롱폼 3 + 숏폼 5 공유)
-    all_vids = []
+    all_vids = list(fintech_vids)  # fintech 채널 먼저 풀에 합산
     for _, vids in kw_results:
         all_vids.extend(vids)
     seen, top5 = set(), []
